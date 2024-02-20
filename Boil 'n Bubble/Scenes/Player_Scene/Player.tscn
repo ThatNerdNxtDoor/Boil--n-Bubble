@@ -14,6 +14,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="Pivot"]
 
+[node name="RayCast3D" type="RayCast3D" parent="Pivot"]
+target_position = Vector3(0, 0, -1.65)
+debug_shape_thickness = 5
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02068, 0)
 mesh = SubResource("CylinderMesh_nlfc2")

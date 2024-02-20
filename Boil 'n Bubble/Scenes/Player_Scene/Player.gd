@@ -10,20 +10,37 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var camera
 var rotation_pivot
+var raycast
+
+var interaction
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera = $Pivot/PlayerCamera
+	raycast = $Pivot/RayCast3D
 	rotation_pivot = $Pivot
 	pass
 
 #Collect input for 'pausing' the game.
 func _process(delta):
+	#Check for pausing
 	if Input.is_action_just_pressed("pause"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	#Handle Raycast
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
+		var body = raycast.get_collider()
+		if body == null:
+			null
+			#Do nothing
+		#If object can be interacted with
+		elif body.has_method("interaction"):
+			if Input.is_action_just_pressed("interact"):
+				body.interaction()
 
 #Movement Calculation
 func _physics_process(delta):
