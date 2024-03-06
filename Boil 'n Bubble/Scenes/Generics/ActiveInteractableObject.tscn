@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://gfjgese2skxb"]
+
+[ext_resource type="Script" path="res://Scripts/Generics/active_interactable_object.gd" id="1_33n3r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rylug"]
+radius = 0.25
+height = 0.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bl35y"]
+radius = 0.25
+height = 0.75
+
+[node name="ActiveInteractableObject" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_p0b4h")
+can_sleep = false
+script = ExtResource("1_33n3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_rylug")
+
+[node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_bl35y")

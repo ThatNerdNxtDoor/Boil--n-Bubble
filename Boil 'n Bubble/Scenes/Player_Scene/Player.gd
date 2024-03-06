@@ -4,21 +4,32 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.20
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+#Variables for everything under the rotation pivot/'face' (Camera + Raycast)
 var camera
 var rotation_pivot
 var raycast
 
 var interaction
+var ui_interact
+
+#Player Variables
+var max_health
+var curr_health
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	camera = $Pivot/PlayerCamera
 	raycast = $Pivot/RayCast3D
 	rotation_pivot = $Pivot
+	
+	ui_interact = $Pivot/PlayerUI/RichTextLabel
+	
+	max_health = 100
+	curr_health = max_health
 	pass
 
 #Collect input for 'pausing' the game.
@@ -35,12 +46,16 @@ func _process(delta):
 	if raycast.is_colliding():
 		var body = raycast.get_collider()
 		if body == null:
+			ui_interact.hide()
 			null
 			#Do nothing
 		#If object can be interacted with
 		elif body.has_method("interaction"):
+			ui_interact.show()
 			if Input.is_action_just_pressed("interact"):
 				body.interaction()
+	else:
+		ui_interact.hide()
 
 #Movement Calculation
 func _physics_process(delta):
@@ -71,5 +86,5 @@ func _input(event):
 		rotation_pivot.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 		var camera_rot = rotation_pivot.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
+		camera_rot.x = clamp(camera_rot.x, -90, 70)
 		rotation_pivot.rotation_degrees = camera_rot

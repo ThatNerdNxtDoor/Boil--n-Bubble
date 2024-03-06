@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjd4xkikihqr"]
+[gd_scene load_steps=5 format=3 uid="uid://cjd4xkikihqr"]
 
 [ext_resource type="Script" path="res://Scenes/Player_Scene/Player.gd" id="1_47kuh"]
+[ext_resource type="PackedScene" uid="uid://bfbwkcnkeo72l" path="res://Scenes/UI/PlayerUI.tscn" id="2_5rmy3"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_nlfc2"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fx1y4"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_awc6j"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ykgbw"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_47kuh")
@@ -18,10 +19,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
 target_position = Vector3(0, 0, -1.65)
 debug_shape_thickness = 5
 
+[node name="PlayerUI" parent="Pivot" instance=ExtResource("2_5rmy3")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02068, 0)
-mesh = SubResource("CylinderMesh_nlfc2")
+mesh = SubResource("CapsuleMesh_fx1y4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02222, 0)
-shape = SubResource("CylinderShape3D_awc6j")
+shape = SubResource("CapsuleShape3D_ykgbw")

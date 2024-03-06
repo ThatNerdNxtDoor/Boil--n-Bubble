@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=7 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
-[ext_resource type="PackedScene" uid="uid://dcpsbulirop48" path="res://Scenes/Plant_Scenes/interactable_object.tscn" id="2_486js"]
+[ext_resource type="PackedScene" uid="uid://dcpsbulirop48" path="res://Scenes/Generics/StaticInteractableObject.tscn" id="2_486js"]
+[ext_resource type="PackedScene" uid="uid://gfjgese2skxb" path="res://Scenes/Generics/ActiveInteractableObject.tscn" id="3_fecwj"]
+[ext_resource type="PackedScene" uid="uid://dgml52625lo5n" path="res://Scenes/Generics/ActiveGenericMaterial.tscn" id="4_3bbc1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h38n"]
 size = Vector3(10, 0.5, 10)
@@ -24,8 +26,14 @@ mesh = SubResource("BoxMesh_r3uyx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0645959, 0)
 
 [node name="InteractableObject" parent="." instance=ExtResource("2_486js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035298, 0.192518, 2.7334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035298, 0.183875, 2.7334)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.787914, 0.615785, 0, -0.615785, 0.787914, 0, 2.5806, 0)
+transform = Transform3D(1, 0, 0, 0, 0.62317, 0.782086, 0, -0.782086, 0.62317, 0, 2.5806, 0)
 shadow_enabled = true
+
+[node name="ActiveInteractableObject" parent="." instance=ExtResource("3_fecwj")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 3, 2, 0)
+
+[node name="ActiveGenericMaterial" parent="." instance=ExtResource("4_3bbc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.4, 0)
