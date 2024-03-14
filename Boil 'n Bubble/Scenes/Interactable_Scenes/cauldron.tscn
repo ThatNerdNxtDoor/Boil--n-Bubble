@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2oha1jqkfigo"]
+[gd_scene load_steps=7 format=3 uid="uid://b2oha1jqkfigo"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
+[ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pxm3e"]
-size = Vector3(0.5, 0.5, 0.51)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vwgvn"]
-size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1nn6"]
+size = Vector3(0.4, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uwsk6"]
+size = Vector3(0.4, 0.25, 0.25)
 
 [node name="Cauldron" type="StaticBody3D"]
+script = ExtResource("1_qhrfw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_pxm3e")
@@ -14,7 +22,14 @@ mesh = SubResource("BoxMesh_pxm3e")
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_vwgvn")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Nozzle" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.696958, 0.370851, 0)
+script = ExtResource("2_6v7l6")
 
-[node name="InteractiveCollisionShape" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_vwgvn")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Nozzle"]
+mesh = SubResource("BoxMesh_p1nn6")
+
+[node name="InteractiveCollisionShape" type="CollisionShape3D" parent="Nozzle"]
+shape = SubResource("BoxShape3D_uwsk6")
+
+[connection signal="start_brewing" from="Nozzle" to="." method="_on_nozzle_start_brewing"]

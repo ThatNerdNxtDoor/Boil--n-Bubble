@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgml52625lo5n"]
+[gd_scene load_steps=5 format=3 uid="uid://c8w34ufmkte4a"]
 
-[ext_resource type="Script" path="res://Scripts/Generics/active_generic_material.gd" id="1_gljnu"]
+[ext_resource type="Script" path="res://Scripts/Generics/active_generic_material.gd" id="1_be8fj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
 
@@ -12,11 +12,11 @@ height = 0.75
 radius = 0.25
 height = 0.75
 
-[node name="ActiveGenericMaterial" type="RigidBody3D"]
+[node name="ActiveSoothHoney" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_p0b4h")
 can_sleep = false
-script = ExtResource("1_gljnu")
-mat_name = "generic"
+script = ExtResource("1_be8fj")
+mat_name = "soothsawyer honey"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)

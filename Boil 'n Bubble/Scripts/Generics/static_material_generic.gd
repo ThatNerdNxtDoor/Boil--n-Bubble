@@ -1,12 +1,11 @@
 extends StaticInteractable
 class_name StaticMaterial
 
-var mat_name
+@export var mat_name : String
 var mat_datalist
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	mat_name = "generic"
 	mat_datalist = get_dataset()
 	pass # Replace with function body.
 

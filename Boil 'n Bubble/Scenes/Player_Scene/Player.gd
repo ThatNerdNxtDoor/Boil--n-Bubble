@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.20
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -30,7 +31,6 @@ func _ready():
 	
 	max_health = 100
 	curr_health = max_health
-	pass
 
 #Collect input for 'pausing' the game.
 func _process(delta):
@@ -52,10 +52,32 @@ func _process(delta):
 		#If object can be interacted with
 		elif body.has_method("interaction"):
 			ui_interact.show()
+			# Change Tooltip depending on what it is
+			if "mat_datalist" in body:
+				ui_interact.text = "[center](E) Pick Up[/center]"
+			else:
+				ui_interact.text = "[center](E) Interact[/center]"
+			# If player interacts with object
 			if Input.is_action_just_pressed("interact"):
 				body.interaction()
 	else:
 		ui_interact.hide()
+	
+	#Switching held item in inventory
+	if Input.is_action_just_pressed("scroll_wheel_up"):
+		if PlayerInventory.holding_index == 7:
+			PlayerInventory.holding_index = 0
+		else:
+			PlayerInventory.holding_index = PlayerInventory.holding_index + 1
+		print(PlayerInventory.holding_index)
+		print(PlayerInventory.inventory[PlayerInventory.holding_index])
+	elif Input.is_action_just_pressed("scroll_wheel_down"):
+		if PlayerInventory.holding_index == 0:
+			PlayerInventory.holding_index = 7
+		else:
+			PlayerInventory.holding_index = PlayerInventory.holding_index - 1
+		print(PlayerInventory.holding_index)
+		print(PlayerInventory.inventory[PlayerInventory.holding_index])
 
 #Movement Calculation
 func _physics_process(delta):
@@ -88,3 +110,12 @@ func _input(event):
 		var camera_rot = rotation_pivot.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -90, 70)
 		rotation_pivot.rotation_degrees = camera_rot
+
+#Function for picking up a material
+func _on_active_generic_material_pick_up(datalist):
+	var index = PlayerInventory.inventory.find(null)
+	if (index != -1):
+		PlayerInventory.inventory[index] = datalist
+		print("Pick-Up Successful")
+	else:
+		print('inventory full')

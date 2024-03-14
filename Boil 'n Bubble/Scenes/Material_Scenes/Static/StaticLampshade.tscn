@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cad5qqll4w860"]
+[gd_scene load_steps=4 format=3 uid="uid://cgm4vyewlh6iu"]
 
-[ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_e5w6q"]
+[ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_8u7gk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y0o7p"]
 size = Vector3(0.5, 0.5, 0.51)
@@ -9,8 +9,8 @@ size = Vector3(0.5, 0.5, 0.51)
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Generic_Material" type="StaticBody3D"]
-script = ExtResource("1_e5w6q")
-mat_name = "generic"
+script = ExtResource("1_8u7gk")
+mat_name = "lampshade"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_y0o7p")
