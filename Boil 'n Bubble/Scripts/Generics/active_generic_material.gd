@@ -1,8 +1,6 @@
 extends ActiveInteractable
 class_name ActiveMaterial
 
-signal pick_up(datalist)
-
 @export var mat_name : String
 var mat_datalist
 # DataList { 
@@ -36,5 +34,10 @@ func get_dataset():
 # Function for when the player interacts with it.
 func interaction():
 	print("Interaction Material")
-	pick_up.emit(mat_datalist)
+	var index = PlayerInventory.inventory.find(null)
+	if (index != -1):
+		PlayerInventory.inventory[index] = mat_datalist
+		print("Pick-Up Successful")
+	else:
+		print('inventory full')
 	self.queue_free()

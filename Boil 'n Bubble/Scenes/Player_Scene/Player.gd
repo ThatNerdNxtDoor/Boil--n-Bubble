@@ -68,14 +68,14 @@ func _process(delta):
 		ui_interact.hide()
 	
 	# Switching held item in inventory
-	if Input.is_action_just_pressed("scroll_wheel_up"):
+	if Input.is_action_just_pressed("scroll_wheel_down"):
 		if PlayerInventory.holding_index == 7:
 			PlayerInventory.holding_index = 0
 		else:
 			PlayerInventory.holding_index = PlayerInventory.holding_index + 1
 		print(PlayerInventory.holding_index)
 		print(PlayerInventory.inventory[PlayerInventory.holding_index])
-	elif Input.is_action_just_pressed("scroll_wheel_down"):
+	elif Input.is_action_just_pressed("scroll_wheel_up"):
 		if PlayerInventory.holding_index == 0:
 			PlayerInventory.holding_index = 7
 		else:
@@ -136,20 +136,4 @@ func _input(event):
 		rotation_pivot.rotation_degrees = camera_rot
 
 #-------------------------- Signal Recieving Functions -------------------------
-#Function for picking up an active material
-func _on_active_generic_material_pick_up(datalist):
-	var index = PlayerInventory.inventory.find(null)
-	if (index != -1):
-		PlayerInventory.inventory[index] = datalist
-		print("Pick-Up Successful")
-	else:
-		print('inventory full')
 
-#Function for picking up a static material
-func _on_static_generic_material_pick_up(datalist):
-	var index = PlayerInventory.inventory.find(null)
-	if (index != -1):
-		PlayerInventory.inventory[index] = datalist
-		print("Pick-Up Successful")
-	else:
-		print('inventory full')

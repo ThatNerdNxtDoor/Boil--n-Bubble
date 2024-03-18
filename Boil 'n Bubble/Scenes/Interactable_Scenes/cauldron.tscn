@@ -2,36 +2,38 @@
 
 [ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
 [ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
-[ext_resource type="PackedScene" uid="uid://cmq8hj5elyj8e" path="res://BlenderMeshes/Cauldron.glb" id="2_syc6r"]
+[ext_resource type="PackedScene" uid="uid://cvseunewhhpgh" path="res://BlenderMeshes/V2Cauldron.glb" id="2_clp2k"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rq0pe"]
-height = 1.0
-radius = 0.75
+height = 1.25
+radius = 1.01
 
 [sub_resource type="BoxMesh" id="BoxMesh_p1nn6"]
-size = Vector3(0.4, 0.25, 0.25)
+size = Vector3(0.5, 0.25, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwsk6"]
-size = Vector3(0.4, 0.25, 0.25)
+size = Vector3(0.5, 0.25, 0.25)
 
 [node name="Cauldron" type="StaticBody3D"]
 script = ExtResource("1_qhrfw")
 
-[node name="Cauldron" parent="." instance=ExtResource("2_syc6r")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="V2Cauldron" parent="." instance=ExtResource("2_clp2k")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0.040382, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.131848, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204031, 0)
 shape = SubResource("CylinderShape3D_rq0pe")
 
 [node name="Nozzle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.812, 0.179553, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.971686, 0.0806169, 0)
 script = ExtResource("2_6v7l6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Nozzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0502775, 0, 0)
 mesh = SubResource("BoxMesh_p1nn6")
 
 [node name="InteractiveCollisionShape" type="CollisionShape3D" parent="Nozzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0499053, 0, 0)
 shape = SubResource("BoxShape3D_uwsk6")
 
 [connection signal="start_brewing" from="Nozzle" to="." method="_on_nozzle_start_brewing"]
