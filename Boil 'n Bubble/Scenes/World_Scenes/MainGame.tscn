@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=7 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
-[ext_resource type="PackedScene" uid="uid://dcpsbulirop48" path="res://Scenes/Generics/StaticInteractableObject.tscn" id="2_486js"]
 [ext_resource type="PackedScene" uid="uid://b2oha1jqkfigo" path="res://Scenes/Interactable_Scenes/cauldron.tscn" id="2_psfv4"]
-[ext_resource type="PackedScene" uid="uid://gfjgese2skxb" path="res://Scenes/Generics/ActiveInteractableObject.tscn" id="3_fecwj"]
-[ext_resource type="PackedScene" uid="uid://dgml52625lo5n" path="res://Scenes/Generics/ActiveGenericMaterial.tscn" id="4_3bbc1"]
+[ext_resource type="PackedScene" uid="uid://b34qqc6sgcf5a" path="res://Scenes/Material_Scenes/Static/StaticMixtureMint.tscn" id="3_wirou"]
+[ext_resource type="PackedScene" uid="uid://dejhdvmsixhyv" path="res://Scenes/Material_Scenes/Static/StaticCalientus.tscn" id="4_3oq4w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h38n"]
 size = Vector3(10, 0.5, 10)
@@ -15,7 +14,7 @@ size = Vector3(10, 0.5, 10)
 [node name="MainGame" type="Node3D"]
 
 [node name="Cauldron" parent="." instance=ExtResource("2_psfv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.179622, -4.14039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046032, 0.6278, -4.06159)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330202, 0)
@@ -29,17 +28,16 @@ mesh = SubResource("BoxMesh_r3uyx")
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_2gwix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0645959, 0)
 
-[node name="InteractableObject" parent="." instance=ExtResource("2_486js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035298, 0.183875, 2.7334)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.62317, 0.782086, 0, -0.782086, 0.62317, 0, 2.5806, 0)
+transform = Transform3D(1, 0, 0, 0, -0.351041, 0.93636, 0, -0.93636, -0.351041, 0, 2.5806, 0)
 shadow_enabled = true
+shadow_opacity = 0.85
 
-[node name="ActiveInteractableObject" parent="." instance=ExtResource("3_fecwj")]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 3, 2, 0)
+[node name="StaticMixtureMint" parent="." instance=ExtResource("3_wirou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00346, 0.0299, 0)
 
-[node name="ActiveGenericMaterial" parent="." instance=ExtResource("4_3bbc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.4, 0)
+[node name="StaticCalientus" parent="." instance=ExtResource("4_3oq4w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97026, 0.169668, 1.6649)
 
-[connection signal="pick_up" from="ActiveGenericMaterial" to="CharacterBody3D" method="_on_active_generic_material_pick_up"]
+[connection signal="pick_up" from="StaticMixtureMint" to="CharacterBody3D" method="_on_static_generic_material_pick_up"]
+[connection signal="pick_up" from="StaticCalientus" to="CharacterBody3D" method="_on_static_generic_material_pick_up"]

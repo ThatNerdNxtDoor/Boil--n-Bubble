@@ -34,22 +34,24 @@ func interaction():
 		var mat_dictionary = PlayerInventory.inventory[PlayerInventory.holding_index]
 		PlayerInventory.inventory[PlayerInventory.holding_index] = null
 		# Add aspect, replace if it is empty, don't add if aspect exists
-		if datalist["aspect"] == ["None"]:
+		if datalist["aspect"].find("None") != -1:
 			datalist["aspect"] = mat_dictionary["aspect"]
-		elif datalist["aspect"].find(mat_dictionary["aspect"]) != -1:
+		elif datalist["aspect"].find(mat_dictionary["aspect"]) != -1 and  mat_dictionary["aspect"].find("None") == -1:
 			datalist["aspect"].append(mat_dictionary["aspect"])
 		# Add effect, replace if it is empty, don't add if effect exists
-		if datalist["effect"] == ["None"]:
+		if datalist["effect"].find("None") != -1:
 			datalist["effect"] = mat_dictionary["effect"]
-		elif datalist["effect"].find(mat_dictionary["effect"]) != -1:
+		elif datalist["effect"].find(mat_dictionary["effect"]) != -1 and mat_dictionary["effect"].find("None") != -1:
 			datalist["effect"].append(mat_dictionary["effect"])
 		# Add color
-		datalist["color"] = datalist["color"] + mat_dictionary["color"]
+		(datalist["color"])[0] = (datalist["color"])[0] + (mat_dictionary["color"])[0]
+		(datalist["color"])[1] = (datalist["color"])[1] + (mat_dictionary["color"])[1]
+		(datalist["color"])[2] = (datalist["color"])[2] + (mat_dictionary["color"])[2]
 		# Add Potency
 		datalist["potency"] = datalist["potency"] + mat_dictionary["potency"]
 		# Add complexity, then check for overload
 		complexity =+ mat_dictionary["complexity"]
-		material_num =+ 1
+		material_num = material_num + 1
 		if complexity > complexity_limit:
 			print("warning, exceeding complexity limit")
 		print("Datalist " + str(mat_dictionary) + " added")

@@ -2,8 +2,8 @@
 	"generic": {
 		"name" : "generic",
 		"color": [0, 0, 0],
-		"aspect": "none",
-		"effect": "none",
+		"aspect": "None",
+		"effect": "None",
 		"potency": 0,
 		"complexity": 0
 	}
@@ -11,8 +11,8 @@
 	"sooth_honey": {
 		"name" : "soothsawyer honey",
 		"color": [219, 200, 20],
-		"aspect": "healing",
-		"effect": "none",
+		"aspect": "Healing",
+		"effect": "None",
 		"potency": 10,
 		"complexity": 2
 	}
@@ -20,8 +20,8 @@
 	"sooth_venom": {
 		"name" : "soothsawyer venom",
 		"color": [219, 180, 20],
-		"aspect": "poison",
-		"effect": "none",
+		"aspect": "Poison",
+		"effect": "None",
 		"potency": 10,
 		"complexity": 2
 	}
@@ -29,8 +29,8 @@
 	"gustrhine": {
 		"name" : "gustrhine",
 		"color": [0, 153, 255],
-		"aspect": "none",
-		"effect": "wind",
+		"aspect": "None",
+		"effect": "Wind",
 		"potency": 10,
 		"complexity": 2
 	}
@@ -38,8 +38,8 @@
 	"calientus": {
 		"name" : "calientus root",
 		"color": [219, 180, 20],
-		"aspect": "fire",
-		"effect": "none",
+		"aspect": "Fire",
+		"effect": "None",
 		"potency": 12,
 		"complexity": 3
 	}
@@ -47,8 +47,8 @@
 	"lampshade": {
 		"name" : "lampshade",
 		"color": [255, 255, 204],
-		"aspect": "none",
-		"effect": "light",
+		"aspect": "None",
+		"effect": "Light",
 		"potency": 2,
 		"complexity": 2
 	}
@@ -56,8 +56,8 @@
 	"mix_mint": {
 		"name" : "mixture mint",
 		"color": [255, 255, 255],
-		"aspect": "none",
-		"effect": "none",
+		"aspect": "None",
+		"effect": "None",
 		"potency": -4,
 		"complexity": -4
 	}

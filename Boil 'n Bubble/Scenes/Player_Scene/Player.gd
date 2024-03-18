@@ -12,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera
 var rotation_pivot
 var raycast
+var held_item
 
 var interaction
 var ui_interact
@@ -20,19 +21,22 @@ var ui_interact
 var max_health
 var curr_health
 
+
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	camera = $Pivot/PlayerCamera
 	raycast = $Pivot/RayCast3D
 	rotation_pivot = $Pivot
+	held_item = $Pivot/HeldPotionBottle
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	
 	max_health = 100
 	curr_health = max_health
 
-#Collect input for 'pausing' the game.
+#------------------------------- Player Processes ------------------------------
 func _process(delta):
 	#Check for pausing
 	if Input.is_action_just_pressed("pause"):
@@ -63,7 +67,7 @@ func _process(delta):
 	else:
 		ui_interact.hide()
 	
-	#Switching held item in inventory
+	# Switching held item in inventory
 	if Input.is_action_just_pressed("scroll_wheel_up"):
 		if PlayerInventory.holding_index == 7:
 			PlayerInventory.holding_index = 0
@@ -78,7 +82,27 @@ func _process(delta):
 			PlayerInventory.holding_index = PlayerInventory.holding_index - 1
 		print(PlayerInventory.holding_index)
 		print(PlayerInventory.inventory[PlayerInventory.holding_index])
-
+	# Change held item
+	if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+		if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+			held_item.visible = true
+		else:
+			held_item.visible = false
+	
+	# Player Throw/Consume Actions (maybe change inputs?)
+	if Input.is_action_just_pressed("drop-throw"):
+		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+				print("throw potion")
+			else:
+				print("drop item")
+	elif Input.is_action_just_pressed("consume"):
+		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+				print("drink potion")
+			else:
+				print("eat item")
+	
 #Movement Calculation
 func _physics_process(delta):
 	# Add the gravity.
@@ -99,9 +123,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
 
+#------------------------------ Other Function(s) ------------------------------
 #Camera Movement Algorithm
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -111,8 +135,18 @@ func _input(event):
 		camera_rot.x = clamp(camera_rot.x, -90, 70)
 		rotation_pivot.rotation_degrees = camera_rot
 
-#Function for picking up a material
+#-------------------------- Signal Recieving Functions -------------------------
+#Function for picking up an active material
 func _on_active_generic_material_pick_up(datalist):
+	var index = PlayerInventory.inventory.find(null)
+	if (index != -1):
+		PlayerInventory.inventory[index] = datalist
+		print("Pick-Up Successful")
+	else:
+		print('inventory full')
+
+#Function for picking up a static material
+func _on_static_generic_material_pick_up(datalist):
 	var index = PlayerInventory.inventory.find(null)
 	if (index != -1):
 		PlayerInventory.inventory[index] = datalist

@@ -10,7 +10,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="StaticCalientus" type="StaticBody3D"]
 script = ExtResource("1_5rfvf")
-mat_name = "calientus root"
+mat_name = "calientus"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_y0o7p")

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
 [ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
+[ext_resource type="PackedScene" uid="uid://cmq8hj5elyj8e" path="res://BlenderMeshes/Cauldron.glb" id="2_syc6r"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_pxm3e"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vwgvn"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rq0pe"]
+height = 1.0
+radius = 0.75
 
 [sub_resource type="BoxMesh" id="BoxMesh_p1nn6"]
 size = Vector3(0.4, 0.25, 0.25)
@@ -16,14 +17,15 @@ size = Vector3(0.4, 0.25, 0.25)
 [node name="Cauldron" type="StaticBody3D"]
 script = ExtResource("1_qhrfw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_pxm3e")
+[node name="Cauldron" parent="." instance=ExtResource("2_syc6r")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_vwgvn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.131848, 0)
+shape = SubResource("CylinderShape3D_rq0pe")
 
 [node name="Nozzle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.696958, 0.370851, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.812, 0.179553, 0)
 script = ExtResource("2_6v7l6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Nozzle"]

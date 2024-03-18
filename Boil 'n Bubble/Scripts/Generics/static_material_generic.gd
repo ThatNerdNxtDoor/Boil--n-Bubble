@@ -1,6 +1,8 @@
 extends StaticInteractable
 class_name StaticMaterial
 
+signal pick_up(datalist)
+
 @export var mat_name : String
 var mat_datalist
 
@@ -24,3 +26,5 @@ func get_dataset():
 
 func interaction():
 	print("Interaction Material")
+	pick_up.emit(mat_datalist)
+	self.queue_free()
