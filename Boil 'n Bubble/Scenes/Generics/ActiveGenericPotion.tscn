@@ -1,26 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgfufe8corivp"]
 
 [ext_resource type="Script" path="res://Scenes/Generics/active_generic_potion.gd" id="1_nki6v"]
+[ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Potion Bottle.glb" id="2_u2ubi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rylug"]
-radius = 0.25
-height = 0.75
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bl35y"]
-radius = 0.25
-height = 0.75
+radius = 0.125
+height = 0.325
 
 [node name="ActiveGenericPotion" type="RigidBody3D"]
+mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_p0b4h")
 can_sleep = false
+continuous_cd = true
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_nki6v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_rylug")
+[node name="Potion Bottle" parent="." instance=ExtResource("2_u2ubi")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502906, 0)
 shape = SubResource("CapsuleShape3D_bl35y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

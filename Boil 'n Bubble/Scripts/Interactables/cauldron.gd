@@ -5,6 +5,9 @@ var complexity
 var complexity_limit
 var material_num
 
+var aspects
+var effects
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	datalist = {
@@ -13,6 +16,9 @@ func _ready():
 		"effect": ["None"],
 		"potency": 0
 	}
+	aspects = ["None"]
+	effects = ["None"]
+	
 	complexity = 0
 	complexity_limit = 6
 	
@@ -36,13 +42,19 @@ func interaction():
 		# Add aspect, replace if it is empty, don't add if aspect exists
 		if datalist["aspect"].find("None") != -1:
 			datalist["aspect"] = mat_dictionary["aspect"]
-		elif datalist["aspect"].find(mat_dictionary["aspect"]) != -1 and  mat_dictionary["aspect"].find("None") == -1:
-			datalist["aspect"].append(mat_dictionary["aspect"])
+		else:
+			for aspect in mat_dictionary["aspect"]:
+				if datalist["aspect"].find(aspect) == -1 and  aspect != "None":
+					datalist["aspect"].append(aspect)
+		print(datalist["aspect"])
 		# Add effect, replace if it is empty, don't add if effect exists
 		if datalist["effect"].find("None") != -1:
 			datalist["effect"] = mat_dictionary["effect"]
-		elif datalist["effect"].find(mat_dictionary["effect"]) != -1 and mat_dictionary["effect"].find("None") != -1:
-			datalist["effect"].append(mat_dictionary["effect"])
+		else:
+			for effect in mat_dictionary["effect"]:
+				if datalist["effect"].find(effect) == -1 and effect != "None":
+					datalist["effect"].append(effect)
+		print(datalist["effect"])
 		# Add color
 		(datalist["color"])[0] = (datalist["color"])[0] + (mat_dictionary["color"])[0]
 		(datalist["color"])[1] = (datalist["color"])[1] + (mat_dictionary["color"])[1]

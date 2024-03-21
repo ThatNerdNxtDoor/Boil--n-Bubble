@@ -28,6 +28,6 @@ func interaction():
 	if (index != -1):
 		PlayerInventory.inventory[index] = mat_datalist
 		print("Pick-Up Successful")
+		self.queue_free()
 	else:
 		print('inventory full')
-	self.queue_free()

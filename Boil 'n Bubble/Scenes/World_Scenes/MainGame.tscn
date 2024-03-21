@@ -1,21 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=10 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
 [ext_resource type="PackedScene" uid="uid://b2oha1jqkfigo" path="res://Scenes/Interactable_Scenes/cauldron.tscn" id="2_psfv4"]
 [ext_resource type="PackedScene" uid="uid://b34qqc6sgcf5a" path="res://Scenes/Material_Scenes/Static/StaticMixtureMint.tscn" id="3_wirou"]
 [ext_resource type="PackedScene" uid="uid://dejhdvmsixhyv" path="res://Scenes/Material_Scenes/Static/StaticCalientus.tscn" id="4_3oq4w"]
 [ext_resource type="PackedScene" uid="uid://cgm4vyewlh6iu" path="res://Scenes/Material_Scenes/Static/StaticLampshade.tscn" id="5_h8833"]
+[ext_resource type="PackedScene" uid="uid://ny7tyorxol8" path="res://Scenes/Material_Scenes/Static/StaticGustrhine.tscn" id="6_xs718"]
+[ext_resource type="PackedScene" uid="uid://cbwlpvbddqksa" path="res://Scenes/Material_Scenes/Static/StaticSoothHoney.tscn" id="7_s3mne"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h38n"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(50, 0.5, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r3uyx"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(50, 0.5, 50)
 
 [node name="MainGame" type="Node3D"]
 
 [node name="Cauldron" parent="." instance=ExtResource("2_psfv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046032, 0.751174, -4.06159)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.046032, 0.751174, -10.7415)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330202, 0)
@@ -35,10 +37,16 @@ shadow_enabled = true
 shadow_opacity = 0.85
 
 [node name="StaticMixtureMint" parent="." instance=ExtResource("3_wirou")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00346, 0.0299, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37734, 0.0298995, -0.156561)
 
 [node name="StaticCalientus" parent="." instance=ExtResource("4_3oq4w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97026, 0.169668, 1.6649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66715, 0.169668, 1.92958)
 
 [node name="StaticLampshade" parent="." instance=ExtResource("5_h8833")]
-transform = Transform3D(0.898603, 0, -0.438763, 0, 1, 0, 0.438763, 0, 0.898603, -3.50095, -0.0880358, 3.37655)
+transform = Transform3D(0.898603, 0, -0.438763, 0, 1, 0, 0.438763, 0, 0.898603, -3.55227, -0.0880358, 4.30663)
+
+[node name="StaticGustrhine" parent="." instance=ExtResource("6_xs718")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316679, 0.199933, 6.18149)
+
+[node name="StaticSoothHoney" parent="." instance=ExtResource("7_s3mne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8001, 0.201902, 5.50307)

@@ -16,13 +16,15 @@ var held_item
 
 var interaction
 var ui_interact
+var ui_notebook
+
+var potion_child : PackedScene = preload("res://Scenes/Generics/ActiveGenericPotion.tscn")
 
 #Player Variables
 var max_health
 var curr_health
 
-
-
+#Initializing Function
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -32,6 +34,7 @@ func _ready():
 	held_item = $Pivot/HeldPotionBottle
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
+	ui_notebook = $Pivot/PlayerUI/NotebookMenu
 	
 	max_health = 100
 	curr_health = max_health
@@ -42,8 +45,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			ui_notebook.visible = false
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			ui_notebook.visible = true
 	
 	#Handle Raycast
 	raycast.force_raycast_update()
@@ -62,46 +67,52 @@ func _process(delta):
 			else:
 				ui_interact.text = "[center](E) Interact[/center]"
 			# If player interacts with object
-			if Input.is_action_just_pressed("interact"):
+			if Input.is_action_just_pressed("interact") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 				body.interaction()
 	else:
 		ui_interact.hide()
 	
-	# Switching held item in inventory
-	if Input.is_action_just_pressed("scroll_wheel_down"):
-		if PlayerInventory.holding_index == 7:
-			PlayerInventory.holding_index = 0
-		else:
-			PlayerInventory.holding_index = PlayerInventory.holding_index + 1
-		print(PlayerInventory.holding_index)
-		print(PlayerInventory.inventory[PlayerInventory.holding_index])
-	elif Input.is_action_just_pressed("scroll_wheel_up"):
-		if PlayerInventory.holding_index == 0:
-			PlayerInventory.holding_index = 7
-		else:
-			PlayerInventory.holding_index = PlayerInventory.holding_index - 1
-		print(PlayerInventory.holding_index)
-		print(PlayerInventory.inventory[PlayerInventory.holding_index])
-	# Change held item
-	if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
-		if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
-			held_item.visible = true
+	#Get Inputs, determine based on if mouse is captured
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		# Switching held item in inventory
+		if Input.is_action_just_pressed("scroll_wheel_down"):
+			if PlayerInventory.holding_index == 7:
+				PlayerInventory.holding_index = 0
+			else:
+				PlayerInventory.holding_index = PlayerInventory.holding_index + 1
+			print(PlayerInventory.holding_index)
+			print(PlayerInventory.inventory[PlayerInventory.holding_index])
+		elif Input.is_action_just_pressed("scroll_wheel_up"):
+			if PlayerInventory.holding_index == 0:
+				PlayerInventory.holding_index = 7
+			else:
+				PlayerInventory.holding_index = PlayerInventory.holding_index - 1
+			print(PlayerInventory.holding_index)
+			print(PlayerInventory.inventory[PlayerInventory.holding_index])
+		# Change displayed held item
+		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+				held_item.visible = true
+			else:
+				held_item.visible = false
 		else:
 			held_item.visible = false
-	
-	# Player Throw/Consume Actions (maybe change inputs?)
-	if Input.is_action_just_pressed("drop-throw"):
-		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
-			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
-				print("throw potion")
-			else:
-				print("drop item")
-	elif Input.is_action_just_pressed("consume"):
-		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
-			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
-				print("drink potion")
-			else:
-				print("eat item")
+		
+		# Player Throw/Consume Actions (maybe change inputs?)
+		if Input.is_action_just_pressed("drop-throw"):
+			if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+				if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+					print("throw potion")
+					throw_potion()
+				else:
+					print("drop item")
+		elif Input.is_action_just_pressed("consume"):
+			if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
+				if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+					print("drink potion")
+				else:
+					print("eat item")
+				consume_held()
 	
 #Movement Calculation
 func _physics_process(delta):
@@ -134,6 +145,37 @@ func _input(event):
 		var camera_rot = rotation_pivot.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -90, 70)
 		rotation_pivot.rotation_degrees = camera_rot
+
+#Create potion instance to throw
+func throw_potion():
+	#Create Instance
+	var scene_root = get_tree().root.get_children()[0]
+	var potion_instance = potion_child.instantiate()
+	potion_instance.pot_datalist = PlayerInventory.inventory[PlayerInventory.holding_index]
+	#Setup Physics for throw
+	var direction = rotation_pivot.global_position.direction_to(raycast.to_global(raycast.target_position))
+	potion_instance.position = rotation_pivot.global_position + (direction)
+	scene_root.add_child(potion_instance)
+	potion_instance.apply_central_impulse(direction * 8)
+	potion_instance.angular_velocity = Vector3(randi_range(-15, 15), randi_range(-15, 15), randi_range(-15, 15))
+	#Remove Potion from the inventory
+	PlayerInventory.inventory[PlayerInventory.holding_index] = null
+	print("Done")
+
+#Consume Potion/Item
+func consume_held():
+	#Get Datalist from held item
+	var item_datalist = PlayerInventory.inventory[PlayerInventory.holding_index]
+	#Apply Effects/Aspects to Player (match case?)
+	for aspect in item_datalist["aspect"]:
+		print(aspect)
+		pass
+	for effect in item_datalist["effect"]:
+		print(effect)
+		pass
+	#Remove item from inventory
+	PlayerInventory.inventory[PlayerInventory.holding_index] = null
+	print("Done")
 
 #-------------------------- Signal Recieving Functions -------------------------
 

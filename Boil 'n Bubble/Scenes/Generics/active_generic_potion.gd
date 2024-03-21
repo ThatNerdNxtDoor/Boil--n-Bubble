@@ -19,3 +19,15 @@ func _process(delta):
 
 func interaction():
 	print("Interaction Potion")
+
+# When Potions Collides
+func _on_body_entered(body):
+	#Apply Effects/Aspects to Player (match case?)
+	for aspect in pot_datalist["aspect"]:
+		print(aspect)
+		pass
+	for effect in pot_datalist["effect"]:
+		print(effect)
+		pass
+	self.queue_free()
+	pass # Replace with function body.
