@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ogu4en5iyq4e"
+path="res://.godot/imported/world1.obj-5ca7c77b745276efc0f279d3bda9b667.mesh"
+
+[deps]
+
+files=["res://.godot/imported/world1.obj-5ca7c77b745276efc0f279d3bda9b667.mesh"]
+
+source_file="res://BlenderMeshes/World/world1.obj"
+dest_files=["res://.godot/imported/world1.obj-5ca7c77b745276efc0f279d3bda9b667.mesh", "res://.godot/imported/world1.obj-5ca7c77b745276efc0f279d3bda9b667.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
