@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxn6jvgw6erbe"
-path="res://.godot/imported/V2Lampshade.glb-aaebd9f47a7ff0b92a93e7eef0d084ee.scn"
+uid="uid://cvseunewhhpgh"
+path="res://.godot/imported/V2Cauldron.glb-a059bfdac3ca376ef1e4fa01a5954273.scn"
 
 [deps]
 
-source_file="res://BlenderMeshes/V2Lampshade.glb"
-dest_files=["res://.godot/imported/V2Lampshade.glb-aaebd9f47a7ff0b92a93e7eef0d084ee.scn"]
+source_file="res://BlenderMeshes/Items/V2Cauldron.glb"
+dest_files=["res://.godot/imported/V2Cauldron.glb-a059bfdac3ca376ef1e4fa01a5954273.scn"]
 
 [params]
 

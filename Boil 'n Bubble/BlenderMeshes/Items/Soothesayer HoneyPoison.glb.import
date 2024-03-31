@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b14nvwrnxwhif"
-path="res://.godot/imported/Soothesayer HoneyPoison.glb-669b468c0e1bceb54166323f3951f4ee.scn"
+path="res://.godot/imported/Soothesayer HoneyPoison.glb-72bef92fdd70f294d87df763cdcf84c9.scn"
 
 [deps]
 
-source_file="res://BlenderMeshes/Soothesayer HoneyPoison.glb"
-dest_files=["res://.godot/imported/Soothesayer HoneyPoison.glb-669b468c0e1bceb54166323f3951f4ee.scn"]
+source_file="res://BlenderMeshes/Items/Soothesayer HoneyPoison.glb"
+dest_files=["res://.godot/imported/Soothesayer HoneyPoison.glb-72bef92fdd70f294d87df763cdcf84c9.scn"]
 
 [params]
 
