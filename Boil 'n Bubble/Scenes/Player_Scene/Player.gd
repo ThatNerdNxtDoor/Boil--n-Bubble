@@ -1,7 +1,8 @@
 extends CharacterBody3D
+class_name Player
 
 #Constants for movement
-const SPEED = 5.0
+const BASE_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.20
 
@@ -23,6 +24,8 @@ var potion_child : PackedScene = preload("res://Scenes/Generics/ActiveGenericPot
 #Player Variables
 var max_health
 var curr_health
+var speed_factor
+var vel_clamp
 
 #Initializing Function
 func _ready():
@@ -38,6 +41,7 @@ func _ready():
 	
 	max_health = 100
 	curr_health = max_health
+	speed_factor = 1
 
 #------------------------------- Player Processes ------------------------------
 func _process(delta):
@@ -119,21 +123,33 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	else:
+		vel_clamp = true
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	var speed = (BASE_SPEED * speed_factor)
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if vel_clamp:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x += direction.x * (speed * .05)
+			velocity.z += direction.z * (speed * .05)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if vel_clamp:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+		else:
+			pass
+			#velocity.x += move_toward(velocity.x, 0, speed)
+			#velocity.z += move_toward(velocity.z, 0, speed)
 	move_and_slide()
 
 #------------------------------ Other Function(s) ------------------------------
@@ -169,13 +185,59 @@ func consume_held():
 	#Apply Effects/Aspects to Player (match case?)
 	for aspect in item_datalist["aspect"]:
 		print(aspect)
-		pass
+		match(aspect):
+			"Fire":
+				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .1))
+			"Healing":
+				curr_health = clamp(curr_health + (item_datalist["potency"] * .4), 1, max_health)
+			"Poison":
+				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .25))
 	for effect in item_datalist["effect"]:
 		print(effect)
-		pass
+		match(effect):
+			"Wind":
+				speed_factor = 1 + (item_datalist["potency"] * .05)
+				apply_effect(effect, 1, 10, 0)
+			"Light":
+				pass
 	#Remove item from inventory
 	PlayerInventory.inventory[PlayerInventory.holding_index] = null
 	print("Done")
 
-#-------------------------- Signal Recieving Functions -------------------------
+# Applies Effect
+var counter = 0
+var effect_timers = {}
+func apply_effect(effect, repeats, duration, damage):
+	# Define Timer
+	var timer = Timer.new()
+	timer.wait_time = duration
+	timer.autostart = true
+	# Bind timeout and DOT (if any) functions to it
+	if (damage != 0):
+		timer.timeout.connect(damage_over_time.bind(damage))
+	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect))
+	#Add timer to timer list, 
+	effect_timers[counter] = {repeat = repeats, timer = timer}
+	add_child(timer)
+	counter += 1
 
+#-------------------------- Signal Recieving Functions -------------------------
+# Time Out function
+func time_out_timer_statusef(id, statusef):
+	#Decrement the amount of repeat times. If at 0, the effect ends
+	effect_timers[id].repeat -= 1
+	if (effect_timers[id].repeat == 0):
+		print("timeout")
+		#Look at the associated effect to see if anything needs to be undone 
+		match(statusef):
+			"Wind":
+				speed_factor = 1
+			
+		#Destroys the timer
+		effect_timers[id].timer.call_deferred("queue_free")
+		effect_timers.erase(id)
+
+# Damage Over Time Function
+func damage_over_time(damage):
+	print(damage)
+	pass

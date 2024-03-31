@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgfufe8corivp"]
+[gd_scene load_steps=6 format=3 uid="uid://bgfufe8corivp"]
 
-[ext_resource type="Script" path="res://Scenes/Generics/active_generic_potion.gd" id="1_nki6v"]
+[ext_resource type="Script" path="res://Scripts/Generics/active_generic_potion.gd" id="1_nki6v"]
 [ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Potion Bottle.glb" id="2_u2ubi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
@@ -9,7 +9,12 @@
 radius = 0.125
 height = 0.325
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mvnwv"]
+radius = 2.0
+
 [node name="ActiveGenericPotion" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_p0b4h")
 can_sleep = false
@@ -24,5 +29,10 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502906, 0)
 shape = SubResource("CapsuleShape3D_bl35y")
+
+[node name="CollisionBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionBox"]
+shape = SubResource("SphereShape3D_mvnwv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
