@@ -11,10 +11,15 @@ var pot_datalist
 	#"potency": Power of the potion
 #}
 var blast_radius
+var potion_light
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blast_radius = $CollisionBox
+	potion_light = $PotionLight
+	if (pot_datalist["effect"].find("Light") != -1):
+		potion_light.visible = true
+		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +40,8 @@ func _on_body_entered(body):
 		#Get bodies in Area3D
 		var bodies = blast_radius.get_overlapping_bodies()
 		for target_body in bodies:
-			print(body)
+			print(target_body)
+			print(target_body.has_method("check_weakness"))
 			if (target_body is RigidBody3D) or (target_body is CharacterBody3D):
 				for aspect in pot_datalist["aspect"]:
 					print(aspect)
@@ -53,9 +59,9 @@ func _on_body_entered(body):
 					print(effect)
 					match(effect):
 						"Wind":
-							var direction = blast_radius.global_position.direction_to(target_body.global_position)
+							var direction = blast_radius.global_position.direction_to(target_body.global_position + Vector3(0, .25, 0))
 							print(direction)
-							#For player, apply it to the velocity to deactivating
+							#For player, apply it to the velocity and temporarily deactivate the velocity limiter
 							if target_body is CharacterBody3D:
 								target_body.vel_clamp = false
 								target_body.velocity += (pot_datalist["potency"]) * direction
@@ -63,4 +69,6 @@ func _on_body_entered(body):
 								target_body.apply_central_impulse(pot_datalist["potency"] * direction)
 						"Light":
 							pass
+			elif target_body.has_method("check_weakness"):
+				target_body.check_weakness(pot_datalist)
 		self.queue_free()

@@ -1,12 +1,15 @@
 extends StaticInteractable
-class_name StaticMaterial
+
 
 @export var mat_name : String
+@export var duration : int
+var collision_shape
 var mat_datalist
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mat_datalist = get_dataset()
+	collision_shape = $PhysicsCollisionShape
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +31,19 @@ func interaction():
 	if (index != -1):
 		PlayerInventory.inventory[index] = mat_datalist
 		print("Pick-Up Successful")
-		self.queue_free()
+		#Prepare "respawn" timer
+		var timer = Timer.new()
+		timer.wait_time = duration
+		timer.autostart = true
+		timer.timeout.connect(respawn)
+		add_child(timer)
+		#"Deactivate" the ingredient source
+		self.visible = false
+		collision_shape.disabled = true
+		#self.queue_free()
 	else:
 		print('inventory full')
+
+func respawn():
+	self.visible = true
+	collision_shape.disabled = false

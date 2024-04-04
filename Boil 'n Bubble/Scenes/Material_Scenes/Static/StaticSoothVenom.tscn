@@ -11,6 +11,7 @@ size = Vector3(0.5, 0.5, 0.5)
 [node name="StaticSoothVenom" type="StaticBody3D"]
 script = ExtResource("1_c4q8a")
 mat_name = "sooth_venom"
+duration = 10
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_y0o7p")

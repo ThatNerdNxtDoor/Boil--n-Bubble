@@ -14,10 +14,12 @@ var camera
 var rotation_pivot
 var raycast
 var held_item
+var potion_light
 
 var interaction
 var ui_interact
 var ui_notebook
+var ui_health_bar
 
 var potion_child : PackedScene = preload("res://Scenes/Generics/ActiveGenericPotion.tscn")
 
@@ -35,9 +37,11 @@ func _ready():
 	raycast = $Pivot/RayCast3D
 	rotation_pivot = $Pivot
 	held_item = $Pivot/HeldPotionBottle
+	potion_light = $Pivot/HeldPotionBottle/HeldPotionLight
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
+	ui_health_bar = $Pivot/PlayerUI/HealthBar
 	
 	max_health = 100
 	curr_health = max_health
@@ -76,6 +80,9 @@ func _process(delta):
 	else:
 		ui_interact.hide()
 	
+	#Update health bar
+	ui_health_bar.value = curr_health
+	
 	#Get Inputs, determine based on if mouse is captured
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Switching held item in inventory
@@ -97,6 +104,11 @@ func _process(delta):
 		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
 			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
 				held_item.visible = true
+				if (PlayerInventory.inventory[PlayerInventory.holding_index])["effect"].find("Light") != -1:
+					potion_light.visible = true
+					potion_light.light_color = Color8(int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][0]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][1]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][2]))
+				else:
+					potion_light.visible = false
 			else:
 				held_item.visible = false
 		else:
@@ -127,15 +139,14 @@ func _physics_process(delta):
 		vel_clamp = true
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var speed = (BASE_SPEED * speed_factor)
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if vel_clamp:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -189,7 +200,7 @@ func consume_held():
 			"Fire":
 				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .1))
 			"Healing":
-				curr_health = clamp(curr_health + (item_datalist["potency"] * .4), 1, max_health)
+				curr_health = clamp(curr_health + (item_datalist["potency"] * 1.2), 1, max_health)
 			"Poison":
 				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .25))
 	for effect in item_datalist["effect"]:
@@ -239,5 +250,4 @@ func time_out_timer_statusef(id, statusef):
 
 # Damage Over Time Function
 func damage_over_time(damage):
-	print(damage)
-	pass
+	curr_health = clamp(curr_health - damage, 0, max_health)

@@ -1,24 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://ny7tyorxol8"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_cfe74"]
+[ext_resource type="PackedScene" uid="uid://ri8gv4crjxie" path="res://BlenderMeshes/Items/Gusthrine.glb" id="2_h76p8"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_y0o7p"]
-size = Vector3(0.5, 0.5, 0.51)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c1bkt"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_8a0k3"]
+size = Vector3(1.2, 1.75, 1.2)
 
 [node name="StaticGustrhine" type="StaticBody3D"]
 script = ExtResource("1_cfe74")
 mat_name = "gustrhine"
+duration = 30
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_y0o7p")
+[node name="Gusthrine" parent="." instance=ExtResource("2_h76p8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_c1bkt")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="InteractiveCollisionShape" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_c1bkt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148687, 0.592658, -0.244779)
+shape = SubResource("BoxShape3D_8a0k3")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Player_Scene/Player.gd" id="1_47kuh"]
 [ext_resource type="PackedScene" uid="uid://bfbwkcnkeo72l" path="res://Scenes/UI/PlayerUI.tscn" id="2_5rmy3"]
 [ext_resource type="Script" path="res://Scenes/Player_Scene/player_inventory.gd" id="2_sbxtm"]
-[ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Potion Bottle.glb" id="4_qc7co"]
+[ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Items/Potion Bottle.glb" id="4_qc7co"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fx1y4"]
 
@@ -21,6 +21,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
 [node name="HeldPotionBottle" parent="Pivot" instance=ExtResource("4_qc7co")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.351592, -0.3315, -0.611446)
 visible = false
+
+[node name="HeldPotionLight" type="OmniLight3D" parent="Pivot/HeldPotionBottle"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.139256, 0)
+visible = false
+omni_range = 2.0
 
 [node name="PlayerCamera" type="Camera3D" parent="Pivot"]
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjmtiu7shxvc7"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui_item_icon.gd" id="1_oyhab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86f4h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.243137, 0.243137, 0.243137, 1)
+
+[node name="ItemIcon" type="ColorRect"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = -1
+anchor_left = -0.043
+anchor_top = -0.077
+anchor_right = 0.043
+anchor_bottom = 0.077
+offset_left = 49.536
+offset_top = 49.896
+offset_right = -49.536
+offset_bottom = -49.896
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0.682353)
+script = ExtResource("1_oyhab")
+
+[node name="PictureIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectBorder" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86f4h")

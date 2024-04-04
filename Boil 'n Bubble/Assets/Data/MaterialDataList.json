@@ -37,7 +37,7 @@
 	,
 	"calientus": {
 		"name" : "calientus root",
-		"color": [219, 180, 20],
+		"color": [219, 90, 20],
 		"aspect": ["Fire"],
 		"effect": ["None"],
 		"potency": 12,

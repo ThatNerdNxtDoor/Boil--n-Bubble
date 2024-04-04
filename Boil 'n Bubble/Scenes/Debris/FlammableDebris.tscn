@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3pf06ih8n80p"]
+
+[ext_resource type="Script" path="res://static_debris.gd" id="1_s3uht"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7kb1y"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7x4qw"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="FlammableDebris" type="StaticBody3D"]
+collision_layer = 7
+script = ExtResource("1_s3uht")
+weakness = ["\"Fire\"", "\"Acid\""]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7kb1y")
+
+[node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7x4qw")

@@ -1,39 +1,208 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=10 format=3 uid="uid://bfbwkcnkeo72l"]
+
+[ext_resource type="Script" path="res://Scripts/player_ui_script.gd" id="1_mu0qe"]
+[ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_t4vr5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yt5u"]
 bg_color = Color(0.737255, 0.564706, 0.34902, 1)
 
-[node name="PlayerUI" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t708"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_misjq"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp0yq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v31v"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 0.396078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghg8g"]
+bg_color = Color(0.929412, 0.207843, 0.2, 1)
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_mu0qe")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 515.0
-offset_top = 382.0
-offset_right = -520.0
-offset_bottom = -223.0
+anchor_left = 0.447
+anchor_top = 0.59
+anchor_right = 0.549
+anchor_bottom = 0.656
+offset_left = 0.0559692
+offset_top = -0.320007
+offset_right = -0.447998
+offset_bottom = -0.0880127
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center](E) Pick Up[/center]"
 
 [node name="NotebookMenu" type="Panel" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 167.0
-offset_top = 32.0
-offset_right = -153.0
-offset_bottom = -158.0
+anchors_preset = -1
+anchor_left = 0.14
+anchor_top = 0.049
+anchor_right = 0.865
+anchor_bottom = 0.756
+offset_left = -0.279999
+offset_top = 0.247999
+offset_right = -0.480103
+offset_bottom = 0.111969
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8yt5u")
+
+[node name="Page2" type="Panel" parent="NotebookMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.50006
+offset_top = 7.0
+offset_right = -8.99988
+offset_bottom = -5.99997
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="PageText" type="TextEdit" parent="NotebookMenu/Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.24
+anchor_right = 0.98
+anchor_bottom = 0.894
+offset_left = 0.0979996
+offset_top = 0.199997
+offset_right = 0.119995
+offset_bottom = 0.169983
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
+placeholder_text = "Take some notes..."
+
+[node name="NextButton" type="Button" parent="NotebookMenu/Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.751
+anchor_top = 0.921
+anchor_right = 0.98
+anchor_bottom = 0.982
+offset_left = 0.0939941
+offset_top = 0.154968
+offset_right = 0.119995
+offset_bottom = 0.00997925
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+text = "----->"
+
+[node name="Page1" type="Panel" parent="NotebookMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -5.49994
+offset_bottom = -6.99997
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="PageText" type="TextEdit" parent="NotebookMenu/Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.24
+anchor_right = 0.98
+anchor_bottom = 0.892
+offset_left = 0.0979996
+offset_top = 0.199997
+offset_right = 0.119995
+offset_bottom = 0.0599976
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
+placeholder_text = "Take some notes..."
+
+[node name="PreviousButton" type="Button" parent="NotebookMenu/Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.921
+anchor_right = 0.249
+anchor_bottom = 0.982
+offset_left = -0.120001
+offset_top = 0.154968
+offset_right = -0.0940018
+offset_bottom = 0.00997925
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+text = "<-----"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.665
+anchor_right = 0.115
+anchor_bottom = 0.965
+offset_left = -0.560001
+offset_top = 0.0799866
+offset_right = 0.520004
+offset_bottom = -0.320007
+theme_override_styles/background = SubResource("StyleBoxFlat_8v31v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ghg8g")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Hotbar" type="GridContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.138
+anchor_top = 0.81
+anchor_right = 0.864
+anchor_bottom = 0.965
+offset_left = 0.0239868
+offset_top = 0.119934
+offset_right = -0.328003
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+columns = 8
+
+[node name="ItemIcon" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon2" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon3" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon4" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon5" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon6" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon7" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2
+
+[node name="ItemIcon8" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+layout_mode = 2

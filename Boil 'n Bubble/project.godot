@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerInventory="*res://Scenes/Player_Scene/player_inventory.gd"
 
+[display]
+
+window/size/mode=2
+
 [input]
 
 forward={

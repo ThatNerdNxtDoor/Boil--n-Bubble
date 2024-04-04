@@ -46,7 +46,6 @@ func interaction():
 			for aspect in mat_dictionary["aspect"]:
 				if datalist["aspect"].find(aspect) == -1 and  aspect != "None":
 					datalist["aspect"].append(aspect)
-		print(datalist["aspect"])
 		# Add effect, replace if it is empty, don't add if effect exists
 		if datalist["effect"].find("None") != -1:
 			datalist["effect"] = mat_dictionary["effect"]
@@ -54,7 +53,6 @@ func interaction():
 			for effect in mat_dictionary["effect"]:
 				if datalist["effect"].find(effect) == -1 and effect != "None":
 					datalist["effect"].append(effect)
-		print(datalist["effect"])
 		# Add color
 		(datalist["color"])[0] = (datalist["color"])[0] + (mat_dictionary["color"])[0]
 		(datalist["color"])[1] = (datalist["color"])[1] + (mat_dictionary["color"])[1]
@@ -62,7 +60,8 @@ func interaction():
 		# Add Potency
 		datalist["potency"] = datalist["potency"] + mat_dictionary["potency"]
 		# Add complexity, then check for overload
-		complexity =+ mat_dictionary["complexity"]
+		complexity = complexity + mat_dictionary["complexity"]
+		print(complexity)
 		material_num = material_num + 1
 		if complexity > complexity_limit:
 			print("warning, exceeding complexity limit")

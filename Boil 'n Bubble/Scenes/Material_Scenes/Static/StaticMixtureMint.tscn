@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b34qqc6sgcf5a"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_g6f71"]
-[ext_resource type="PackedScene" uid="uid://84csepn4u3nt" path="res://BlenderMeshes/MixtureMint.glb" id="2_7hj8a"]
+[ext_resource type="PackedScene" uid="uid://84csepn4u3nt" path="res://BlenderMeshes/Items/MixtureMint.glb" id="2_7hj8a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1bkt"]
 size = Vector3(1, 0.5, 1)
@@ -9,6 +9,7 @@ size = Vector3(1, 0.5, 1)
 [node name="StaticMixtureMint" type="StaticBody3D"]
 script = ExtResource("1_g6f71")
 mat_name = "mix_mint"
+duration = 90
 
 [node name="MixtureMint" parent="." instance=ExtResource("2_7hj8a")]
 transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, -0.0316806, 0, 0)
