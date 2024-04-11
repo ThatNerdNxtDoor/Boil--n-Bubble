@@ -20,6 +20,7 @@ func _ready():
 	if (pot_datalist["effect"].find("Light") != -1):
 		potion_light.visible = true
 		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))
+		potion_light.omni_range = 2 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .15)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

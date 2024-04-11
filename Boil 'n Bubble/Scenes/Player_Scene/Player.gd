@@ -21,7 +21,7 @@ var ui_interact
 var ui_notebook
 var ui_health_bar
 
-var potion_child : PackedScene = preload("res://Scenes/Generics/ActiveGenericPotion.tscn")
+var potion_child : PackedScene = load("res://Scenes/Generics/ActiveGenericPotion.tscn")
 
 #Player Variables
 var max_health
@@ -107,6 +107,7 @@ func _process(delta):
 				if (PlayerInventory.inventory[PlayerInventory.holding_index])["effect"].find("Light") != -1:
 					potion_light.visible = true
 					potion_light.light_color = Color8(int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][0]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][1]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][2]))
+					potion_light.omni_range = 1.5 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .1)
 				else:
 					potion_light.visible = false
 			else:

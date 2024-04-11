@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsqkxsn83fp10"]
+
+[ext_resource type="Script" path="res://Scenes/UI/notebook_menu.gd" id="1_4scrc"]
+[ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_h73cw"]
+[ext_resource type="Texture2D" uid="uid://drfvt1hlshjbb" path="res://Assets/Sprites/NextPageButton.png" id="2_va2tu"]
+[ext_resource type="Texture2D" uid="uid://csqv60spiywtq" path="res://Assets/Sprites/PreviousPageButton.png" id="4_c1260"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yt5u"]
+bg_color = Color(0.737255, 0.564706, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t708"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_misjq"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp0yq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="NotebookMenu" type="Panel"]
+anchors_preset = -1
+anchor_left = 0.14
+anchor_top = 0.049
+anchor_right = 0.865
+anchor_bottom = 0.756
+offset_left = -0.279999
+offset_top = 0.247999
+offset_right = -0.480103
+offset_bottom = 0.111969
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8yt5u")
+script = ExtResource("1_4scrc")
+
+[node name="Page2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.50006
+offset_top = 7.0
+offset_right = -8.99988
+offset_bottom = -5.99997
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="PageText" type="TextEdit" parent="Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.285
+anchor_right = 0.98
+anchor_bottom = 0.894
+offset_left = 0.0979996
+offset_top = 0.174988
+offset_right = 0.119995
+offset_bottom = 0.170013
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
+placeholder_text = "Take some notes..."
+
+[node name="NextButton" type="Button" parent="Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.739
+anchor_top = 0.921
+anchor_right = 0.985
+anchor_bottom = 0.989
+offset_left = -0.0339966
+offset_top = 0.154968
+offset_right = 0.0899658
+offset_bottom = -0.105011
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+icon = ExtResource("2_va2tu")
+expand_icon = true
+
+[node name="ItemIcon" parent="Page2" instance=ExtResource("2_h73cw")]
+layout_mode = 1
+anchor_left = 0.377
+anchor_top = 0.013
+anchor_right = 0.623
+anchor_bottom = 0.238
+offset_left = -0.0619965
+offset_top = 0.215
+offset_right = 0.0619965
+offset_bottom = 0.0899963
+grow_horizontal = 1
+grow_vertical = 1
+purpose = "notebook"
+
+[node name="PageNumber" type="RichTextLabel" parent="Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.818
+anchor_top = 0.045
+anchor_right = 0.948
+anchor_bottom = 0.148
+offset_left = -0.108002
+offset_top = -0.0250015
+offset_right = 0.111969
+offset_bottom = 0.139999
+theme_override_colors/default_color = Color(0.737255, 0.564706, 0.34902, 1)
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[right][b]2[/b][/right]"
+
+[node name="Page1" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -5.49994
+offset_bottom = -6.99997
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="PageText" type="TextEdit" parent="Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.285
+anchor_right = 0.98
+anchor_bottom = 0.892
+offset_left = 0.0979996
+offset_top = 0.174988
+offset_right = 0.119995
+offset_bottom = 0.0599976
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
+placeholder_text = "Take some notes..."
+
+[node name="PreviousButton" type="Button" parent="Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.921
+anchor_right = 0.266
+anchor_bottom = 0.989
+offset_left = -0.120001
+offset_top = 0.154938
+offset_right = 0.0039978
+offset_bottom = -0.105042
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+icon = ExtResource("4_c1260")
+expand_icon = true
+
+[node name="ItemIcon" parent="Page1" instance=ExtResource("2_h73cw")]
+layout_mode = 1
+anchor_left = 0.377
+anchor_top = 0.013
+anchor_right = 0.623
+anchor_bottom = 0.238
+offset_left = -0.0619965
+offset_top = 0.215
+offset_right = 0.0619965
+offset_bottom = 0.0899963
+grow_horizontal = 1
+grow_vertical = 1
+purpose = "notebook"
+
+[node name="PageNumber" type="RichTextLabel" parent="Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.045
+anchor_right = 0.182
+anchor_bottom = 0.148
+offset_left = -0.112
+offset_top = -0.0250015
+offset_right = 0.107994
+offset_bottom = 0.139999
+theme_override_colors/default_color = Color(0.737255, 0.564706, 0.34902, 1)
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[left][b]1[/b][/left]"
+
+[connection signal="text_changed" from="Page2/PageText" to="." method="_on_page_2_text_changed"]
+[connection signal="pressed" from="Page2/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="notebook_icon_changed" from="Page2/ItemIcon" to="." method="_on_page_2_icon_changed"]
+[connection signal="text_changed" from="Page1/PageText" to="." method="_on_page_1_text_changed"]
+[connection signal="pressed" from="Page1/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="notebook_icon_changed" from="Page1/ItemIcon" to="." method="_on_page_1_icon_changed"]

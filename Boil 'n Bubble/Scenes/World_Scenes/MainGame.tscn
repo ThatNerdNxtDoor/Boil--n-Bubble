@@ -47,7 +47,7 @@ mesh = SubResource("BoxMesh_r3uyx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0645959, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.351041, 0.93636, 0, -0.93636, -0.351041, 0, 2.5806, 0)
+transform = Transform3D(1, 0, 0, 0, -0.635378, 0.772202, 0, -0.772202, -0.635378, 0, 2.5806, 0)
 shadow_enabled = true
 shadow_opacity = 0.85
 

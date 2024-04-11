@@ -31,13 +31,12 @@ func _process(delta):
 
 # Interaction function for raycasting
 func interaction():
+	var mat_dictionary = PlayerInventory.inventory[PlayerInventory.holding_index]
 	#Potions and empty iventories can't be added
-	if PlayerInventory.inventory[PlayerInventory.holding_index] == null or (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
+	if mat_dictionary == null or (mat_dictionary)["name"] == "potion":
 		print("Invalid Component")
-		pass
 	else:
 		# Remove material from inventory
-		var mat_dictionary = PlayerInventory.inventory[PlayerInventory.holding_index]
 		PlayerInventory.inventory[PlayerInventory.holding_index] = null
 		# Add aspect, replace if it is empty, don't add if aspect exists
 		if datalist["aspect"].find("None") != -1:
