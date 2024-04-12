@@ -3,7 +3,7 @@ class_name Player
 
 #Constants for movement
 const BASE_SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5.0
 const MOUSE_SENSITIVITY = 0.20
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -20,12 +20,14 @@ var interaction
 var ui_interact
 var ui_notebook
 var ui_health_bar
+var ui_death_screen
 
 var potion_child : PackedScene = load("res://Scenes/Generics/ActiveGenericPotion.tscn")
 
 #Player Variables
 var max_health
 var curr_health
+var dead
 var speed_factor
 var vel_clamp
 
@@ -42,16 +44,20 @@ func _ready():
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
 	ui_health_bar = $Pivot/PlayerUI/HealthBar
+	ui_death_screen = $Pivot/PlayerUI/DeadPanel
 	
 	max_health = 100
 	curr_health = max_health
+	dead = false
 	speed_factor = 1
-
+	
+	PlayerInventory.holding_index = 0 
+	PlayerInventory.inventory = [null, null, null, null, null, null, null, null]
 #------------------------------- Player Processes ------------------------------
 func _process(delta):
 	#Check for pausing
 	if Input.is_action_just_pressed("pause"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and !dead:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			ui_notebook.visible = false
 		else:
@@ -80,8 +86,12 @@ func _process(delta):
 	else:
 		ui_interact.hide()
 	
-	#Update health bar
+	#Update health bar, and check if the player is dead
 	ui_health_bar.value = curr_health
+	if (curr_health <= 0 and !dead):
+		dead = true
+		ui_death_screen.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	#Get Inputs, determine based on if mouse is captured
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -252,3 +262,6 @@ func time_out_timer_statusef(id, statusef):
 # Damage Over Time Function
 func damage_over_time(damage):
 	curr_health = clamp(curr_health - damage, 0, max_health)
+
+func _on_kill_box_body_entered(body):
+	curr_health = 0

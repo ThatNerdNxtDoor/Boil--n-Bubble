@@ -7,6 +7,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yt5u"]
 bg_color = Color(0.737255, 0.564706, 0.34902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t708"]
 bg_color = Color(1, 0.831373, 0.592157, 1)

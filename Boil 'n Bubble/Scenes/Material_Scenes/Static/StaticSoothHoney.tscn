@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbwlpvbddqksa"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_6umm0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_y0o7p"]
-size = Vector3(0.5, 0.5, 0.51)
+[ext_resource type="PackedScene" uid="uid://b14nvwrnxwhif" path="res://BlenderMeshes/Items/Soothesayer HoneyPoison.glb" id="2_plwh5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1bkt"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -13,8 +11,8 @@ script = ExtResource("1_6umm0")
 mat_name = "sooth_honey"
 duration = 20
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_y0o7p")
+[node name="Soothesayer HoneyPoison" parent="." instance=ExtResource("2_plwh5")]
+transform = Transform3D(0.229788, 0, 0.121646, 0, 0.26, 0, -0.121646, 0, 0.229788, 0.104514, -0.0303243, -0.000808984)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_c1bkt")

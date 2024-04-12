@@ -55,7 +55,7 @@
 	,
 	"mix_mint": {
 		"name" : "mixture mint",
-		"color": [255, 255, 255],
+		"color": [225, 225, 225],
 		"aspect": ["None"],
 		"effect": ["None"],
 		"potency": -4,

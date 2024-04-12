@@ -13,4 +13,6 @@ func _process(delta):
 		(inventory_slot[i]).held = false
 		(inventory_slot[i]).datalist = PlayerInventory.inventory[i]
 	(inventory_slot[PlayerInventory.holding_index]).held = true
-	pass
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/World_Scenes/MainGame.tscn")

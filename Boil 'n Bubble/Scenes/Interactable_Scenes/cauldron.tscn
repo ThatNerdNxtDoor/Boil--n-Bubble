@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2oha1jqkfigo"]
+[gd_scene load_steps=8 format=3 uid="uid://b2oha1jqkfigo"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
 [ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
@@ -7,7 +7,10 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rq0pe"]
 height = 1.25
-radius = 1.01
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dr58r"]
+radius = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwsk6"]
 size = Vector3(0.5, 0.25, 0.25)
@@ -22,6 +25,16 @@ transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0.04, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204031, 0)
 shape = SubResource("CylinderShape3D_rq0pe")
 
+[node name="CauldronExplosionTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="ExplosionCollisionBox" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionCollisionBox"]
+shape = SubResource("SphereShape3D_dr58r")
+
 [node name="Nozzle" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.971686, 0.0806169, 0)
 script = ExtResource("2_6v7l6")
@@ -33,4 +46,10 @@ shape = SubResource("BoxShape3D_uwsk6")
 [node name="Nozzle" parent="Nozzle" instance=ExtResource("4_34vsm")]
 transform = Transform3D(2.98122e-09, 0, -0.25, 0, 0.25, 0, 0.25, 0, 2.98122e-09, -2.14577e-05, -0.517493, -3.95775e-05)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.530419, 0)
+light_color = Color(0.94902, 0.592157, 0.329412, 1)
+light_energy = 3.0
+
+[connection signal="timeout" from="CauldronExplosionTimer" to="." method="_on_cauldron_explosion_timeout"]
 [connection signal="start_brewing" from="Nozzle" to="." method="_on_nozzle_start_brewing"]

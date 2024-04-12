@@ -8,8 +8,14 @@ var material_num
 var aspects
 var effects
 
+var explosion_timer : Timer
+var explosion_time_left
+var explosion_hitbox
+var unstable
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	object_name = "cauldron"
 	datalist = {
 		"color": [0, 0, 0],
 		"aspect": ["None"],
@@ -21,13 +27,27 @@ func _ready():
 	
 	complexity = 0
 	complexity_limit = 6
-	
 	material_num = 0
+	
+	explosion_timer = $CauldronExplosionTimer
+	explosion_time_left = explosion_timer.get_wait_time()
+	explosion_hitbox = $ExplosionCollisionBox
+	unstable = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	object_name = "cauldron"
-	pass
+	#If the mixture is unstable and then falls under the complexity limit,
+	# it restabilizes.
+	if complexity <= complexity_limit:
+		if unstable:
+			unstable = false
+			explosion_timer.paused = true
+		elif explosion_time_left < explosion_timer.get_wait_time():
+			explosion_time_left = clamp(explosion_time_left + (delta * .5), 0.1, explosion_timer.get_wait_time())
+			print(explosion_time_left)
+	else:
+		explosion_time_left = explosion_timer.get_time_left()
+		print(explosion_time_left)
 
 # Interaction function for raycasting
 func interaction():
@@ -62,13 +82,17 @@ func interaction():
 		complexity = complexity + mat_dictionary["complexity"]
 		print(complexity)
 		material_num = material_num + 1
-		if complexity > complexity_limit:
+		#If complexity goes over limit, start countdown and make unstable
+		if complexity > complexity_limit and !unstable:
 			print("warning, exceeding complexity limit")
+			unstable = true
+			explosion_timer.paused = false
+			explosion_timer.start(explosion_time_left)
 		print("Datalist " + str(mat_dictionary) + " added")
 
 # Signal Function to start brewing
 func _on_nozzle_start_brewing():
-	if material_num != 0:
+	if material_num != 0 && !unstable:
 		var potion = {
 			"name": "potion",
 			"color": [(datalist["color"])[0] / material_num,
@@ -94,4 +118,51 @@ func _on_nozzle_start_brewing():
 		else:
 			print('inventory full')
 	else:
-		print("No contents in cauldron")
+		print("Unable to brew.")
+
+func _on_cauldron_explosion_timeout():
+	print("cauldron is exploding")
+	#Simulate the explosion
+	var bodies = explosion_hitbox.get_overlapping_bodies()
+	for target_body in bodies:
+		print(target_body)
+		print(target_body.has_method("check_weakness"))
+		if (target_body is RigidBody3D) or (target_body is CharacterBody3D):
+			for aspect in datalist["aspect"]:
+				print(aspect)
+				match(aspect):
+					"Fire":
+						if target_body.has_method("apply_effect"):
+							target_body.apply_effect(aspect, 5, 2, 3 + (datalist["potency"] * .1))
+					"Healing":
+						if (target_body is CharacterBody3D) and ("curr_health" in target_body):
+							target_body.curr_health = clamp(target_body.curr_health + (datalist["potency"] * .25), 1, target_body.max_health)
+					"Poison":
+						if target_body.has_method("apply_effect"):
+							target_body.apply_effect(aspect, 5, 2, 3 + (datalist["potency"] * .15))
+			for effect in datalist["effect"]:
+				print(effect)
+				match(effect):
+					"Wind":
+						var direction = explosion_hitbox.global_position.direction_to(target_body.global_position + Vector3(0, .5, 0))
+						print(direction)
+						#For player, apply it to the velocity and temporarily deactivate the velocity limiter
+						if target_body is CharacterBody3D:
+							target_body.vel_clamp = false
+							target_body.velocity += (datalist["potency"] * .25) * direction
+						else: #Otherwise, apply force
+							target_body.apply_central_impulse(datalist["potency"] * direction)
+					"Light":
+						pass
+		elif target_body.has_method("check_weakness"):
+			target_body.check_weakness(datalist)
+	
+	#Empty the datalist
+	datalist = {
+		"color": [0, 0, 0],
+		"aspect": ["None"],
+		"effect": ["None"],
+		"potency": 0
+	}
+	complexity = 0
+	material_num = 0

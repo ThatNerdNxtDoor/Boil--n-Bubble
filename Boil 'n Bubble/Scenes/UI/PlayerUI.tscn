@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=8 format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
@@ -6,9 +6,33 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v31v"]
 bg_color = Color(0.972549, 0.972549, 0.972549, 0.396078)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghg8g"]
 bg_color = Color(0.929412, 0.207843, 0.2, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rj3u"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5uco"]
+bg_color = Color(0.92549, 0.698039, 0.34902, 1)
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_njjc1")
@@ -93,3 +117,46 @@ purpose = "hotbar"
 [node name="ItemIcon8" parent="Hotbar" instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
+
+[node name="DeadPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4rj3u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DeadPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.186
+anchor_top = 0.19
+anchor_right = 0.839
+anchor_bottom = 0.468
+offset_left = -0.272003
+offset_top = -0.12001
+offset_right = -0.528076
+offset_bottom = -0.264008
+theme_override_colors/default_color = Color(0.945098, 0, 0, 1)
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = " [b][u][center]Knocked Out![/center]"
+
+[node name="Button" type="Button" parent="DeadPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_top = 0.708
+anchor_right = 0.578
+anchor_bottom = 0.838
+offset_left = -0.384033
+offset_top = 0.216003
+offset_right = 0.143982
+offset_bottom = -0.0240479
+theme_override_colors/font_color = Color(0.52549, 0.364706, 0.129412, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
+text = "Restart"
+
+[connection signal="pressed" from="DeadPanel/Button" to="." method="_on_button_pressed"]

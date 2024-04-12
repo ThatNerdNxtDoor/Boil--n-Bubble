@@ -1,3 +1,77 @@
-[gd_scene format=3 uid="uid://cl0m87n0gki35"]
+[gd_scene load_steps=4 format=3 uid="uid://cl0m87n0gki35"]
 
-[node name="TitlePage" type="Node3D"]
+[ext_resource type="Script" path="res://Scripts/UI/title_page.gd" id="1_0p4it"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w06x"]
+bg_color = Color(0.52549, 0.364706, 0.129412, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5uco"]
+bg_color = Color(0.92549, 0.698039, 0.34902, 1)
+
+[node name="TitlePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0p4it")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = 67.0
+offset_right = -342.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.647059, 0.192157, 0.847059, 1)
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_font_sizes/bold_italics_font_size = 60
+bbcode_enabled = true
+text = " [b][i][center]Boil 
+--------- n' ---------
+Bubble[/center][/i][/b]"
+fit_content = true
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.418
+anchor_top = 0.728
+anchor_right = 0.587
+anchor_bottom = 0.898
+offset_left = 0.463989
+offset_top = 0.255981
+offset_right = -0.223999
+offset_bottom = 0.0959473
+theme_override_styles/panel = SubResource("StyleBoxFlat_5w06x")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.069
+anchor_right = 0.957
+anchor_bottom = 0.931
+offset_left = -0.052
+offset_top = -0.00300026
+offset_right = 0.052002
+offset_bottom = 0.00299835
+theme_override_colors/font_color = Color(0.52549, 0.364706, 0.129412, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
+text = "Start"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

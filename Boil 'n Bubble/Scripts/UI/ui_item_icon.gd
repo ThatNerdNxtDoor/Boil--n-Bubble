@@ -13,6 +13,8 @@ func _ready():
 	border = $SelectBorder
 	border.visible = (purpose != "hotbar")
 	picture = $PictureIcon
+	
+	datalist = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
