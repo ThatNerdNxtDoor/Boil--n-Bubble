@@ -19,11 +19,17 @@ func check_weakness(datalist):
 		print(weakness.find(aspect))
 		if weakness.find(aspect) != -1:
 			print("Body Destroyed")
-			self.queue_free()
+			if (get_node("..") is MeshInstance3D):
+				get_node("..").queue_free()
+			else:
+				self.queue_free()
 			return
 	for effect in datalist["effect"]:
 		print(effect)
 		if weakness.find(effect) != -1:
 			print("Body Destroyed")
-			self.queue_free()
+			if (get_node("..") is MeshInstance3D):
+				get_node("..").queue_free()
+			else:
+				self.queue_free()
 			return
