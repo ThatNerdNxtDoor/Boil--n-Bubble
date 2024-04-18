@@ -2,8 +2,12 @@ extends StaticBody3D
 
 @export var weakness : Array
 
+var audio_player
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	audio_player = get_node_or_null("AudioStreamPlayer3D")
+	print(audio_player)
 	pass # Replace with function body.
 
 
@@ -22,6 +26,7 @@ func check_weakness(datalist):
 			if (get_node("..") is MeshInstance3D):
 				get_node("..").queue_free()
 			else:
+				audio_player.play()
 				self.queue_free()
 			return
 	for effect in datalist["effect"]:
@@ -31,5 +36,6 @@ func check_weakness(datalist):
 			if (get_node("..") is MeshInstance3D):
 				get_node("..").queue_free()
 			else:
+				audio_player.play()
 				self.queue_free()
 			return

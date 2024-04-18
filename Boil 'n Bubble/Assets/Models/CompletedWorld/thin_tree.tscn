@@ -21,13 +21,17 @@ shape = SubResource("ConcavePolygonShape3D_u61je")
 shape = SubResource("ConcavePolygonShape3D_t8p7g")
 
 [node name="Cube_001" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0816097)
 visible = false
 
 [node name="Cone" parent="." index="3"]
+transform = Transform3D(5.91519, -0.0205397, -0.0108152, 0.019737, 5.90085, -0.411792, 0.0122188, 0.411752, 5.90088, 0, 11.0098, -0.286142)
 visible = false
 
 [node name="Cone_001" parent="." index="4"]
+transform = Transform3D(-0.766132, 0.668136, 5.65926, -0.0563823, 5.70901, -0.681642, -5.69829, -0.146319, -0.754141, 0, 14.6085, -0.286142)
 visible = false
 
 [node name="Cone_002" parent="." index="5"]
+transform = Transform3D(4.49329, 0.387229, 1.94539, -0.244789, 4.88856, -0.407674, -1.96839, 0.275995, 4.49148, 0, 18.3549, -0.286142)
 visible = false

@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 #Constants for movement
-const BASE_SPEED = 5.0
+const BASE_SPEED = 4.75
 const JUMP_VELOCITY = 5.0
 const MOUSE_SENSITIVITY = 0.20
 
@@ -15,6 +15,15 @@ var rotation_pivot
 var raycast
 var held_item
 var potion_light
+
+var audio_player
+var eat_audio = [preload("res://Assets/SoundEffects/crunch.1.ogg"),
+				preload("res://Assets/SoundEffects/crunch.2.ogg"),
+				preload("res://Assets/SoundEffects/crunch.3.ogg"),
+				preload("res://Assets/SoundEffects/crunch.4.ogg")]
+var potion_audio = preload("res://Assets/SoundEffects/bottle-glass-uncork-03.wav")
+var throw_audio = preload("res://Assets/SoundEffects/air_move.wav")
+var damage_audio = preload("res://Assets/SoundEffects/take_damage.wav")
 
 var interaction
 var ui_interact
@@ -41,6 +50,8 @@ func _ready():
 	held_item = $Pivot/HeldPotionBottle
 	potion_light = $Pivot/HeldPotionBottle/HeldPotionLight
 	
+	audio_player = $Pivot/On_PersonAudioPlayer
+	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
 	ui_health_bar = $Pivot/PlayerUI/HealthBar
@@ -60,9 +71,11 @@ func _process(delta):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and !dead:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			ui_notebook.visible = false
+			ui_notebook.play_randomized_page_audio()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			ui_notebook.visible = true
+			ui_notebook.play_randomized_page_audio()
 	
 	#Handle Raycast
 	raycast.force_raycast_update()
@@ -78,8 +91,14 @@ func _process(delta):
 			# Change Tooltip depending on what it is
 			if "mat_datalist" in body:
 				ui_interact.text = "[center](E) Pick Up[/center]"
-			else:
-				ui_interact.text = "[center](E) Interact[/center]"
+			elif "object_name" in body:
+				match(body.object_name):
+					"cauldron":
+						ui_interact.text = "[center](E) Add to Cauldron[/center]"
+					"nozzle":
+						ui_interact.text = "[center](E) Pour Mixture[/center]"
+					_: #Default
+						ui_interact.text = "[center](E) Interact[/center]"
 			# If player interacts with object
 			if Input.is_action_just_pressed("interact") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 				body.interaction()
@@ -137,8 +156,12 @@ func _process(delta):
 			if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
 				if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
 					print("drink potion")
+					audio_player.stream = potion_audio
+					audio_player.play()
 				else:
 					print("eat item")
+					audio_player.stream = eat_audio[randi_range(0, 3)]
+					audio_player.play()
 				consume_held()
 	
 #Movement Calculation
@@ -198,6 +221,10 @@ func throw_potion():
 	potion_instance.angular_velocity = Vector3(randi_range(-15, 15), randi_range(-15, 15), randi_range(-15, 15))
 	#Remove Potion from the inventory
 	PlayerInventory.inventory[PlayerInventory.holding_index] = null
+	
+	#play throwing sound effect
+	audio_player.stream = throw_audio
+	audio_player.play()
 	print("Done")
 
 #Consume Potion/Item
@@ -262,6 +289,8 @@ func time_out_timer_statusef(id, statusef):
 # Damage Over Time Function
 func damage_over_time(damage):
 	curr_health = clamp(curr_health - damage, 0, max_health)
+	audio_player.stream = damage_audio
+	audio_player.play()
 
 func _on_kill_box_body_entered(body):
 	curr_health = 0

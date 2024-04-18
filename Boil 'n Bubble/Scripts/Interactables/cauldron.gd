@@ -13,6 +13,12 @@ var explosion_time_left
 var explosion_hitbox
 var unstable
 
+var ambient_audio_player #Plays unstable and ambient audio
+var unstable_audio = preload("res://Assets/SoundEffects/loop_water_02.wav")
+var active_audio_player #For adding and explosion audio
+var add_audio = preload("res://Assets/SoundEffects/splash_02.ogg")
+var explosion_audio = preload("res://Assets/SoundEffects/cauldron_explosion.wav")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_name = "cauldron"
@@ -33,6 +39,9 @@ func _ready():
 	explosion_time_left = explosion_timer.get_wait_time()
 	explosion_hitbox = $ExplosionCollisionBox
 	unstable = false
+	
+	ambient_audio_player = $AudioStreamPlayer3D
+	active_audio_player = $SecondaryAudioStreamPlayer3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,6 +65,8 @@ func interaction():
 	if mat_dictionary == null or (mat_dictionary)["name"] == "potion":
 		print("Invalid Component")
 	else:
+		active_audio_player.stream = add_audio
+		active_audio_player.play()
 		# Remove material from inventory
 		PlayerInventory.inventory[PlayerInventory.holding_index] = null
 		# Add aspect, replace if it is empty, don't add if aspect exists
@@ -88,6 +99,8 @@ func interaction():
 			unstable = true
 			explosion_timer.paused = false
 			explosion_timer.start(explosion_time_left)
+			ambient_audio_player.stream = unstable_audio
+			ambient_audio_player.play()
 		print("Datalist " + str(mat_dictionary) + " added")
 
 # Signal Function to start brewing
@@ -122,12 +135,16 @@ func _on_nozzle_start_brewing():
 
 func _on_cauldron_explosion_timeout():
 	print("cauldron is exploding")
+	active_audio_player.stream = explosion_audio
+	active_audio_player.play()
 	#Simulate the explosion
 	var bodies = explosion_hitbox.get_overlapping_bodies()
 	for target_body in bodies:
 		print(target_body)
 		print(target_body.has_method("check_weakness"))
 		if (target_body is RigidBody3D) or (target_body is CharacterBody3D):
+			if ("curr_health" in target_body):
+				target_body.curr_health = target_body.curr_health - (datalist["potency"] * .5)
 			for aspect in datalist["aspect"]:
 				print(aspect)
 				match(aspect):

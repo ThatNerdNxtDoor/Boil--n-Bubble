@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsqkxsn83fp10"]
+[gd_scene load_steps=11 format=3 uid="uid://dsqkxsn83fp10"]
 
 [ext_resource type="Script" path="res://Scenes/UI/notebook_menu.gd" id="1_4scrc"]
+[ext_resource type="AudioStream" uid="uid://ftg7hlrqopqm" path="res://Assets/SoundEffects/book_flip.1.ogg" id="2_dbftj"]
 [ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_h73cw"]
 [ext_resource type="Texture2D" uid="uid://drfvt1hlshjbb" path="res://Assets/Sprites/NextPageButton.png" id="2_va2tu"]
 [ext_resource type="Texture2D" uid="uid://csqv60spiywtq" path="res://Assets/Sprites/PreviousPageButton.png" id="4_c1260"]
@@ -38,6 +39,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8yt5u")
 script = ExtResource("1_4scrc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dbftj")
+volume_db = -27.0
 
 [node name="Page2" type="Panel" parent="."]
 layout_mode = 1

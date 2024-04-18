@@ -18,6 +18,13 @@ var page_2_button
 var page_info = []
 var current_pages
 
+#AudioStreamPlayer
+var audio_player
+var page_audio = [preload("res://Assets/SoundEffects/book_flip.1.ogg"),
+					preload("res://Assets/SoundEffects/book_flip.2.ogg"),
+					preload("res://Assets/SoundEffects/book_flip.3.ogg"),
+					preload("res://Assets/SoundEffects/book_flip.4.ogg"),]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	page_1 = $Page1
@@ -44,6 +51,8 @@ func _ready():
 			null
 	})
 	current_pages = 1
+	
+	audio_player = $AudioStreamPlayer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -73,6 +82,8 @@ func _on_previous_button_pressed():
 	page_2_text.text = (page_info[current_pages - 1])["Right Text"]
 	page_2_icon.datalist = (page_info[current_pages - 1])["Right Icon"]
 	page_2_number.text = "[right][b]" + str(current_pages * 2)
+	
+	play_randomized_page_audio()
 
 func _on_next_button_pressed():
 	current_pages = current_pages + 1
@@ -95,3 +106,9 @@ func _on_next_button_pressed():
 	page_2_text.text = (page_info[current_pages - 1])["Right Text"]
 	page_2_icon.datalist = (page_info[current_pages - 1])["Right Icon"]
 	page_2_number.text = "[right][b]" + str(current_pages * 2)
+	
+	play_randomized_page_audio()
+
+func play_randomized_page_audio():
+	audio_player.stream = page_audio[randi_range(0, 3)]
+	audio_player.play()

@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2oha1jqkfigo"]
+[gd_scene load_steps=9 format=3 uid="uid://b2oha1jqkfigo"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
 [ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
 [ext_resource type="PackedScene" uid="uid://dw364sv2oftsc" path="res://BlenderMeshes/Items/TexturedCauldron.glb" id="2_d6evp"]
+[ext_resource type="AudioStream" uid="uid://whg0henrlpgg" path="res://Assets/SoundEffects/splash_02.ogg" id="3_m2qx7"]
 [ext_resource type="PackedScene" uid="uid://cff28jed7uee2" path="res://BlenderMeshes/Items/Nozzle.glb" id="4_34vsm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rq0pe"]
-height = 1.25
+height = 1.4
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dr58r"]
@@ -22,8 +23,18 @@ script = ExtResource("1_qhrfw")
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0.04, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.204031, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.256398, 0)
 shape = SubResource("CylinderShape3D_rq0pe")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_m2qx7")
+volume_db = -25.0
+max_polyphony = 3
+
+[node name="SecondaryAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_m2qx7")
+volume_db = -25.0
+max_polyphony = 3
 
 [node name="CauldronExplosionTimer" type="Timer" parent="."]
 wait_time = 4.0

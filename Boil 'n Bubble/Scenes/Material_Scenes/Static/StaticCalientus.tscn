@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dejhdvmsixhyv"]
+[gd_scene load_steps=5 format=3 uid="uid://dejhdvmsixhyv"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_5rfvf"]
 [ext_resource type="PackedScene" uid="uid://d34in4clcaolg" path="res://BlenderMeshes/Items/CalientusRoot.glb" id="2_aknk0"]
+[ext_resource type="AudioStream" uid="uid://ck0fhvy5qas07" path="res://Assets/SoundEffects/pick_up.wav" id="3_oqpr2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_18h0q"]
 height = 0.601898
@@ -18,3 +19,9 @@ shape = SubResource("CylinderShape3D_18h0q")
 
 [node name="CalientusRoot" parent="." instance=ExtResource("2_aknk0")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_oqpr2")
+volume_db = -15.0
+max_db = -5.0
+pitch_scale = 2.0

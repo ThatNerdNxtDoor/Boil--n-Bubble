@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ny7tyorxol8"]
+[gd_scene load_steps=5 format=3 uid="uid://ny7tyorxol8"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_cfe74"]
 [ext_resource type="PackedScene" uid="uid://ri8gv4crjxie" path="res://BlenderMeshes/Items/Gusthrine.glb" id="2_h76p8"]
+[ext_resource type="AudioStream" uid="uid://ck0fhvy5qas07" path="res://Assets/SoundEffects/pick_up.wav" id="3_2pd1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8a0k3"]
 size = Vector3(1.2, 1.75, 1.2)
@@ -17,3 +18,9 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148687, 0.592658, -0.244779)
 shape = SubResource("BoxShape3D_8a0k3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2pd1s")
+volume_db = -15.0
+max_db = -5.0
+pitch_scale = 2.0

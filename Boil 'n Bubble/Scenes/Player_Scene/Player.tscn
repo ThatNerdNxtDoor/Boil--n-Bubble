@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjd4xkikihqr"]
+[gd_scene load_steps=8 format=3 uid="uid://cjd4xkikihqr"]
 
 [ext_resource type="Script" path="res://Scenes/Player_Scene/Player.gd" id="1_47kuh"]
 [ext_resource type="PackedScene" uid="uid://bfbwkcnkeo72l" path="res://Scenes/UI/PlayerUI.tscn" id="2_5rmy3"]
 [ext_resource type="Script" path="res://Scenes/Player_Scene/player_inventory.gd" id="2_sbxtm"]
 [ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Items/Potion Bottle.glb" id="4_qc7co"]
+[ext_resource type="AudioStream" uid="uid://csfib1y6f0mh5" path="res://Assets/SoundEffects/air_move.wav" id="5_hffi4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fx1y4"]
 
@@ -34,6 +35,15 @@ target_position = Vector3(0, 0, -1.65)
 debug_shape_thickness = 5
 
 [node name="PlayerUI" parent="Pivot" instance=ExtResource("2_5rmy3")]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Pivot"]
+current = true
+
+[node name="On_PersonAudioPlayer" type="AudioStreamPlayer" parent="Pivot"]
+stream = ExtResource("5_hffi4")
+volume_db = -20.0
+pitch_scale = 2.0
+max_polyphony = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02068, 0)

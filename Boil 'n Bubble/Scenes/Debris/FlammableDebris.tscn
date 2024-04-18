@@ -18,3 +18,5 @@ mesh = SubResource("BoxMesh_7kb1y")
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7x4qw")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

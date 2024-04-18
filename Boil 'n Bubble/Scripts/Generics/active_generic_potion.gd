@@ -12,11 +12,13 @@ var pot_datalist
 #}
 var blast_radius
 var potion_light
+var audio_player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blast_radius = $CollisionBox
 	potion_light = $PotionLight
+	audio_player = $AudioStreamPlayer3D
 	if (pot_datalist["effect"].find("Light") != -1):
 		potion_light.visible = true
 		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))

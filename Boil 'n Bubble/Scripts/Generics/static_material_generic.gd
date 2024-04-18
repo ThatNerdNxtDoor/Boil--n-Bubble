@@ -4,12 +4,14 @@ extends StaticInteractable
 @export var mat_name : String
 @export var duration : int
 var collision_shape
+var audio_player
 var mat_datalist
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mat_datalist = get_dataset()
 	collision_shape = $PhysicsCollisionShape
+	audio_player = $AudioStreamPlayer3D
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +31,7 @@ func interaction():
 	print("Interaction Material")
 	var index = PlayerInventory.inventory.find(null)
 	if (index != -1):
+		audio_player.play()
 		PlayerInventory.inventory[index] = mat_datalist
 		print("Pick-Up Successful")
 		#Prepare "respawn" timer
@@ -36,8 +39,7 @@ func interaction():
 		timer.wait_time = duration
 		timer.autostart = true
 		timer.timeout.connect(respawn)
-		add_child(timer)
-		#"Deactivate" the ingredient source
+		add_child(timer) #"Deactivate" the ingredient source
 		self.visible = false
 		collision_shape.disabled = true
 		#self.queue_free()

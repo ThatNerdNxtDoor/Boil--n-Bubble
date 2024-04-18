@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqoklqqdhqsw8"]
+[gd_scene load_steps=10 format=3 uid="uid://bqoklqqdhqsw8"]
 
 [ext_resource type="PackedScene" uid="uid://drdy4ve15c224" path="res://BlenderMeshes/Items/SimpleDebris.glb" id="1_b045h"]
 [ext_resource type="Script" path="res://static_debris.gd" id="2_wgfnf"]
+[ext_resource type="AudioStream" uid="uid://bxclh0sr084l" path="res://Assets/SoundEffects/WoodSnap5.wav" id="3_ibw3u"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_exvbj"]
 data = PackedVector3Array(1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1)
@@ -24,18 +25,28 @@ data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
 [node name="SimpleDebris" instance=ExtResource("1_b045h")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_exvbj")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qgfuf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube_001/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0"]
 collision_layer = 3
@@ -45,23 +56,42 @@ weakness = ["Fire"]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_r0itp")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube_002/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_003" index="0"]
+collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_003/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_bofk8")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube_003/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_004" index="0"]
+collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_004/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tox4t")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube_004/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0"]
+collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_005/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_fnco3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cube_005/StaticBody3D" index="1"]
+stream = ExtResource("3_ibw3u")
+max_db = -5.0
