@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgfufe8corivp"]
+[gd_scene load_steps=7 format=3 uid="uid://bgfufe8corivp"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/active_generic_potion.gd" id="1_nki6v"]
 [ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Items/Potion Bottle.glb" id="2_u2ubi"]
+[ext_resource type="AudioStream" uid="uid://neqilshgfc1h" path="res://Assets/SoundEffects/LargeGlassMirrorSmash1.wav" id="3_l281b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
 
@@ -42,5 +43,9 @@ light_size = 1.0
 omni_range = 2.5
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_l281b")
+volume_db = -15.0
+max_db = 0.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

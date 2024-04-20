@@ -15,6 +15,7 @@ var unstable
 
 var ambient_audio_player #Plays unstable and ambient audio
 var unstable_audio = preload("res://Assets/SoundEffects/loop_water_02.wav")
+var pour_audio = preload("res://Assets/SoundEffects/water pouring into glass 4.wav")
 var active_audio_player #For adding and explosion audio
 var add_audio = preload("res://Assets/SoundEffects/splash_02.ogg")
 var explosion_audio = preload("res://Assets/SoundEffects/cauldron_explosion.wav")
@@ -117,6 +118,8 @@ func _on_nozzle_start_brewing():
 		}
 		var index = PlayerInventory.inventory.find(null)
 		if (index != -1):
+			ambient_audio_player.stream = pour_audio
+			ambient_audio_player.play()
 			PlayerInventory.inventory[index] = potion
 			datalist = {
 				"color": [0, 0, 0],
