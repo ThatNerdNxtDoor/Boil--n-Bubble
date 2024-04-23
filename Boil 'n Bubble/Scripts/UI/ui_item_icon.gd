@@ -24,8 +24,11 @@ func _process(delta):
 		pass
 	if (datalist == null):
 		color = Color(1, 1, 1, 174 / 255.0)
+		picture.texture = null
 	else:
 		color = Color((datalist["color"][0]) / 255.0, datalist["color"][1] / 255.0, datalist["color"][2] / 255.0, 174 / 255.0)
+		if (datalist["icon"] != null):
+			picture.texture = load(datalist["icon"])
 
 func _get_drag_data(_pos):
 	# Use another icon as drag preview.

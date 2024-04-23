@@ -1,6 +1,7 @@
 {
 	"generic": {
 		"name" : "generic",
+		"icon": null,
 		"color": [0, 0, 0],
 		"aspect": ["None"],
 		"effect": ["None"],
@@ -10,6 +11,7 @@
 	,
 	"sooth_honey": {
 		"name" : "soothsawyer honey",
+		"icon": "res://Assets/Sprites/SoothHoney.png",
 		"color": [219, 200, 20],
 		"aspect": ["Healing"],
 		"effect": ["None"],
@@ -19,6 +21,7 @@
 	,
 	"sooth_venom": {
 		"name" : "soothsawyer venom",
+		"icon": "res://Assets/Sprites/SoothVenom.png",
 		"color": [219, 180, 20],
 		"aspect": ["Poison"],
 		"effect": ["None"],
@@ -28,6 +31,7 @@
 	,
 	"gustrhine": {
 		"name" : "gustrhine",
+		"icon": "res://Assets/Sprites/Gustrhine.png",
 		"color": [0, 153, 255],
 		"aspect": ["None"],
 		"effect": ["Wind"],
@@ -37,6 +41,7 @@
 	,
 	"calientus": {
 		"name" : "calientus root",
+		"icon": "res://Assets/Sprites/CalientusRoot.png",
 		"color": [219, 90, 20],
 		"aspect": ["Fire"],
 		"effect": ["None"],
@@ -46,6 +51,7 @@
 	,
 	"lampshade": {
 		"name" : "lampshade",
+		"icon": "res://Assets/Sprites/Lampshade.png",
 		"color": [255, 255, 204],
 		"aspect": ["None"],
 		"effect": ["Light"],
@@ -55,6 +61,7 @@
 	,
 	"mix_mint": {
 		"name" : "mixture mint",
+		"icon": "res://Assets/Sprites/MixMint.png",
 		"color": [225, 225, 225],
 		"aspect": ["None"],
 		"effect": ["None"],
