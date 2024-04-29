@@ -11,7 +11,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func interaction():
+func interaction(caller):
 	activatee.visible = true
 	activatee.find_child("CollisionShape3D").disabled = false
 	activatee.find_child("AudioStreamPlayer3D").play()

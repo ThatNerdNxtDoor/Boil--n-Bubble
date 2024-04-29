@@ -24,8 +24,9 @@ var eat_audio = [preload("res://Assets/SoundEffects/crunch.1.ogg"),
 var potion_audio = preload("res://Assets/SoundEffects/bottle-glass-uncork-03.wav")
 var throw_audio = preload("res://Assets/SoundEffects/air_move.wav")
 var damage_audio = preload("res://Assets/SoundEffects/take_damage.wav")
+var step_audio_player
+var step_timer
 
-var interaction
 var ui_interact
 var ui_notebook
 var ui_health_bar
@@ -51,6 +52,8 @@ func _ready():
 	potion_light = $Pivot/HeldPotionBottle/HeldPotionLight
 	
 	audio_player = $Pivot/On_PersonAudioPlayer
+	step_audio_player = $StepAudioPlayer
+	step_timer = $StepTimer
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
@@ -101,7 +104,7 @@ func _process(delta):
 						ui_interact.text = "[center](E) Interact[/center]"
 			# If player interacts with object
 			if Input.is_action_just_pressed("interact") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-				body.interaction()
+				body.interaction(self)
 	else:
 		ui_interact.hide()
 	
@@ -187,6 +190,11 @@ func _physics_process(delta):
 		else:
 			velocity.x += direction.x * (speed * .05)
 			velocity.z += direction.z * (speed * .05)
+		if is_on_floor() and step_timer.time_left <= 0:
+			step_audio_player.pitch_scale = randf_range(0.8, 1.2)
+			step_audio_player.play()
+			step_timer.start(clampf(0.5 * (1 + ((BASE_SPEED - speed) * 0.25)), 0.1, 0.9))
+			print(clampf(0.5 * (1 + ((BASE_SPEED - speed) * 0.25)), 0.1, 0.9))
 	else:
 		if vel_clamp:
 			velocity.x = move_toward(velocity.x, 0, speed)

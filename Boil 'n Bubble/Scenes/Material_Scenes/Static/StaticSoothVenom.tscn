@@ -11,6 +11,7 @@ size = Vector3(0.5, 0.5, 0.5)
 script = ExtResource("1_c4q8a")
 mat_name = "sooth_venom"
 duration = 10
+pick_up_damage = 10
 
 [node name="Soothesayer HoneyPoison" parent="." instance=ExtResource("2_dvnju")]
 transform = Transform3D(0.229788, 0, 0.121646, 0, 0.26, 0, -0.121646, 0, 0.229788, 0.104514, -0.0303243, -0.000808984)

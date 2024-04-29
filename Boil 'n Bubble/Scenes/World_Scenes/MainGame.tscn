@@ -83,6 +83,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.9182, 5.15043, 22.5511)
 [node name="ElevatedRidgePiece3" parent="World" instance=ExtResource("3_1w7kk")]
 transform = Transform3D(-1.67479, 0, 1.0932, 0, 2, 0, -1.0932, 0, -1.67479, 13.9182, 5.15043, 42.8221)
 
+[node name="ElevatedRidgePiece4" parent="World" instance=ExtResource("3_1w7kk")]
+transform = Transform3D(-0.804377, 2.16695e-07, 0, -7.03208e-08, -2.4787, 0, 0, 0, 2, 11.1095, -7.16805, 22.6207)
+
 [node name="3Bushes" parent="World" instance=ExtResource("4_nffug")]
 transform = Transform3D(-0.106264, 0, -0.994338, 0, 1, 0, 0.994338, 0, -0.106264, -6.38869, 1.29441, -3.6616)
 

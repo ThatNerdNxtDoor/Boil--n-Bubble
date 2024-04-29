@@ -3,6 +3,7 @@ extends StaticInteractable
 
 @export var mat_name : String
 @export var duration : int
+@export var pick_up_damage : int
 var collision_shape
 var audio_player
 var mat_datalist
@@ -27,17 +28,21 @@ func get_dataset():
 	else:
 		print("dataset " + str(mat_name) + " failed to load")
 
-func interaction():
+func interaction(caller):
 	print("Interaction Material")
 	var index = PlayerInventory.inventory.find(null)
 	if (index != -1):
 		audio_player.play()
 		PlayerInventory.inventory[index] = mat_datalist
 		print("Pick-Up Successful")
+		#Deal any pick up damage to the caller
+		if (caller is Player and pick_up_damage > 0):
+			caller.damage_over_time(pick_up_damage)
 		#Prepare "respawn" timer
 		var timer = Timer.new()
 		timer.wait_time = duration
 		timer.autostart = true
+		timer.one_shot = true
 		timer.timeout.connect(respawn)
 		add_child(timer) #"Deactivate" the ingredient source
 		self.visible = false

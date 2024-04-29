@@ -60,7 +60,7 @@ func _process(delta):
 		print(explosion_time_left)
 
 # Interaction function for raycasting
-func interaction():
+func interaction(caller):
 	var mat_dictionary = PlayerInventory.inventory[PlayerInventory.holding_index]
 	#Potions and empty iventories can't be added
 	if mat_dictionary == null or (mat_dictionary)["name"] == "potion":

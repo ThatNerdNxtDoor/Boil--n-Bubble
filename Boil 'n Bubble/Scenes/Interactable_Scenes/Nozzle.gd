@@ -12,5 +12,5 @@ func _ready():
 func _process(delta):
 	pass
 
-func interaction():
+func interaction(caller):
 	start_brewing.emit()

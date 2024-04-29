@@ -70,7 +70,7 @@ offset_bottom = 0.170013
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
 
@@ -148,7 +148,7 @@ offset_bottom = 0.0599976
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
 
