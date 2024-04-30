@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ffadxrwy5fs6"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_c4q8a"]
-[ext_resource type="PackedScene" uid="uid://b14nvwrnxwhif" path="res://BlenderMeshes/Items/Soothesayer HoneyPoison.glb" id="2_dvnju"]
 [ext_resource type="AudioStream" uid="uid://ck0fhvy5qas07" path="res://Assets/SoundEffects/pick_up.wav" id="2_s20jf"]
+[ext_resource type="PackedScene" uid="uid://bdg2wjlmkbyn5" path="res://BlenderMeshes/Items/Soothesayer Poison.glb" id="2_ytx0l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1bkt"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -13,7 +13,7 @@ mat_name = "sooth_venom"
 duration = 10
 pick_up_damage = 10
 
-[node name="Soothesayer HoneyPoison" parent="." instance=ExtResource("2_dvnju")]
+[node name="Soothesayer Poison" parent="." instance=ExtResource("2_ytx0l")]
 transform = Transform3D(0.229788, 0, 0.121646, 0, 0.26, 0, -0.121646, 0, 0.229788, 0.104514, -0.0303243, -0.000808984)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]

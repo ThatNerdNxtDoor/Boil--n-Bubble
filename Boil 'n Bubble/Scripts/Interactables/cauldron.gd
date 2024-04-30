@@ -109,7 +109,7 @@ func _on_nozzle_start_brewing():
 	if material_num != 0 && !unstable:
 		var potion = {
 			"name": "potion",
-			"icon": null,
+			"icon": "res://Assets/Sprites/PotionBottle.png",
 			"color": [(datalist["color"])[0] / material_num,
 					  (datalist["color"])[1] / material_num,
 					  (datalist["color"])[2] / material_num],

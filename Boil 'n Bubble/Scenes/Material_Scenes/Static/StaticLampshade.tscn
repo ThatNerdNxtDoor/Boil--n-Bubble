@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgm4vyewlh6iu"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_8u7gk"]
-[ext_resource type="PackedScene" uid="uid://cxn6jvgw6erbe" path="res://BlenderMeshes/Items/V2Lampshade.glb" id="2_yu5h1"]
+[ext_resource type="PackedScene" uid="uid://xht5xnsssdws" path="res://BlenderMeshes/Items/Lampshade.glb" id="2_k2trk"]
 [ext_resource type="AudioStream" uid="uid://ck0fhvy5qas07" path="res://Assets/SoundEffects/pick_up.wav" id="3_vigjm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dh87g"]
@@ -13,7 +13,7 @@ script = ExtResource("1_8u7gk")
 mat_name = "lampshade"
 duration = 15
 
-[node name="V2Lampshade" parent="." instance=ExtResource("2_yu5h1")]
+[node name="Lampshade" parent="." instance=ExtResource("2_k2trk")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.178599, -0.00978339, 0)
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
