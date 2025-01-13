@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=10 format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
 [ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_t4vr5"]
+[ext_resource type="Texture2D" uid="uid://cgcllnr7tjlp1" path="res://Assets/Sprites/PostPaperNail.png" id="4_5khqi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v31v"]
 bg_color = Color(0.972549, 0.972549, 0.972549, 0.396078)
@@ -34,6 +35,20 @@ bg_color = Color(0.152941, 0.152941, 0.152941, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5uco"]
 bg_color = Color(0.92549, 0.698039, 0.34902, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h13r"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.721569, 0.552941, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 7
+
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_njjc1")
 
@@ -49,7 +64,7 @@ offset_right = -0.447998
 offset_bottom = -0.0880127
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "[center](E) Pick Up[/center]"
 
@@ -158,5 +173,111 @@ theme_override_colors/font_color = Color(0.52549, 0.364706, 0.129412, 1)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
 text = "Restart"
+
+[node name="CloseUpPapers" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TutorialPaper" type="Panel" parent="CloseUpPapers"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261785
+anchor_top = 0.051
+anchor_right = 0.737479
+anchor_bottom = 0.948
+offset_left = 0.423981
+offset_top = -0.0480003
+offset_right = 0.42395
+offset_bottom = -0.304077
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5h13r")
+metadata/_edit_use_anchors_ = true
+
+[node name="PostPaperNail" type="TextureRect" parent="CloseUpPapers/TutorialPaper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44
+anchor_top = 0.028
+anchor_right = 0.538
+anchor_bottom = 0.114
+offset_left = -0.120056
+offset_top = -0.268
+offset_right = 377.212
+offset_bottom = 349.766
+grow_horizontal = 2
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("4_5khqi")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.117
+anchor_right = 0.914
+anchor_bottom = 0.186
+offset_left = -0.144955
+offset_top = 0.0230026
+offset_right = 0.15213
+offset_bottom = -0.0659943
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/normal_font_size = 1
+bbcode_enabled = true
+text = "[center][i][b]Alchemist's First Field Guide"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.167
+anchor_right = 0.914
+anchor_bottom = 0.225
+offset_left = 0.256042
+offset_top = -0.0269928
+offset_right = 0.128479
+offset_bottom = 0.275009
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/normal_font_size = 1
+bbcode_enabled = true
+text = "[center][i]An introductory pamphlet by Josef L. Steinberg,
+for budding brewers and adventure-seeking alchemists."
+scroll_active = false
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.232
+anchor_right = 0.956
+anchor_bottom = 0.966
+offset_left = 0.0800209
+offset_top = 0.208008
+offset_right = 0.112488
+offset_bottom = -0.245972
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/normal_font_size = 1
+bbcode_enabled = true
+text = "[left][i][u]Ingredients[/u]
+	Ingredients comprise of 4 properites - [color=\"maroon\"]Aspects[/color], [color=\"dark green\"]Effects[/color], [color=\"red\"]Potency[/color], and [color=\"purple\"]Complexity[/color]. [color=\"maroon\"]Aspects[/color] are the general 'elements' of an ingredient, and determine the main purpose of the ingredient, such as fire or healing. While uncommon, an ingredient can have more than one aspect, or even none at all. [color=\"dark green\"]Effects[/color] affect the stats or capabilities of potions and consumers. Like Aspects, an ingredient can have one or more or no Effects. [color=\"red\"]Potency[/color] is the 'power' of the ingredient. The more potent an ingredient or mixture is, the more power every part of it will have. You can consume the ingredient raw to get an idea of its properties... if you're brave enough to bear the possible consequences.
+
+[i][u]Brewing and Complexity[/u]
+	During the [color=\"navy blue\"]Brewing[/color] process, the previously discussed properties meld together into a mixture, the [color=\"maroon\"]Aspects[/color] and [color=\"dark green\"]Effects[/color] are put in, and the potency is totaled up. If the mixture is stable, then interacting with the nozzle will pour the mixture into a potion, which can either be thrown or drinked (keep in mind that some [color=\"maroon\"]Aspects[/color] and [color=\"dark green\"]Effects[/color] behave differently when consumed versus touched). What determines if the stability of the mixutre is the last ingredient property, [color=\"purple\"]Complexity[/color]. [color=\"purple\"]Complexity[/color] is totaled up in the mixture, and if the complexity is too high, it will begin to destabalize. This chain reaction is marked by a sudden increase in bubbling, and you will have a short window of time to either restabalize the mixture with an ingredient(s) of negative complexity, or to simply get out of there, before the mixture explodes. The explosion wastes any ingredients that were used.
+
+[i][u]Bring a Notebook![/u]
+When going out to seek new ingredients, it is important to keep track of everything you find with a notebook. This is especially important if you are exploring an untouched part of the wilderness with little to no documentation. If you do have a notebook (or anything else that you are reading, [b]such as this pamphlet[/b]), you can open/close it using [b][ESC][/b]. Each page in your notebook should have a spot to write things down and a note slot. Dragging an ingredient into the note slot will dedicate the page to the ingredient, helping you keep track of what notes are being used. The slot can be replaced with another ingredient or emptied by dragging an empty inventory slot into the note slot."
+scroll_active = false
 
 [connection signal="pressed" from="DeadPanel/Button" to="." method="_on_button_pressed"]

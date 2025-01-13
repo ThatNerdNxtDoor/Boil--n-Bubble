@@ -13,14 +13,19 @@ var pot_datalist
 
 var blast_radius
 var potion_light
+var potion_bottle
 var audio_player
+var break_particles
 var break_audio = preload("res://Assets/SoundEffects/LargeGlassMirrorSmash1.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blast_radius = $CollisionBox
 	potion_light = $PotionLight
+	potion_bottle = $"Potion Bottle"
 	audio_player = $AudioStreamPlayer3D
+	break_particles = $BreakParticles
+	print(break_particles)
 	if (pot_datalist["effect"].find("Light") != -1):
 		potion_light.visible = true
 		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))
@@ -77,7 +82,11 @@ func _on_body_entered(body):
 				target_body.check_weakness(pot_datalist)
 		#Hide and remove hitbox to play sound effect without reactivating
 		$PhysicsCollisionShape.queue_free()
-		self.hide()
+		potion_bottle.hide()
+		potion_light.hide()
+		break_particles.mesh.material.set_albedo(Color(pot_datalist["color"][0], pot_datalist["color"][1], pot_datalist["color"][2], 1))
+		print(break_particles.mesh.material.get_albedo())
+		break_particles.emitting = true
 		audio_player.play()
 
 #Noise is played, and the object is officially destroyed

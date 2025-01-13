@@ -11,6 +11,8 @@ var effects
 var explosion_timer : Timer
 var explosion_time_left
 var explosion_hitbox
+var explosion_particles
+var unstable_particles
 var unstable
 
 var ambient_audio_player #Plays unstable and ambient audio
@@ -20,9 +22,11 @@ var active_audio_player #For adding and explosion audio
 var add_audio = preload("res://Assets/SoundEffects/splash_02.ogg")
 var explosion_audio = preload("res://Assets/SoundEffects/cauldron_explosion.wav")
 
+var fire_light
+var fire_light_timer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	object_name = "cauldron"
 	datalist = {
 		"color": [0, 0, 0],
 		"aspect": ["None"],
@@ -39,10 +43,15 @@ func _ready():
 	explosion_timer = $CauldronExplosionTimer
 	explosion_time_left = explosion_timer.get_wait_time()
 	explosion_hitbox = $ExplosionCollisionBox
+	explosion_particles = $ExplosionParticles
+	unstable_particles = $UnstableParticles
 	unstable = false
 	
 	ambient_audio_player = $AudioStreamPlayer3D
 	active_audio_player = $SecondaryAudioStreamPlayer3D
+	
+	fire_light = $FireLight
+	fire_light_timer = $FireLight/FireLightTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,6 +111,7 @@ func interaction(caller):
 			explosion_timer.start(explosion_time_left)
 			ambient_audio_player.stream = unstable_audio
 			ambient_audio_player.play()
+			unstable_particles.emitting = true
 		print("Datalist " + str(mat_dictionary) + " added")
 
 # Signal Function to start brewing
@@ -141,6 +151,7 @@ func _on_cauldron_explosion_timeout():
 	print("cauldron is exploding")
 	active_audio_player.stream = explosion_audio
 	active_audio_player.play()
+	explosion_particles.emitting = true
 	#Simulate the explosion
 	var bodies = explosion_hitbox.get_overlapping_bodies()
 	for target_body in bodies:
@@ -187,3 +198,13 @@ func _on_cauldron_explosion_timeout():
 	}
 	complexity = 0
 	material_num = 0
+
+#Changes the energy of the light, and randomizes the timer length before starting again.
+func _on_fire_light_timer_timeout():
+	#Makes the fire light flutter and change in strength to give the illusion
+	# of an active fire.
+	fire_light.light_energy = randf_range(2.75, 4.5)
+	
+	#Randomize timer and start it again.
+	fire_light_timer.wait_time = randf_range(0.08, 0.16)
+	fire_light_timer.start()

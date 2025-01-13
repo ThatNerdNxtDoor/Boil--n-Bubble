@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b34qqc6sgcf5a"]
+[gd_scene load_steps=8 format=3 uid="uid://b34qqc6sgcf5a"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/static_material_generic.gd" id="1_g6f71"]
 [ext_resource type="PackedScene" uid="uid://84csepn4u3nt" path="res://BlenderMeshes/Items/MixtureMint.glb" id="2_7hj8a"]
@@ -6,6 +6,18 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1bkt"]
 size = Vector3(1, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfmiw"]
+albedo_color = Color(0.109804, 0.913725, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eivrm"]
+material = SubResource("StandardMaterial3D_qfmiw")
+radius = 0.08
+height = 0.16
+
+[sub_resource type="Curve" id="Curve_8w3fa"]
+_data = [Vector2(0, 1), 0.0, 0.881013, 0, 0, Vector2(0.120482, 0), -18.7292, 0.0, 0, 0]
+point_count = 2
 
 [node name="StaticMixtureMint" type="StaticBody3D"]
 script = ExtResource("1_g6f71")
@@ -30,3 +42,22 @@ stream = ExtResource("3_umy8q")
 volume_db = -15.0
 max_db = -5.0
 pitch_scale = 2.0
+
+[node name="AmbientParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0942475, 0)
+amount = 10
+lifetime = 7.0
+randomness = 0.33
+lifetime_randomness = 0.5
+mesh = SubResource("SphereMesh_eivrm")
+emission_shape = 2
+emission_sphere_radius = 0.6
+direction = Vector3(0, 1, 0)
+spread = 5.11
+flatness = 1.0
+gravity = Vector3(0, 9.8, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+scale_amount_curve = SubResource("Curve_8w3fa")

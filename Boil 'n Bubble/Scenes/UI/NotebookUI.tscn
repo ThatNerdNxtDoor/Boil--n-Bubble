@@ -19,10 +19,10 @@ bg_color = Color(1, 0.831373, 0.592157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_misjq"]
 bg_color = Color(1, 0.831373, 0.592157, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp0yq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp0yq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="NotebookMenu" type="Panel"]
@@ -67,10 +67,10 @@ offset_left = 0.0979996
 offset_top = 0.174988
 offset_right = 0.119995
 offset_bottom = 0.170013
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
 
@@ -85,11 +85,11 @@ offset_left = -0.0339966
 offset_top = 0.154968
 offset_right = 0.0899658
 offset_bottom = -0.105011
-theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
 icon = ExtResource("2_va2tu")
 expand_icon = true
 
@@ -145,10 +145,11 @@ offset_left = 0.0979996
 offset_top = 0.174988
 offset_right = 0.119995
 offset_bottom = 0.0599976
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+grow_vertical = 0
 theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
 
@@ -163,11 +164,11 @@ offset_left = -0.120001
 offset_top = 0.154938
 offset_right = 0.0039978
 offset_bottom = -0.105042
-theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
 icon = ExtResource("4_c1260")
 expand_icon = true
 

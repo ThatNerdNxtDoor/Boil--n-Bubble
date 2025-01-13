@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dt4djpn0cr88s"
-path="res://.godot/imported/Potion Bottle.glb-0bd4653a1bfc6288baaefc21f88d268f.scn"
+uid="uid://dgf57acwaamad"
+path="res://.godot/imported/PaperPost.glb-a117d7bf8f5d4ce17e69acfe83b1961b.scn"
 
 [deps]
 
-source_file="res://BlenderMeshes/Items/Potion Bottle.glb"
-dest_files=["res://.godot/imported/Potion Bottle.glb-0bd4653a1bfc6288baaefc21f88d268f.scn"]
+source_file="res://BlenderMeshes/World/PaperPost.glb"
+dest_files=["res://.godot/imported/PaperPost.glb-a117d7bf8f5d4ce17e69acfe83b1961b.scn"]
 
 [params]
 

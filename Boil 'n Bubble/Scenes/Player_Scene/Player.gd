@@ -31,6 +31,8 @@ var ui_interact
 var ui_notebook
 var ui_health_bar
 var ui_death_screen
+var ui_papers
+var open_paper
 
 var potion_child : PackedScene = load("res://Scenes/Generics/ActiveGenericPotion.tscn")
 
@@ -59,6 +61,7 @@ func _ready():
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
 	ui_health_bar = $Pivot/PlayerUI/HealthBar
 	ui_death_screen = $Pivot/PlayerUI/DeadPanel
+	ui_papers = $Pivot/PlayerUI/CloseUpPapers
 	
 	max_health = 100
 	curr_health = max_health
@@ -67,11 +70,19 @@ func _ready():
 	
 	PlayerInventory.holding_index = 0 
 	PlayerInventory.inventory = [null, null, null, null, null, null, null, null]
+	
+	SignalBus.show_paper.connect(_on_show_paper)
+	
 #------------------------------- Player Processes ------------------------------
 func _process(delta):
 	#Check for pausing
 	if Input.is_action_just_pressed("pause"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and !dead:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and open_paper != null:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			open_paper.visible = false
+			open_paper = null
+			ui_notebook.play_randomized_page_audio()
+		elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and !dead:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			ui_notebook.visible = false
 			ui_notebook.play_randomized_page_audio()
@@ -100,6 +111,8 @@ func _process(delta):
 						ui_interact.text = "[center](E) Add to Cauldron[/center]"
 					"nozzle":
 						ui_interact.text = "[center](E) Pour Mixture[/center]"
+					"paper_post":
+						ui_interact.text = "[center](E) Read[/center]"
 					_: #Default
 						ui_interact.text = "[center](E) Interact[/center]"
 			# If player interacts with object
@@ -302,3 +315,10 @@ func damage_over_time(damage):
 
 func _on_kill_box_body_entered(body):
 	curr_health = 0
+	
+func _on_show_paper(page_id):
+	print(page_id)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	open_paper = ui_papers.get_node(page_id)
+	open_paper.visible = true
+	ui_notebook.play_randomized_page_audio()

@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n5ee1khabllo"
+uid="uid://b6g36o5voykce"
 path.s3tc="res://.godot/imported/FirstArea_RockFloorUVMap.png-d8d834f9d0b2db12d7c99f9e29999975.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

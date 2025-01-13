@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=32 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
 [ext_resource type="Script" path="res://Scenes/World_Scenes/day_night_cycle.gd" id="1_3hce6"]
@@ -20,12 +20,13 @@
 [ext_resource type="Script" path="res://Scripts/Interactables/shortcut_activator.gd" id="12_x8hx7"]
 [ext_resource type="AudioStream" uid="uid://bxclh0sr084l" path="res://Assets/SoundEffects/WoodSnap5.wav" id="13_ai0xa"]
 [ext_resource type="PackedScene" uid="uid://ffadxrwy5fs6" path="res://Scenes/Material_Scenes/Static/StaticSoothVenom.tscn" id="20_52jet"]
+[ext_resource type="PackedScene" uid="uid://bjp0b632j2kou" path="res://Scenes/Interactable_Scenes/paper_post.tscn" id="21_tdfal"]
 
 [sub_resource type="Environment" id="Environment_g0vy5"]
 background_mode = 1
 background_color = Color(0.619608, 0.745098, 1, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.552941, 0.552941, 0.552941, 1)
+ambient_light_color = Color(0.105882, 0.494118, 0.435294, 1)
 ambient_light_energy = 0.5
 ssao_enabled = true
 
@@ -125,6 +126,9 @@ transform = Transform3D(1.641, -0.234962, 0.155311, 0.243696, 1.64479, -0.086550
 [node name="SingleBushTextured6" parent="World" instance=ExtResource("10_uwi2i")]
 transform = Transform3D(0.438587, -0.0627978, 0.0415098, 0.0651321, 0.439599, -0.0231321, -0.0377417, 0.0288743, 0.442455, 30.1188, 1.76672, 3.65046)
 
+[node name="SingleBushTextured7" parent="World" instance=ExtResource("10_uwi2i")]
+transform = Transform3D(0.699768, -0.100194, 0.0662291, 0.111857, 0.686255, -0.143675, -0.043739, 0.152038, 0.69215, 24.4873, 1.71548, 13.5594)
+
 [node name="PineTree" parent="World" instance=ExtResource("5_hbhad")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.94848, 0, 12.2189)
 
@@ -161,6 +165,12 @@ transform = Transform3D(-0.117834, -0.0134259, -0.242559, -0.0229509, 0.268997, 
 [node name="PineTree12" parent="World" instance=ExtResource("5_hbhad")]
 transform = Transform3D(0.544122, -0.0111342, -0.493996, 0.0082925, 0.734916, -0.00743035, 0.494052, -7.27177e-05, 0.544185, -7.95667, 6.49909, 43.0391)
 
+[node name="PineTree13" parent="World" instance=ExtResource("5_hbhad")]
+transform = Transform3D(0.408393, -0.0744619, 0.209513, 0.0913509, 0.455653, -0.0161243, -0.20272, 0.055321, 0.414812, 23.2497, 1.99074, 13.8212)
+
+[node name="PineTree14" parent="World" instance=ExtResource("5_hbhad")]
+transform = Transform3D(0.108688, 0.0305173, 0.331294, -0.00188391, 0.348575, -0.0314911, -0.332691, 0.00799593, 0.10841, 26.9246, 1.35019, 14.2776)
+
 [node name="ThinTree" parent="World" instance=ExtResource("6_oa4nq")]
 transform = Transform3D(0.637316, 0.0220916, 0.394766, 0, 0.748828, -0.0419053, -0.395384, 0.0356093, 0.63632, -0.141335, 0.272972, 12.6388)
 
@@ -180,7 +190,7 @@ transform = Transform3D(0.402444, 0.0081852, -0.13637, 0.0044082, 0.423238, 0.03
 transform = Transform3D(-1.13561, 0.0738363, -0.628442, 0.0646036, 1.2979, 0.0357516, 0.629458, 2.06142e-07, -1.13745, 10.6589, 6.9509, 32.83)
 
 [node name="Cauldron" parent="." instance=ExtResource("2_psfv4")]
-transform = Transform3D(0.716255, -0.000870185, 0.697839, -0.000674832, 0.999998, 0.00193963, -0.697839, -0.0018602, 0.716252, -5.39357, 2.87883, 1.22948)
+transform = Transform3D(0.716255, -0.000870185, 0.697839, -0.000674832, 0.999998, 0.00193963, -0.697839, -0.0018602, 0.716252, -5.394, 2.94108, 1.229)
 
 [node name="ShortcutActivator" type="StaticBody3D" parent="." node_paths=PackedStringArray("activatee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.08284, 6.77607, 21.1094)
@@ -279,5 +289,9 @@ transform = Transform3D(-0.511799, -0.113866, 0.851526, -0.367783, 0.924798, -0.
 
 [node name="StaticSoothVenom" parent="." instance=ExtResource("20_52jet")]
 transform = Transform3D(-0.362796, 0, 0.931869, 0.312612, 0.942052, 0.121706, -0.877868, 0.335468, -0.341772, 25.6138, 5.69189, 40.0875)
+
+[node name="PaperPost" parent="." instance=ExtResource("21_tdfal")]
+transform = Transform3D(0.199936, -0.103084, -0.446541, -0.0132433, 0.485684, -0.118049, 0.458094, 0.0590321, 0.191481, -2.52171, 2.84168, -1.25395)
+metadata/page_id = "TutorialPaper"
 
 [connection signal="body_entered" from="KillBox" to="Player" method="_on_kill_box_body_entered"]

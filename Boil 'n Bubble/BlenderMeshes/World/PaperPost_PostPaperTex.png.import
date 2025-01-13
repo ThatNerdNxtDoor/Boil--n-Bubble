@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boy23iypbt38g"
-path.s3tc="res://.godot/imported/CalientusRoot.png-52954a26729c6762137a6aa3a2f70d06.s3tc.ctex"
+uid="uid://b333gnkr4k2x4"
+path.s3tc="res://.godot/imported/PaperPost_PostPaperTex.png-5e146bf434d79a4b603f69bacf38d236.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/Sprites/CalientusRoot.png"
-dest_files=["res://.godot/imported/CalientusRoot.png-52954a26729c6762137a6aa3a2f70d06.s3tc.ctex"]
+source_file="res://BlenderMeshes/World/PaperPost_PostPaperTex.png"
+dest_files=["res://.godot/imported/PaperPost_PostPaperTex.png-5e146bf434d79a4b603f69bacf38d236.s3tc.ctex"]
 
 [params]
 

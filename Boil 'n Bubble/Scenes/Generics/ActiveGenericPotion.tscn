@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgfufe8corivp"]
+[gd_scene load_steps=10 format=3 uid="uid://bgfufe8corivp"]
 
 [ext_resource type="Script" path="res://Scripts/Generics/active_generic_potion.gd" id="1_nki6v"]
 [ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Items/Potion Bottle.glb" id="2_u2ubi"]
@@ -13,6 +13,18 @@ height = 0.325
 [sub_resource type="SphereShape3D" id="SphereShape3D_mvnwv"]
 radius = 2.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2ldi"]
+specular_mode = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_ydoly"]
+material = SubResource("StandardMaterial3D_c2ldi")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_oo5xi"]
+_data = [Vector2(0, 1), 0.0, -0.0582486, 0, 0, Vector2(1, 0), -0.0242117, 0.0, 0, 0]
+point_count = 2
+
 [node name="ActiveGenericPotion" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 2
@@ -20,9 +32,15 @@ mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_p0b4h")
 can_sleep = false
 continuous_cd = true
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_nki6v")
+
+[node name="PotionLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129148, 0)
+visible = false
+light_size = 1.0
+omni_range = 2.5
 
 [node name="Potion Bottle" parent="." instance=ExtResource("2_u2ubi")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -36,16 +54,30 @@ shape = SubResource("CapsuleShape3D_bl35y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionBox"]
 shape = SubResource("SphereShape3D_mvnwv")
 
-[node name="PotionLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129148, 0)
-visible = false
-light_size = 1.0
-omni_range = 2.5
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_l281b")
 volume_db = -15.0
 max_db = 0.0
+
+[node name="BreakParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0122887, 0)
+emitting = false
+amount = 20
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_ydoly")
+emission_shape = 2
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 60.0
+initial_velocity_max = 80.0
+angular_velocity_min = 1.0
+angular_velocity_max = 1.0
+linear_accel_max = 2.35
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_oo5xi")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

@@ -2,6 +2,7 @@ extends WorldEnvironment
 
 var sunlight : DirectionalLight3D
 var time
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sunlight = $"../SunLight"
