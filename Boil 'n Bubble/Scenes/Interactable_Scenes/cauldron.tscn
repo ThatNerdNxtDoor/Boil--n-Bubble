@@ -56,6 +56,7 @@ max_polyphony = 3
 stream = ExtResource("3_m2qx7")
 volume_db = -25.0
 max_polyphony = 3
+bus = &"SFX"
 
 [node name="CauldronExplosionTimer" type="Timer" parent="."]
 wait_time = 4.0

@@ -1,0 +1,232 @@
+[gd_scene load_steps=5 format=3 uid="uid://gglomivxwh2s"]
+
+[ext_resource type="Script" path="res://Scripts/UI/settings_menu.gd" id="1_2nwtt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t708"]
+bg_color = Color(1, 0.831373, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_is388"]
+bg_color = Color(1, 0.744173, 0.345101, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa4my"]
+bg_color = Color(0.816099, 0, 0.175313, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.477664, 0, 0.0865972, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2nwtt")
+
+[node name="Page1" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -5.49994
+offset_bottom = -6.99997
+
+[node name="Settings" type="Panel" parent="Page1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="SettingsTitle" type="RichTextLabel" parent="Page1/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = -12.0
+offset_bottom = -392.0
+theme_override_colors/default_color = Color(0.399375, 0.291434, 0.153601, 1)
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 1
+theme_override_font_sizes/bold_font_size = 28
+bbcode_enabled = true
+text = "[center][b][u]S E T T I N G S"
+scroll_active = false
+
+[node name="AudioPanel" type="Panel" parent="Page1/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 58.0
+offset_right = -8.0
+offset_bottom = -250.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_is388")
+
+[node name="AudioTitle" type="RichTextLabel" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -322.0
+offset_bottom = -108.0
+theme_override_colors/default_color = Color(0.399375, 0.291434, 0.153601, 1)
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 1
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center][b]Audio"
+scroll_active = false
+
+[node name="MasterVolumeText" type="RichTextLabel" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 25.0
+offset_right = -213.0
+offset_bottom = -88.0
+theme_override_colors/default_color = Color(0.399375, 0.291434, 0.153601, 1)
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "Master Volume"
+scroll_active = false
+
+[node name="MasterVolumeSlider" type="HSlider" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 29.0
+offset_right = -17.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+value = 0.2
+
+[node name="MusicVolumeText" type="RichTextLabel" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 45.0
+offset_right = -218.0
+offset_bottom = -69.0
+theme_override_colors/default_color = Color(0.399375, 0.291434, 0.153601, 1)
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "Music Volume"
+scroll_active = false
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 49.0
+offset_right = -17.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+value = 0.2
+
+[node name="SFXVolumeText" type="RichTextLabel" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 65.0
+offset_right = -225.0
+offset_bottom = -49.0
+theme_override_colors/default_color = Color(0.399375, 0.291434, 0.153601, 1)
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "SFX Volume"
+scroll_active = false
+
+[node name="SFXVolumeSlider" type="HSlider" parent="Page1/Settings/AudioPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 69.0
+offset_right = -17.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+value = 0.2
+
+[node name="Page2" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.50006
+offset_top = 7.0
+offset_right = -8.99988
+offset_bottom = -6.99997
+
+[node name="Settings" type="Panel" parent="Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
+
+[node name="QuitToMenuButton" type="Button" parent="Page2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.639
+anchor_top = 0.871
+anchor_right = 0.973
+anchor_bottom = 0.976
+offset_left = -0.215637
+offset_top = -0.21405
+offset_right = 0.241333
+offset_bottom = 0.215942
+theme_override_styles/normal = SubResource("StyleBoxFlat_pa4my")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Page2/QuitToMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center][b]Quit to Main Menu"
+scroll_active = false
+tab_size = 1
+
+[connection signal="value_changed" from="Page1/Settings/AudioPanel/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="Page1/Settings/AudioPanel/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Page1/Settings/AudioPanel/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="Page2/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]

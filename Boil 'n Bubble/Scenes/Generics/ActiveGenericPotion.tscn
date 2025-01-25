@@ -58,6 +58,7 @@ shape = SubResource("SphereShape3D_mvnwv")
 stream = ExtResource("3_l281b")
 volume_db = -15.0
 max_db = 0.0
+bus = &"SFX"
 
 [node name="BreakParticles" type="CPUParticles3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0122887, 0)

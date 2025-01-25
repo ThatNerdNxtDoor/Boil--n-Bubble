@@ -12,5 +12,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	time = time + (delta / 12)
+	time = time + (delta * 1.25)
 	sunlight.set_rotation_degrees(Vector3(time, 0, 0))

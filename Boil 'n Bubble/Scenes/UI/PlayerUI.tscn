@@ -72,6 +72,7 @@ text = "[center](E) Pick Up[/center]"
 visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+z_index = -1
 anchors_preset = -1
 anchor_left = 0.03
 anchor_top = 0.665
@@ -81,6 +82,7 @@ offset_left = -0.560001
 offset_top = 0.0799866
 offset_right = 0.520004
 offset_bottom = -0.320007
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_8v31v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ghg8g")
 value = 100.0

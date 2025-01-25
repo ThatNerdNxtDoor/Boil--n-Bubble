@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerInventory="*res://Scenes/Player_Scene/player_inventory.gd"
-SignalBus="*res://Scripts/signal_bus.gd"
+SignalBus="*res://Scripts/Globals/signal_bus.gd"
+GlobalSettings="*res://Scripts/Globals/GlobalSettings.gd"
 
 [display]
 
