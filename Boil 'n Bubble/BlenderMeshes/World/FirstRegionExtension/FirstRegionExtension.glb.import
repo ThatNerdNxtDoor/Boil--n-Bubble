@@ -1,0 +1,139 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://s5wduk2tgoj3"
+path="res://.godot/imported/FirstRegionExtension.glb-05b12a056f7037e0eea762bad5b6626a.scn"
+
+[deps]
+
+source_file="res://BlenderMeshes/World/FirstRegionExtension/FirstRegionExtension.glb"
+dest_files=["res://.godot/imported/FirstRegionExtension.glb-05b12a056f7037e0eea762bad5b6626a.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"3rdAreaMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/3rdAreaMat.tres"
+},
+"3rdAreaWall": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/3rdAreaWall.tres"
+},
+"FirstAreaLowerRamp": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/FirstAreaLowerRamp.tres"
+},
+"FirstAreaMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/FirstAreaMat.tres"
+},
+"Lower3rdArea": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Lower3rdArea.tres"
+},
+"LowerAreaMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/LowerAreaMat.tres"
+},
+"LowerBlockOffMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/LowerBlockOffMat.tres"
+},
+"LowerLakeRimMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/LowerLakeRimMat.tres"
+},
+"Material.006": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Material.006.tres"
+},
+"Material.009": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Material.009.tres"
+},
+"Material.014": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Material.014.tres"
+},
+"Mountain1Material": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Mountain1Material.tres"
+},
+"Mountain2": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Mountain2.tres"
+},
+"Mountain4Material": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Mountain4Material.tres"
+},
+"Mountain4Material.001": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/Mountain4Material.001.tres"
+},
+"SecondAreaMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/SecondAreaMat.tres"
+},
+"SpikesMat1": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/SpikesMat1.tres"
+},
+"SpikesMat2": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/SpikesMat2.tres"
+},
+"SpikesMat3": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/SpikesMat3.tres"
+},
+"StoneFloorMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/StoneFloorMat.tres"
+},
+"StoneWallMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/StoneWallMat.tres"
+},
+"UpperThirdMat": {
+"use_external/enabled": true,
+"use_external/path": "res://BlenderMeshes/World/FirstRegionExtension/Materials/UpperThirdMat.tres"
+}
+},
+"meshes": {
+"FirstRegionExtension_Sphere_006": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 180.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=2

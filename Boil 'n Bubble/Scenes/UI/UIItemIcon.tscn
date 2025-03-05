@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjmtiu7shxvc7"]
 
-[ext_resource type="Script" path="res://Scripts/UI/ui_item_icon.gd" id="1_oyhab"]
+[ext_resource type="Script" uid="uid://coq6p5yf0kvlf" path="res://Scripts/UI/ui_item_icon.gd" id="1_oyhab"]
 [ext_resource type="Texture2D" uid="uid://cknffbv43bg28" path="res://Assets/Sprites/EmptyUISlot.png" id="2_qbt70"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86f4h"]
@@ -24,8 +24,8 @@ offset_right = -49.536
 offset_bottom = -49.896
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 color = Color(1, 1, 1, 0.682353)
 script = ExtResource("1_oyhab")
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://gyrxyb4gv8iu"]
+
+[ext_resource type="Script" uid="uid://dqnl7yf4b382k" path="res://Scripts/Interactables/farm_plot.gd" id="1_ktnkk"]
+[ext_resource type="PackedScene" uid="uid://xht5xnsssdws" path="res://BlenderMeshes/Items/Lampshade.glb" id="2_0qowr"]
+[ext_resource type="PackedScene" uid="uid://d34in4clcaolg" path="res://BlenderMeshes/Items/CalientusRoot.glb" id="3_kofgk"]
+[ext_resource type="PackedScene" uid="uid://84csepn4u3nt" path="res://BlenderMeshes/Items/MixtureMint.glb" id="4_3wx0n"]
+[ext_resource type="PackedScene" uid="uid://4sbfo8vpduak" path="res://BlenderMeshes/World/FarmPlot/BasicFarm.glb" id="5_eb3th"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mysnh"]
+size = Vector3(2, 2, 2)
+
+[node name="FarmPlot" type="StaticBody3D"]
+script = ExtResource("1_ktnkk")
+object_name = "farm"
+
+[node name="PlanterHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638545, 0)
+shape = SubResource("BoxShape3D_mysnh")
+
+[node name="Plant" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427169, 0)
+
+[node name="Lampshade" parent="Plant" instance=ExtResource("2_0qowr")]
+transform = Transform3D(0.389, 0, 0, 0, 0.389, 0, 0, 0, 0.389, -5.72205e-06, -0.513026, 0.0244311)
+visible = false
+
+[node name="CalientusRoot" parent="Plant" instance=ExtResource("3_kofgk")]
+transform = Transform3D(0.195898, 0.0402976, 0, -0.0402976, 0.195898, 0, 0, 0, 0.2, 0.306266, -0.393737, -0.215877)
+visible = false
+
+[node name="CalientusRoot" parent="Plant/CalientusRoot" instance=ExtResource("3_kofgk")]
+transform = Transform3D(0.849431, -0.182564, -0.495113, 0.268731, 0.957128, 0.10812, 0.454147, -0.224893, 0.862075, -0.932929, -0.419862, 3.89038)
+
+[node name="CalientusRoot2" parent="Plant/CalientusRoot" instance=ExtResource("3_kofgk")]
+transform = Transform3D(0.941555, -0.316797, -0.114509, 0.333841, 0.922946, 0.191626, 0.0449788, -0.218655, 0.974765, -3.04245, -1.06893, 0)
+
+[node name="MixtureMint" parent="Plant" instance=ExtResource("4_3wx0n")]
+transform = Transform3D(0.229746, 0, -0.168648, 0, 0.285, 0, 0.168648, 0, 0.229746, -0.338436, -0.172528, 0.408467)
+visible = false
+
+[node name="GrowingTimer" type="Timer" parent="."]
+wait_time = 240.0
+one_shot = true
+
+[node name="BasicFarm" parent="." instance=ExtResource("5_eb3th")]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0, -0.152274, 0)
+
+[connection signal="timeout" from="GrowingTimer" to="." method="_on_growing_timer_timeout"]

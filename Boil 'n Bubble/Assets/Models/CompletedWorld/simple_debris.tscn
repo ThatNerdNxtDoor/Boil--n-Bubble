@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bqoklqqdhqsw8"]
 
 [ext_resource type="PackedScene" uid="uid://drdy4ve15c224" path="res://BlenderMeshes/Items/SimpleDebris.glb" id="1_b045h"]
-[ext_resource type="Script" path="res://Scripts/Interactables/static_debris.gd" id="2_wgfnf"]
+[ext_resource type="Script" uid="uid://cer7i2irn1jct" path="res://Scripts/Interactables/static_debris.gd" id="2_wgfnf"]
 [ext_resource type="AudioStream" uid="uid://bxclh0sr084l" path="res://Assets/SoundEffects/WoodSnap5.wav" id="3_ibw3u"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_exvbj"]

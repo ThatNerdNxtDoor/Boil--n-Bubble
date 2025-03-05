@@ -1,0 +1,162 @@
+# Blender 4.2.1 LTS MTL File: 'SecondRegion.blend'
+# www.blender.org
+
+newmtl BogIsland
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/BogIslandUVMap.png
+
+newmtl BogRamp
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/BogRampUVMap.png
+
+newmtl BogWater
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/BogWaterUVMap.png
+
+newmtl BogWaterFloor
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/BogWaterFloorUVMap.png
+
+newmtl LMountain1
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/LMountain1UVMap.png
+
+newmtl LMountain2
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/LMountain2UVMap.png
+
+newmtl LeftRidge
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/LeftRidgeUVMap.png
+
+newmtl LowerShortcut
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/LowerFrontierShortcutUVMap.png
+
+newmtl MushroomA
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/MushroomAUVMap.png
+
+newmtl MushroomB
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/MushroomBUVMap.png
+
+newmtl MushroomC
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/MushroomCUVMap.png
+
+newmtl MushroomD
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/MushroomDUVMap.png
+
+newmtl RMountain
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/RMountain1UVMap.png
+
+newmtl RMountain2
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl RightRidge
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/RightRidgeUVMap.png
+
+newmtl UpperShortcut
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/thatn/OneDrive/Documents/CSC491 - Game Dev Capstone/Boil--n-Bubble/Boil 'n Bubble/BlenderMeshes/World/FungusBog/textures/UpperFrontierShortcutUVMap.png

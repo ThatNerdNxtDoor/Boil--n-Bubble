@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://pvvgshj2muvf"]
+
+[ext_resource type="Script" uid="uid://b33lmguro0dlq" path="res://Scripts/Interactables/storage_chest.gd" id="1_2puq7"]
+[ext_resource type="PackedScene" uid="uid://bt4a7fft5gis4" path="res://BlenderMeshes/World/Chest/ChestModel.glb" id="2_g0qmx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fmt1"]
+size = Vector3(1, 1.03391, 1.30579)
+
+[node name="StorageChest" type="StaticBody3D"]
+script = ExtResource("1_2puq7")
+object_name = "Chest"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170975, -0.0022583)
+shape = SubResource("BoxShape3D_6fmt1")
+
+[node name="ChestModel" parent="." instance=ExtResource("2_g0qmx")]
+transform = Transform3D(0.342544, 0, 0, 0, 0.342544, 0, 0, 0, 0.342544, 0, 0, 0)

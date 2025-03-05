@@ -23,7 +23,7 @@ void sky() {
 	float sunPosition = 1.0 - clamp(sunDirection / sunSize, 0.0, 1.0);
 	float sunDisk = step(sunSize, sunPosition);
 	vec4 sun = vec4(sunColor, sunDisk);
-	
+
 	//Create Moon and define Moon position
 	float moonDirection = distance(EYEDIR.xyz, -LIGHT0_DIRECTION);
 	float moonPosition = 1.0 - clamp(moonDirection / moonSize, 0.0, 1.0);
@@ -32,15 +32,15 @@ void sky() {
 	float moonCrescentPosition = 1.0 - clamp(moonCrescentDirection / moonSize, 0.0, 1.0);
 	float moonCrescentDisk = step(moonSize, moonCrescentPosition);
 	vec4 moon = vec4(moonColor, clamp(moonDisk - moonCrescentDisk, 0.0, 1.0));
-	
+
 	//Create Sky color gradients
 	float colorGradient = clamp(EYEDIR.y, 0.0, 1.0);
 	vec3 skyColorDay = mix(horizonSkyDay, topSkyDay, colorGradient);
 	vec3 skyColorNight = mix(horizonSkyNight, topSkyNight, colorGradient);
 	vec3 skyColorSunRiseSet = mix(horizonSunRiseSet, topSunRiseSet, colorGradient);
-	
+
 	vec3 skyColor = vec3(0.0, 0.0, 0.0);
-	
+
 	//Apply sky gradient based on time of day
 	if (LIGHT0_DIRECTION.y > 0.0) {
 		skyColor = mix(skyColorSunRiseSet, skyColorDay, LIGHT0_DIRECTION.y);

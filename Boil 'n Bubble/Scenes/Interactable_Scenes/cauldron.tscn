@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b2oha1jqkfigo"]
 
-[ext_resource type="Script" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
-[ext_resource type="Script" path="res://Scenes/Interactable_Scenes/Nozzle.gd" id="2_6v7l6"]
+[ext_resource type="Script" uid="uid://dwxdy41ngrcdi" path="res://Scripts/Interactables/cauldron.gd" id="1_qhrfw"]
+[ext_resource type="Script" uid="uid://bb6si6xh3yrpk" path="res://Scripts/Interactables/Nozzle.gd" id="2_6v7l6"]
 [ext_resource type="PackedScene" uid="uid://dw364sv2oftsc" path="res://BlenderMeshes/Items/TexturedCauldron.glb" id="2_d6evp"]
 [ext_resource type="AudioStream" uid="uid://whg0henrlpgg" path="res://Assets/SoundEffects/splash_02.ogg" id="3_m2qx7"]
 [ext_resource type="PackedScene" uid="uid://cff28jed7uee2" path="res://BlenderMeshes/Items/Nozzle.glb" id="4_34vsm"]
@@ -22,14 +22,12 @@ _data = [Vector2(0, 1), 0.0, 0.881013, 0, 0, Vector2(0.120482, 0), -18.7292, 0.0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_vtco3"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 200), 0.0, -674.459, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_kf76d"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 200), 0.0, 35.9712, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

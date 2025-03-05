@@ -1,0 +1,38 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://7ns62f1f6t8c"]
+
+[ext_resource type="Shader" uid="uid://buu47gf6a60oa" path="res://Assets/Shaders/DayNightShader.gdshader" id="1_pkm1r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5t7m2"]
+shader = ExtResource("1_pkm1r")
+shader_parameter/topSkyDay = Color(0.415686, 0.694118, 0.694118, 1)
+shader_parameter/horizonSkyDay = Color(0.198479, 0.62139, 0.880121, 1)
+shader_parameter/topSkyNight = Color(0.12549, 0, 0.756863, 1)
+shader_parameter/horizonSkyNight = Color(0, 0, 0.27451, 1)
+shader_parameter/topSunRiseSet = Color(0.872002, 0.588818, 0.527243, 1)
+shader_parameter/horizonSunRiseSet = Color(0.819036, 0.472006, 0.232726, 1)
+shader_parameter/sunColor = Color(0.934074, 0.854508, 0.589968, 1)
+shader_parameter/sunSize = 0.2
+shader_parameter/moonColor = Color(0.896882, 0.89168, 0.351154, 1)
+shader_parameter/moonSize = 0.1
+shader_parameter/moonOffset = 0.05
+
+[sub_resource type="Sky" id="Sky_f72b2"]
+sky_material = SubResource("ShaderMaterial_5t7m2")
+
+[resource]
+background_mode = 2
+background_color = Color(0.619608, 0.745098, 1, 1)
+background_energy_multiplier = 0.75
+sky = SubResource("Sky_f72b2")
+ambient_light_source = 2
+ambient_light_color = Color(0.105882, 0.494118, 0.435294, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 2
+ssao_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.037
+volumetric_fog_albedo = Color(1, 0.730256, 0.533186, 1)
+volumetric_fog_emission = Color(0.309804, 0.294118, 0, 1)
+volumetric_fog_ambient_inject = 0.82
+volumetric_fog_sky_affect = 0.958

@@ -5,6 +5,10 @@ var picture
 var datalist
 var held = false
 @export var purpose : String
+##The source of the datalist
+var source
+##The id of the spot in a storage array the icon is representing
+@export var id : int
 
 signal notebook_icon_changed
 
@@ -39,16 +43,54 @@ func _get_drag_data(_pos):
 	if (datalist == null):
 		return {"icon": "res://Assets/Sprites/EmptyUISlot.png", "color": [255, 255, 255]}
 	else:
-		return datalist
+		return [datalist, self]
 
 func _can_drop_data(_pos, data):
-	return purpose == "notebook"
+	#if data is not a dictionary, and the origin and destination types allow it
+	return (data is not Dictionary) && (purpose == "notebook" || purpose == "chest" || purpose == "farm" || purpose == "hotbar") && data[1].purpose != "notebook"
 
 func _drop_data(_pos, data):
+	#data[0] is the datalist, data[1] is the originally dragged object.
 	print("drop datalist")
 	if(datalist == {"icon": "res://Assets/Sprites/EmptyUISlot.png", "color": [255, 255, 255]}):
 		datalist = null
-	else:
-		datalist = data
+	elif purpose != "farm": #data change can be handled at specific points
+		datalist = data[0]
+	#Determine what specifically needs to be done based off of the purpose of the icon
 	if (purpose == "notebook"):
 		notebook_icon_changed.emit()
+	elif purpose == "chest":
+		source.storage[id] = datalist
+		if data[1].purpose == "hotbar":
+			PlayerInventory.inventory[data[1].id] = null
+			print(PlayerInventory.inventory[data[1].id])
+			data[1].datalist = null
+		elif data[1].purpose == "chest":
+			data[1].datalist = null
+			data[1].source.storage[data[1].id] = null
+	elif purpose == "farm":
+		if data[0]["type"] == "plant":
+			datalist = data[0]
+			source.storage[id] = datalist
+			source.start_growing()
+			if data[1].purpose == "hotbar":
+				PlayerInventory.inventory[data[1].id] = null
+				print(PlayerInventory.inventory[data[1].id])
+			data[1].datalist = null
+		else:
+			pass
+	elif purpose == "hotbar":
+		PlayerInventory.inventory[id] = data[0]
+		if data[1].purpose == "farm":
+			data[1].datalist = null
+			data[1].source.storage[data[1].id] = null
+			data[1].source.stop_growing()
+		elif data[1].purpose == "chest":
+			data[1].datalist = null
+			data[1].source.storage[data[1].id] = null
+		elif data[1].purpose == "hotbar":
+			if data[1] == self:
+				pass
+			else:
+				data[1].datalist = null
+				PlayerInventory.inventory[data[1].id] = null

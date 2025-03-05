@@ -11,6 +11,9 @@ var pot_datalist
 	#"potency": Power of the potion
 #}
 
+@export var platform_scene : PackedScene
+@export var puddle_scene : PackedScene
+
 var blast_radius
 var potion_light
 var potion_bottle
@@ -30,6 +33,8 @@ func _ready():
 		potion_light.visible = true
 		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))
 		potion_light.omni_range = 2 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .15)
+	if pot_datalist["effect"].find("L-Puddle") != -1:
+		set_collision_layer_value(5, true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -80,6 +85,14 @@ func _on_body_entered(body):
 							pass
 			elif target_body.has_method("check_weakness"):
 				target_body.check_weakness(pot_datalist)
+		#If there are anything that would leave behind a residue (ie puddle or platform), leave it behind here.
+		var scene_root = get_tree().root.get_children()[0]
+		if pot_datalist["effect"].find("Emitting-Puddle") != -1:
+			pass
+		if pot_datalist["effect"].find("F-Platform") != -1:
+			var new_platform = platform_scene.instantiate()
+			platform_scene.lifespan_timer = pot_datalist["potency"]
+			scene_root.add_child(new_platform)
 		#Hide and remove hitbox to play sound effect without reactivating
 		$PhysicsCollisionShape.queue_free()
 		potion_bottle.hide()

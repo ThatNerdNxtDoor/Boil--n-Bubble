@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgfufe8corivp"]
+[gd_scene load_steps=12 format=3 uid="uid://bgfufe8corivp"]
 
-[ext_resource type="Script" path="res://Scripts/Generics/active_generic_potion.gd" id="1_nki6v"]
+[ext_resource type="Script" uid="uid://c8qvuakscxek8" path="res://Scripts/Generics/active_generic_potion.gd" id="1_nki6v"]
+[ext_resource type="PackedScene" uid="uid://dvwc8qibliy4i" path="res://Scenes/Item_Scenes/floattail_platform.tscn" id="2_minuk"]
 [ext_resource type="PackedScene" uid="uid://dt4djpn0cr88s" path="res://BlenderMeshes/Items/Potion Bottle.glb" id="2_u2ubi"]
 [ext_resource type="AudioStream" uid="uid://neqilshgfc1h" path="res://Assets/SoundEffects/LargeGlassMirrorSmash1.wav" id="3_l281b"]
+[ext_resource type="PackedScene" uid="uid://d2wa6ame0ages" path="res://Scenes/Item_Scenes/bubbly_puddle.tscn" id="3_m215u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p0b4h"]
 
@@ -35,6 +37,8 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_nki6v")
+platform_scene = ExtResource("2_minuk")
+puddle_scene = ExtResource("3_m215u")
 
 [node name="PotionLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129148, 0)

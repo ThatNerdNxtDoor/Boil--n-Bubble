@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://ct4nw6e3af80a"
+path.s3tc="res://.godot/imported/SecondRegion_UpperFrontierShortcutUVMap.png-0a0b58c2429c7a4b157d7b89607f3870.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "a576028ab3c0ea0f79c45b3b5d6f21d4"
+}
+
+[deps]
+
+source_file="res://BlenderMeshes/World/FungusBog/materials/SecondRegion_UpperFrontierShortcutUVMap.png"
+dest_files=["res://.godot/imported/SecondRegion_UpperFrontierShortcutUVMap.png-0a0b58c2429c7a4b157d7b89607f3870.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

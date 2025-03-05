@@ -3,6 +3,7 @@
 		"name" : "generic",
 		"icon": null,
 		"color": [0, 0, 0],
+		"type": "generic",
 		"aspect": ["None"],
 		"effect": ["None"],
 		"potency": 0,
@@ -12,6 +13,7 @@
 	"sooth_honey": {
 		"name" : "soothsawyer honey",
 		"icon": "res://Assets/Sprites/SoothHoney.png",
+		"type": "animal_product",
 		"color": [219, 200, 20],
 		"aspect": ["Healing"],
 		"effect": ["None"],
@@ -22,6 +24,7 @@
 	"sooth_venom": {
 		"name" : "soothsawyer venom",
 		"icon": "res://Assets/Sprites/SoothVenom.png",
+		"type": "animal_product",
 		"color": [219, 180, 20],
 		"aspect": ["Poison"],
 		"effect": ["None"],
@@ -32,16 +35,18 @@
 	"gustrhine": {
 		"name" : "gustrhine",
 		"icon": "res://Assets/Sprites/Gustrhine.png",
+		"type": "stone",
 		"color": [0, 153, 255],
 		"aspect": ["None"],
 		"effect": ["Wind"],
-		"potency": 10,
+		"potency": 8,
 		"complexity": 2
 	}
 	,
 	"calientus": {
 		"name" : "calientus root",
 		"icon": "res://Assets/Sprites/CalientusRoot.png",
+		"type": "plant",
 		"color": [219, 90, 20],
 		"aspect": ["Fire"],
 		"effect": ["None"],
@@ -52,6 +57,7 @@
 	"lampshade": {
 		"name" : "lampshade",
 		"icon": "res://Assets/Sprites/Lampshade.png",
+		"type": "plant",
 		"color": [255, 255, 204],
 		"aspect": ["None"],
 		"effect": ["Light"],
@@ -62,10 +68,44 @@
 	"mix_mint": {
 		"name" : "mixture mint",
 		"icon": "res://Assets/Sprites/MixMint.png",
+		"type": "plant",
 		"color": [225, 225, 225],
 		"aspect": ["None"],
 		"effect": ["None"],
 		"potency": -4,
 		"complexity": -4
+	}
+	,
+	"floattail": {
+		"name" : "float-tail",
+		"icon": "res://Assets/Sprites/CalientusRoot.png",
+		"type": "plant",
+		"color": [100, 220, 50],
+		"aspect": ["BogPoison"],
+		"effect": ["F-Platform"],
+		"potency": 2,
+		"complexity": 2
+	}
+	,
+	"bogwater": {
+		"name" : "bubbly bog-water",
+		"icon": "res://Assets/Sprites/BubblyBogWater.png",
+		"type": "misc",
+		"color": [205, 165, 34],
+		"aspect": ["BogPoison"],
+		"effect": ["Emitting-Puddle"],
+		"potency": 10,
+		"complexity": 5
+	}
+	,
+	"shrshroom": {
+		"name" : "shrink shroom",
+		"icon": "res://Assets/Sprites/ShrinkShroom.png",
+		"type": "animal product",
+		"color": [219, 90, 20],
+		"aspect": ["None"],
+		"effect": ["Shrink"],
+		"potency": -2,
+		"complexity": -2
 	}
 }

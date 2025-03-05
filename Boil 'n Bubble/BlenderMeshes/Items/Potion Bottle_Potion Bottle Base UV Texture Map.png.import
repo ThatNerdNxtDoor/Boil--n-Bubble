@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drjpfgvnyydmi"
+uid="uid://djutj3fsdy1w7"
 path.s3tc="res://.godot/imported/Potion Bottle_Potion Bottle Base UV Texture Map.png-8bea303353fc1681e54afa6f4bf06195.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

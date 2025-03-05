@@ -1,17 +1,16 @@
 [gd_scene load_steps=86 format=4 uid="uid://bcxnyrsnvho4d"]
 
-[ext_resource type="Texture2D" uid="uid://bpd3owlkq01gl" path="res://BlenderMeshes/World/NewCabin/CabinLogTexure.png" id="1_0xwb5"]
-[ext_resource type="Texture2D" uid="uid://ck1erb0dxu5k8" path="res://BlenderMeshes/World/NewCabin/CabinPlanTexture.png" id="2_wuot2"]
-[ext_resource type="Texture2D" uid="uid://xxlu8gg5lygc" path="res://BlenderMeshes/World/NewCabin/CabinNailTexture.png" id="3_cid8h"]
-[ext_resource type="Texture2D" uid="uid://cpjnjj1h2rigf" path="res://BlenderMeshes/World/NewCabin/CabinHammockTexture.png" id="4_k0r7v"]
+[ext_resource type="Texture2D" uid="uid://bpd3owlkq01gl" path="res://BlenderMeshes/World/NewCabin/textures/CabinLogTexure.png" id="1_0xwb5"]
+[ext_resource type="Texture2D" uid="uid://ck1erb0dxu5k8" path="res://BlenderMeshes/World/NewCabin/textures/CabinPlanTexture.png" id="2_wuot2"]
+[ext_resource type="Texture2D" uid="uid://xxlu8gg5lygc" path="res://BlenderMeshes/World/NewCabin/textures/CabinNailTexture.png" id="3_cid8h"]
+[ext_resource type="Texture2D" uid="uid://cpjnjj1h2rigf" path="res://BlenderMeshes/World/NewCabin/textures/CabinHammockTexture.png" id="4_k0r7v"]
 [ext_resource type="Texture2D" uid="uid://br8jl6tqjkh8a" path="res://BlenderMeshes/World/NewCabin/textures/PillowMat.png" id="5_cu2ic"]
-[ext_resource type="Texture2D" uid="uid://ca0ghlp0ynlo4" path="res://BlenderMeshes/World/NewCabin/NondescriptWoodTexture.png" id="6_wrpl6"]
-[ext_resource type="Texture2D" uid="uid://cdf2cgp6nnk1g" path="res://BlenderMeshes/World/NewCabin/CabinBaseTexture.png" id="7_1g75a"]
-[ext_resource type="Texture2D" uid="uid://dna04qqdyk7o6" path="res://BlenderMeshes/World/NewCabin/CabinSupportTexture.png" id="8_db7ls"]
+[ext_resource type="Texture2D" uid="uid://ca0ghlp0ynlo4" path="res://BlenderMeshes/World/NewCabin/textures/NondescriptWoodTexture.png" id="6_wrpl6"]
+[ext_resource type="Texture2D" uid="uid://cdf2cgp6nnk1g" path="res://BlenderMeshes/World/NewCabin/textures/CabinBaseTexture.png" id="7_1g75a"]
+[ext_resource type="Texture2D" uid="uid://dna04qqdyk7o6" path="res://BlenderMeshes/World/NewCabin/textures/CabinSupportTexture.png" id="8_db7ls"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwtav"]
 resource_name = "Material.001"
-cull_mode = 2
 albedo_texture = ExtResource("1_0xwb5")
 roughness = 0.5
 
@@ -88,7 +87,6 @@ shadow_mesh = SubResource("ArrayMesh_ocmva")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ir51w"]
 resource_name = "Material.002"
-cull_mode = 2
 albedo_texture = ExtResource("2_wuot2")
 roughness = 0.5
 
@@ -887,7 +885,6 @@ data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuxb4"]
 resource_name = "CabinBaseMat"
-cull_mode = 2
 albedo_texture = ExtResource("7_1g75a")
 roughness = 0.5
 
@@ -1018,7 +1015,6 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="PlankStairs"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlankStairs/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_xv7sf")
 
 [node name="Plank_020" type="MeshInstance3D" parent="."]

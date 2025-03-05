@@ -1,5 +1,5 @@
 extends StaticInteractable
-
+class_name StaticMaterial
 
 @export var mat_name : String
 @export var duration : int
