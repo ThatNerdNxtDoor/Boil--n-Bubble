@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_8a0k3"]
 size = Vector3(1.2, 1.75, 1.2)
 
-[node name="StaticGustrhine" type="StaticBody3D"]
+[node name="StaticGustrhine" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_cfe74")
 mat_name = "gustrhine"
 duration = 30

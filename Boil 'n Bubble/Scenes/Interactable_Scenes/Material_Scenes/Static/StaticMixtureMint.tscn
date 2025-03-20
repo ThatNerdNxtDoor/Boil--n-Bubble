@@ -19,7 +19,7 @@ height = 0.16
 _data = [Vector2(0, 1), 0.0, 0.881013, 0, 0, Vector2(0.120482, 0), -18.7292, 0.0, 0, 0]
 point_count = 2
 
-[node name="StaticMixtureMint" type="StaticBody3D"]
+[node name="StaticMixtureMint" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_g6f71")
 mat_name = "mix_mint"
 duration = 90

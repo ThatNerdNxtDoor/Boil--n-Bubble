@@ -40,6 +40,12 @@ script = ExtResource("1_nki6v")
 platform_scene = ExtResource("2_minuk")
 puddle_scene = ExtResource("3_m215u")
 
+[node name="WaterCollider" type="Area3D" parent="."]
+
+[node name="PhysicsCollisionShape" type="CollisionShape3D" parent="WaterCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502906, 0)
+shape = SubResource("CapsuleShape3D_bl35y")
+
 [node name="PotionLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129148, 0)
 visible = false
@@ -85,4 +91,5 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_oo5xi")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="WaterCollider" to="." method="_on_water_collider_area_entered"]
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl0m87n0gki35"]
+[gd_scene load_steps=9 format=3 uid="uid://cl0m87n0gki35"]
 
 [ext_resource type="Script" uid="uid://yv0jl3qjf6dl" path="res://Scripts/UI/title_page.gd" id="1_0p4it"]
 [ext_resource type="Texture2D" uid="uid://bu2m1i7bjxe24" path="res://Assets/Sprites/TitleLogo.png" id="2_dlum4"]
 [ext_resource type="PackedScene" uid="uid://gglomivxwh2s" path="res://Scenes/UI/SettingsUI.tscn" id="3_2ck8b"]
+[ext_resource type="PackedScene" uid="uid://bstl6cg20sha6" path="res://Scenes/UI/Save-LoadUI.tscn" id="4_15qmg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w06x"]
 bg_color = Color(0.52549, 0.364706, 0.129412, 1)
@@ -180,7 +181,7 @@ bbcode_enabled = true
 text = "[center][b]X"
 scroll_active = false
 
-[node name="SettingsSpine" type="Panel" parent="SettingsPanel"]
+[node name="MenuSpine" type="Panel" parent="SettingsPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14
@@ -189,9 +190,13 @@ anchor_right = 0.865
 anchor_bottom = 0.756
 theme_override_styles/panel = SubResource("StyleBoxFlat_o4abw")
 
-[node name="Settings" parent="SettingsPanel/SettingsSpine" instance=ExtResource("3_2ck8b")]
+[node name="Settings" parent="SettingsPanel/MenuSpine" instance=ExtResource("3_2ck8b")]
+layout_mode = 1
+
+[node name="LoadPanel" parent="SettingsPanel/MenuSpine" instance=ExtResource("4_15qmg")]
 layout_mode = 1
 
 [connection signal="pressed" from="StartButtonPanel/StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SettingsButtonPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="SettingsPanel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="load_save" from="SettingsPanel/MenuSpine/LoadPanel" to="." method="_on_load_save"]

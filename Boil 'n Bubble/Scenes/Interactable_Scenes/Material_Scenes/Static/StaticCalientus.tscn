@@ -8,7 +8,7 @@
 height = 0.601898
 radius = 0.275377
 
-[node name="StaticCalientus" type="StaticBody3D"]
+[node name="StaticCalientus" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_5rfvf")
 mat_name = "calientus"
 duration = 30

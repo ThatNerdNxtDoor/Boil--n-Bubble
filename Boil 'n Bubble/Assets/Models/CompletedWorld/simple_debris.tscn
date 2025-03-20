@@ -24,7 +24,7 @@ data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
 
 [node name="SimpleDebris" instance=ExtResource("1_b045h")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
@@ -36,7 +36,7 @@ shape = SubResource("ConcavePolygonShape3D_exvbj")
 stream = ExtResource("3_ibw3u")
 max_db = -5.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
@@ -48,7 +48,7 @@ shape = SubResource("ConcavePolygonShape3D_qgfuf")
 stream = ExtResource("3_ibw3u")
 max_db = -5.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
@@ -60,7 +60,7 @@ shape = SubResource("ConcavePolygonShape3D_r0itp")
 stream = ExtResource("3_ibw3u")
 max_db = -5.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_003" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_003" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
@@ -72,7 +72,7 @@ shape = SubResource("ConcavePolygonShape3D_bofk8")
 stream = ExtResource("3_ibw3u")
 max_db = -5.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_004" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_004" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]
@@ -84,7 +84,7 @@ shape = SubResource("ConcavePolygonShape3D_tox4t")
 stream = ExtResource("3_ibw3u")
 max_db = 0.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_005" index="0" groups=["Persistent"]]
 collision_layer = 3
 script = ExtResource("2_wgfnf")
 weakness = ["Fire"]

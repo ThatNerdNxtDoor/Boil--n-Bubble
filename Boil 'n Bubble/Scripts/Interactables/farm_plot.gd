@@ -45,6 +45,9 @@ func start_growing():
 		"mixture mint":
 			plant_model = $Plant/MixtureMint
 			plant_vector = Vector3(0.285, 0.285, 0.285)
+		"float-tail":
+			plant_model = $Plant/Floattail
+			plant_vector = Vector3(1, 1, 1)
 	plant_model.visible = true
 	growth_timer.start()
 
@@ -59,3 +62,21 @@ func stop_growing():
 func _on_growing_timer_timeout():
 	plant_ready = true
 	pass # Replace with function body.
+
+func save():
+	var save_dictionary = {
+		"storage": storage,
+		"plant_ready": plant_ready,
+		"time_remaining": growth_timer.time_left,
+	}
+	return save_dictionary
+
+func load_save(load_data):
+	storage = load_data["storage"]
+	if storage[0] != null:
+		start_growing()
+		plant_ready = load_data["plant_ready"]
+		if plant_ready:
+			growth_timer.start(0)
+		else:
+			growth_timer = load_data["time_remaining"]

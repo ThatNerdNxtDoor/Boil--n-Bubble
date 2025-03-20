@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://gglomivxwh2s"]
+[gd_scene load_steps=6 format=3 uid="uid://gglomivxwh2s"]
 
 [ext_resource type="Script" uid="uid://0jkym1yb7gxb" path="res://Scripts/UI/settings_menu.gd" id="1_2nwtt"]
 
@@ -15,6 +15,14 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.477664, 0, 0.0865972, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o640"]
+bg_color = Color(0.0980392, 0.25098, 0.176471, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.478431, 0.572549, 0.0862745, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -199,7 +207,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
 
-[node name="QuitToMenuButton" type="Button" parent="Page2"]
+[node name="QuitToMenuButton" type="Button" parent="Page2/Settings"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.639
@@ -212,7 +220,7 @@ offset_right = 0.241333
 offset_bottom = 0.215942
 theme_override_styles/normal = SubResource("StyleBoxFlat_pa4my")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Page2/QuitToMenuButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Page2/Settings/QuitToMenuButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,11 +230,42 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
-text = "[center][b]Quit to Main Menu"
+text = "[center][b]Quit
+Without Saving"
 scroll_active = false
 tab_size = 1
+vertical_alignment = 1
+
+[node name="QuitToMenuButton2" type="Button" parent="Page2/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.639
+anchor_top = 0.741
+anchor_right = 0.973
+anchor_bottom = 0.847
+offset_left = -0.215698
+offset_top = 0.205933
+offset_right = 0.241211
+offset_bottom = 0.00189209
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o640")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Page2/Settings/QuitToMenuButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center][b]Save & Quit"
+scroll_active = false
+tab_size = 1
+vertical_alignment = 1
 
 [connection signal="value_changed" from="Page1/Settings/AudioPanel/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="Page1/Settings/AudioPanel/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Page1/Settings/AudioPanel/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
-[connection signal="pressed" from="Page2/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]
+[connection signal="pressed" from="Page2/Settings/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed" binds= [false]]
+[connection signal="pressed" from="Page2/Settings/QuitToMenuButton2" to="." method="_on_quit_to_menu_button_pressed" binds= [true]]

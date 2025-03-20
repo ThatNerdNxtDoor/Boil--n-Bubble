@@ -12,11 +12,6 @@ func _ready():
 	print(audio_player)
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 #Function for checking if the potion destroys the debris
 func check_weakness(datalist):
 	for aspect in datalist["aspect"]:
@@ -53,4 +48,15 @@ func _sound_effect_finished():
 	if (get_node("..") is MeshInstance3D):
 		get_node("..").queue_free()
 	else:
-		self.queue_free()
+		self.visible = false
+		collision_box.disabled = true
+
+func save():
+	var save_dictionary = {
+		"active": self.visible
+	}
+	return save_dictionary
+
+func load_save(load_data):
+	self.visible = load_data["active"]
+	collision_box.disabled = !load_data["active"]

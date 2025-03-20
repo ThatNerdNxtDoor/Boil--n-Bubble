@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var grace_timer = $Timer
-var lifespan_duration
+var lifespan_duration : float
 var grace = true
 @onready var true_scale = scale
 var scale_factor = 1.0
@@ -11,7 +11,7 @@ func _ready():
 
 func _process(delta):
 	if !grace:
-		scale_factor -= (delta * 0.5)
+		scale_factor -= (delta * 0.01)
 		global_scale(true_scale * scale_factor)
 		if scale_factor <= 0.01:
 			self.queue_free()

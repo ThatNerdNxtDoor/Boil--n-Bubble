@@ -165,3 +165,20 @@ func _on_next_button_pressed():
 func play_randomized_page_audio():
 	audio_player.stream = page_audio[randi_range(0, 3)]
 	audio_player.play()
+
+func save():
+	var save_dictionary = {
+		"page_info": page_info,
+	}
+	return save_dictionary
+
+func load_save(load_data):
+	page_info = load_data["page_info"]
+	#Displays first couple of pages	
+	page_1_text.text = (page_info[current_pages - 1])["Left Text"]
+	page_1_icon.datalist = (page_info[current_pages - 1])["Left Icon"]
+	page_1_number.text = "[left][b]" + str(current_pages * 2 - 1)
+	
+	page_2_text.text = (page_info[current_pages - 1])["Right Text"]
+	page_2_icon.datalist = (page_info[current_pages - 1])["Right Icon"]
+	page_2_number.text = "[right][b]" + str(current_pages * 2)

@@ -34,7 +34,7 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwsk6"]
 size = Vector3(0.5, 0.25, 0.25)
 
-[node name="Cauldron" type="StaticBody3D"]
+[node name="Cauldron" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_qhrfw")
 object_name = "cauldron"
 

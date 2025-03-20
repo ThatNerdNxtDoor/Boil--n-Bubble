@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://blvlwy71g47ug"]
+
+[ext_resource type="Script" uid="uid://o1mwrl17bwkx" path="res://Scripts/Actors/Characters/trader.gd" id="1_dibit"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mqr4r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ptt24"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dif8w"]
+radius = 6.45563
+
+[node name="Trader" type="CharacterBody3D" groups=["Persistent"]]
+script = ExtResource("1_dibit")
+metadata/_custom_type_script = "uid://dqpmlqoxfotrq"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_mqr4r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MeshInstance3D"]
+path_desired_distance = 2.0
+target_desired_distance = 5.0
+avoidance_enabled = true
+keep_y_velocity = false
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ptt24")
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="AggroSphere" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroSphere"]
+shape = SubResource("SphereShape3D_dif8w")
+
+[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]

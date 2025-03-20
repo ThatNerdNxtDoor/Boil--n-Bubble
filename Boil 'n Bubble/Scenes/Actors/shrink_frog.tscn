@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxuuli6maroi2"]
+
+[ext_resource type="Script" uid="uid://kp26lv7p1fhw" path="res://Scripts/Actors/Characters/shrink_frog.gd" id="1_sccrs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sccrs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sccrs"]
+radius = 0.510745
+height = 1.43591
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sccrs"]
+radius = 6.45563
+
+[node name="ShrinkFrog" type="CharacterBody3D" groups=["Persistent"]]
+script = ExtResource("1_sccrs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0214505, 0)
+mesh = SubResource("SphereMesh_sccrs")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MeshInstance3D"]
+path_desired_distance = 5.0
+target_desired_distance = 10.0
+path_height_offset = 0.5
+path_max_distance = 2.01
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203298, 0)
+shape = SubResource("CapsuleShape3D_sccrs")
+
+[node name="NavigationTimer" type="Timer" parent="."]
+
+[node name="AggroSphere" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroSphere"]
+shape = SubResource("SphereShape3D_sccrs")
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]

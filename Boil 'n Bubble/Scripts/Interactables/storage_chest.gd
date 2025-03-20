@@ -17,8 +17,11 @@ func interaction(caller):
 	SignalBus.open_storage_window.emit(self, "chest")
 	pass
 
-func add_data():
-	pass
+func save():
+	var save_dictionary = {
+		"storage" = storage
+	}
+	return save_dictionary
 
-func retrieve_data():
-	pass
+func load_save(load_data):
+	storage = load_data["storage"]

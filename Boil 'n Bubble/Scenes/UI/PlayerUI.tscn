@@ -69,7 +69,7 @@ theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "[center](E) Pick Up[/center]"
 
-[node name="NotebookMenu" parent="." instance=ExtResource("2_807mx")]
+[node name="NotebookMenu" parent="." groups=["Persistent"] instance=ExtResource("2_807mx")]
 visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="."]

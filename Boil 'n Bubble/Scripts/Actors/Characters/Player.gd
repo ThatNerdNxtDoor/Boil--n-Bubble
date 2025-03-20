@@ -122,6 +122,8 @@ func _process(delta):
 						ui_interact.text = "[center](E) Pour Mixture[/center]"
 					"paper_post":
 						ui_interact.text = "[center](E) Read[/center]"
+					"NPC":
+						ui_interact.text = "[center](E) Talk[/center]"
 					_: #Default
 						ui_interact.text = "[center](E) Interact[/center]"
 			# If player interacts with object
@@ -271,6 +273,10 @@ func consume_held():
 				curr_health = clamp(curr_health + (item_datalist["potency"] * 1.2), 1, max_health)
 			"Poison":
 				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .25))
+			"Harmful_Consumption": #General tag for ingredients not safe to eat.
+				#Any healing ingredient will nullify this effect.
+				if item_datalist["aspect"].find("Healing") != -1:
+					curr_health = curr_health - (item_datalist["potency"] * .25)
 	for effect in item_datalist["effect"]:
 		print(effect)
 		match(effect):
@@ -299,6 +305,29 @@ func apply_effect(effect, repeats, duration, damage):
 	effect_timers[counter] = {repeat = repeats, timer = timer}
 	add_child(timer)
 	counter += 1
+
+#Puts persistent data within a dictionary that is sent to the save manager
+func save():
+	var save_dictionary = {
+		"curr_health": curr_health,
+		"inventory": PlayerInventory.inventory,
+		"held_index": PlayerInventory.holding_index,
+		"position": [global_position.x, global_position.y, global_position.z],
+		"rotation": [rotation_pivot.rotation_degrees.x, rotation_pivot.rotation_degrees.y, rotation_pivot.rotation_degrees.z],
+		"velocity": [velocity.x, velocity.y,velocity.z],
+		"vel_clamp": vel_clamp
+	}
+	return save_dictionary
+
+#Takes saved data from the save manager and applies it to respective attributes
+func load_save(node_load_data : Dictionary):
+	curr_health = node_load_data["curr_health"]
+	PlayerInventory.inventory = node_load_data["inventory"]
+	PlayerInventory.holding_index = node_load_data["held_index"]
+	global_position = Vector3(node_load_data["position"][0], node_load_data["position"][1], node_load_data["position"][2])
+	rotation_pivot.rotation_degrees = Vector3(node_load_data["rotation"][0], node_load_data["rotation"][1], node_load_data["rotation"][2])
+	velocity = Vector3(node_load_data["velocity"][0], node_load_data["velocity"][1], node_load_data["velocity"][2])
+	vel_clamp = node_load_data["vel_clamp"]
 
 #========================= Signal Recieving Functions =========================#
 

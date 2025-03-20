@@ -208,3 +208,26 @@ func _on_fire_light_timer_timeout():
 	#Randomize timer and start it again.
 	fire_light_timer.wait_time = randf_range(0.08, 0.16)
 	fire_light_timer.start()
+
+func save():
+	var save_dictionary = {
+		"datalist": datalist,
+		"complexity": complexity,
+		"complexity_limit": complexity_limit,
+		"mat_num": material_num,
+		"explosion_time": explosion_time_left,
+	}
+	return save_dictionary
+
+func load_save(load_data):
+	datalist = load_data["datalist"]
+	material_num = load_data["mat_num"]
+	complexity = load_data["complexity"]
+	complexity_limit = load_data["complexity_limit"]
+	if complexity > complexity_limit:
+		unstable = true
+		explosion_timer.paused = false
+		explosion_timer.start(load_data["explosion_time"])
+		ambient_audio_player.stream = unstable_audio
+		ambient_audio_player.play()
+		unstable_particles.emitting = true

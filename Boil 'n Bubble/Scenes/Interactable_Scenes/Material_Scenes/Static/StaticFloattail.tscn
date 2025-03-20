@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ufg06"]
 size = Vector3(0.83046, 3.19046, 0.748146)
 
-[node name="StaticFloattail" type="StaticBody3D"]
+[node name="StaticFloattail" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_ahxj0")
 mat_name = "floattail"
 duration = 60

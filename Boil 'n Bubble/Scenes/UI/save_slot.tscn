@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://yw4ii62dmxxh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph7fm"]
+bg_color = Color(1, 0.738173, 0.324633, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.449912, 0.298956, 1.34766e-06, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SaveSlot" type="Button"]
+custom_minimum_size = Vector2(0, 90)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ph7fm")
+text = "File Name"

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cddvx6bks7xxw"]
+
+[ext_resource type="Script" uid="uid://dqpmlqoxfotrq" path="res://Scripts/Generics/generic_actor.gd" id="1_qt7ln"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qt7ln"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3xyl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qt7ln"]
+radius = 6.45563
+
+[node name="GenericActor" type="CharacterBody3D"]
+script = ExtResource("1_qt7ln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qt7ln")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MeshInstance3D"]
+path_desired_distance = 2.0
+target_desired_distance = 5.0
+avoidance_enabled = true
+keep_y_velocity = false
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_i3xyl")
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="AggroSphere" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroSphere"]
+shape = SubResource("SphereShape3D_qt7ln")
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]

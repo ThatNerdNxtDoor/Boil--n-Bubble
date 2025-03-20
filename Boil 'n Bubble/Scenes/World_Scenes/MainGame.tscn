@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=42 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
 [ext_resource type="Script" uid="uid://dlblhhsnffu5h" path="res://Scripts/Environment/day_night_cycle.gd" id="1_3hce6"]
+[ext_resource type="Script" uid="uid://doyn6y0y8vodj" path="res://Scripts/Environment/GameLoad.gd" id="1_j5ijs"]
 [ext_resource type="PackedScene" uid="uid://b2oha1jqkfigo" path="res://Scenes/Interactable_Scenes/cauldron.tscn" id="2_psfv4"]
 [ext_resource type="Environment" uid="uid://chdcu22oajdsa" path="res://Assets/Shaders/Area1Environment.tres" id="2_xv6aq"]
 [ext_resource type="PackedScene" uid="uid://drcs0mh3x1vdv" path="res://Assets/Models/CompletedWorld/elevated_ridge_piece.tscn" id="3_1w7kk"]
@@ -21,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://bcxnyrsnvho4d" path="res://Assets/Models/CompletedWorld/bnb_cabin1.tscn" id="13_55jqw"]
 [ext_resource type="AudioStream" uid="uid://bxclh0sr084l" path="res://Assets/SoundEffects/WoodSnap5.wav" id="13_ai0xa"]
 [ext_resource type="PackedScene" uid="uid://ynteny0kdp5v" path="res://Assets/Models/CompletedWorld/second_region.tscn" id="13_u38gd"]
+[ext_resource type="PackedScene" uid="uid://bxuuli6maroi2" path="res://Scenes/Actors/shrink_frog.tscn" id="18_blcja"]
+[ext_resource type="PackedScene" uid="uid://blvlwy71g47ug" path="res://Scenes/Actors/trader.tscn" id="18_j5ijs"]
 [ext_resource type="PackedScene" uid="uid://ffadxrwy5fs6" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticSoothVenom.tscn" id="20_52jet"]
 [ext_resource type="PackedScene" uid="uid://bjp0b632j2kou" path="res://Scenes/Interactable_Scenes/paper_post.tscn" id="21_tdfal"]
 [ext_resource type="PackedScene" uid="uid://pvvgshj2muvf" path="res://Scenes/Interactable_Scenes/storage_chest.tscn" id="23_o71qd"]
@@ -62,13 +65,18 @@ data = PackedVector3Array(-0.5, 5, 0.125, 0.5, 5, 0.125, -0.5, -5, 0.125, 0.5, 5
 size = Vector3(50, 0.5, 50)
 
 [node name="MainGame" type="Node3D"]
+script = ExtResource("1_j5ijs")
 
 [node name="Player" parent="." instance=ExtResource("1_2gwix")]
-transform = Transform3D(0.99479, 0, 0.101942, 0, 1, 0, -0.101942, 0, 0.99479, -2.78396, 2.02049, -2.38438)
+transform = Transform3D(0.914049, 0, -0.405604, 0, 1, 0, 0.405604, 0, 0.914049, -2.73934, 2.3299, -2.44692)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["Persistent"]]
 environment = ExtResource("2_xv6aq")
 script = ExtResource("1_3hce6")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="WorldEnvironment"]
+autoplay = true
+bus = &"Music"
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.446276, 0.894895, 0, -0.894895, -0.446276, 0, 3.80912, 0)
@@ -304,7 +312,7 @@ transform = Transform3D(0.825357, 0.111894, 0.718755, -0.177364, 1.08521, 0.0347
 transform = Transform3D(0.523594, -0.1532, 0.955364, 0.168275, 1.08414, 0.0816261, -0.952824, 0.10728, 0.539405, -18.5712, 6.70399, 22.5491)
 
 [node name="3Bushes6" parent="World/FirstRegion" instance=ExtResource("4_nffug")]
-transform = Transform3D(1.07735, -0.17779, 0.134326, 0.159123, 1.07811, 0.150707, -0.155988, -0.128155, 1.08147, 23.9079, 1.97821, -17.3004)
+transform = Transform3D(1.0358, 0.158029, -0.335394, -0.0869089, 1.07098, 0.236208, 0.360429, -0.195896, 1.02081, 23.9079, 1.80303, -17.3004)
 
 [node name="SingleBushTextured" parent="World/FirstRegion" instance=ExtResource("10_uwi2i")]
 transform = Transform3D(1.10016, 0, 0, 0, 1.10016, 0, 0, 0, 1.10016, -11.7738, 0.018959, -33.5955)
@@ -339,7 +347,7 @@ transform = Transform3D(0.908962, 0, 0, 0, 0.908962, 0, 0, 0, 0.908962, -20.8071
 [node name="Cauldron" parent="." instance=ExtResource("2_psfv4")]
 transform = Transform3D(0.878093, -0.000335516, 0.478491, -0.000674832, 0.999998, 0.00193963, -0.478491, -0.00202608, 0.87809, -6.25711, 2.95452, 1.23481)
 
-[node name="ShortcutActivator" type="StaticBody3D" parent="." node_paths=PackedStringArray("activatee")]
+[node name="ShortcutActivator" type="StaticBody3D" parent="." node_paths=PackedStringArray("activatee") groups=["Persistent"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.08284, 6.61684, 21.1094)
 script = ExtResource("12_x8hx7")
 activatee = NodePath("../Shortcut")
@@ -381,6 +389,29 @@ collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillBox"]
 shape = SubResource("BoxShape3D_7h38n")
+
+[node name="Actors" type="Node" parent="."]
+
+[node name="Bog" type="Node3D" parent="Actors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5169, 0, 86.8867)
+
+[node name="ShrinkFrog" parent="Actors/Bog" instance=ExtResource("18_blcja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.394, -8.0896, 13.2194)
+
+[node name="Frontier" type="Node3D" parent="Actors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.80136)
+
+[node name="TraderNavGroup" type="Node3D" parent="Actors/Frontier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -46.281)
+
+[node name="Trader" parent="Actors/Frontier/TraderNavGroup" instance=ExtResource("18_j5ijs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2479, -12.8997, -11.4219)
+
+[node name="EnterTarget" type="Node3D" parent="Actors/Frontier/TraderNavGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.6515, -7.68133)
+
+[node name="ExitTarget" type="Node3D" parent="Actors/Frontier/TraderNavGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2685, -12.931, -11.4171)
 
 [node name="StaticIngredients" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4072, 1.71072, 3)
@@ -448,10 +479,13 @@ transform = Transform3D(0.362747, 0, 0.931888, 0, 1, 0, -0.931888, 0, 0.362747, 
 transform = Transform3D(0.0820604, 0, -0.996627, 0, 1, 0, 0.996627, 0, 0.0820604, -10.8982, -13.0563, 29.1412)
 
 [node name="StaticFloattail4" parent="StaticIngredients/Bog" instance=ExtResource("24_06hkt")]
-transform = Transform3D(-0.852585, 0, -0.522588, 0, 1, 0, 0.522588, 0, -0.852585, -50.3352, -13.0563, 4.06993)
+transform = Transform3D(-0.852585, 0, -0.522588, 0, 1, 0, 0.522588, 0, -0.852585, 26.0113, -13.1606, -53.0833)
 
 [node name="StaticFloattail5" parent="StaticIngredients/Bog" instance=ExtResource("24_06hkt")]
 transform = Transform3D(0.915118, 0.302267, 0.266823, -0.232884, 0.936497, -0.262181, -0.329128, 0.177788, 0.927398, -86.4516, -12.8319, 5.69194)
+
+[node name="StaticMixtureMint" parent="StaticIngredients/Bog" instance=ExtResource("3_wirou")]
+transform = Transform3D(0.745013, 0.217829, -0.63048, 0.0228596, 0.936285, 0.350495, 0.666657, -0.275537, 0.692566, 150.409, 11.2997, -17.442)
 
 [node name="PaperPost" parent="." instance=ExtResource("21_tdfal")]
 transform = Transform3D(0.211236, -0.00193866, -0.453183, -0.0283852, 0.498957, -0.0153648, 0.452298, 0.0322188, 0.210685, -3.64616, 3.72304, -1.35962)

@@ -9,8 +9,12 @@ data = PackedVector3Array(0.0001, -0.9253, -0.0002, 0.0858, -0.8834, 0.2636, 0.1
 [node name="FloattailPlatform" instance=ExtResource("1_4o55e")]
 script = ExtResource("1_cthj4")
 
+[node name="Timer" type="Timer" parent="." index="0"]
+one_shot = true
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Icosphere" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Icosphere/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mu0au")
+
+[connection signal="timeout" from="Timer" to="." method="_on_grace_timer_timeout"]

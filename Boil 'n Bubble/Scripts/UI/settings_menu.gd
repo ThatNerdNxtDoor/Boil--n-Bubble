@@ -1,6 +1,7 @@
 extends Control
 
 var quit_button
+var save_quit_buton
 
 var master_volume_sl
 var music_volume_sl
@@ -8,12 +9,16 @@ var sfx_volume_sl
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	quit_button = $Page2/QuitToMenuButton
+	quit_button = $Page2/Settings/QuitToMenuButton
+	save_quit_buton = $Page2/Settings/QuitToMenuButton2
+	
 	print(get_tree().current_scene)
 	if get_tree().current_scene.name ==  "TitlePage":
 		quit_button.visible = false
+		save_quit_buton.visible = false
 	else:
 		quit_button.visible = true
+		save_quit_buton.visible = true
 	
 	master_volume_sl = $"Page1/Settings/AudioPanel/MasterVolumeSlider"
 	master_volume_sl.value = GlobalSettings.master_volume
@@ -42,6 +47,8 @@ func _on_sfx_volume_slider_value_changed(value):
 	GlobalSettings.sfx_volume = value
 	pass # Replace with function body.
 
-func _on_quit_to_menu_button_pressed():
+func _on_quit_to_menu_button_pressed(save : bool):
+	if save:
+		print("save")
+		await SaveManager.save_game()
 	get_tree().change_scene_to_file("res://Scenes/World_Scenes/title_page.tscn")
-	pass # Replace with function body.

@@ -28,7 +28,6 @@ func _ready():
 	potion_bottle = $"Potion Bottle"
 	audio_player = $AudioStreamPlayer3D
 	break_particles = $BreakParticles
-	print(break_particles)
 	if (pot_datalist["effect"].find("Light") != -1):
 		potion_light.visible = true
 		potion_light.light_color = Color8(int(pot_datalist["color"][0]), int(pot_datalist["color"][1]), int(pot_datalist["color"][2]))
@@ -88,11 +87,15 @@ func _on_body_entered(body):
 		#If there are anything that would leave behind a residue (ie puddle or platform), leave it behind here.
 		var scene_root = get_tree().root.get_children()[0]
 		if pot_datalist["effect"].find("Emitting-Puddle") != -1:
-			pass
+			var new_puddle = puddle_scene.instantiate()
+			new_puddle.datalist = pot_datalist
+			scene_root.add_child(new_puddle)
+			new_puddle.global_position = self.global_position
 		if pot_datalist["effect"].find("F-Platform") != -1:
 			var new_platform = platform_scene.instantiate()
-			platform_scene.lifespan_timer = pot_datalist["potency"]
+			new_platform.lifespan_duration = pot_datalist["potency"]
 			scene_root.add_child(new_platform)
+			new_platform.global_position = self.global_position
 		#Hide and remove hitbox to play sound effect without reactivating
 		$PhysicsCollisionShape.queue_free()
 		potion_bottle.hide()
@@ -105,3 +108,9 @@ func _on_body_entered(body):
 #Noise is played, and the object is officially destroyed
 func _on_audio_stream_player_3d_finished():
 	self.queue_free()
+
+func _on_water_collider_area_entered(area):
+	#If the potion collides with water, and the floating platform is in the potion, the potion will break.
+	if area.name == "BogWaterCollision" && pot_datalist["effect"].find("F-Platform") != -1:
+		_on_body_entered(null)
+	pass # Replace with function body.

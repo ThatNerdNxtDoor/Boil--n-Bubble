@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_6fmt1"]
 size = Vector3(1, 1.03391, 1.30579)
 
-[node name="StorageChest" type="StaticBody3D"]
+[node name="StorageChest" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_2puq7")
 object_name = "Chest"
 

@@ -78,10 +78,10 @@
 	,
 	"floattail": {
 		"name" : "float-tail",
-		"icon": "res://Assets/Sprites/CalientusRoot.png",
+		"icon": "res://Assets/Sprites/Floattail.png",
 		"type": "plant",
 		"color": [100, 220, 50],
-		"aspect": ["BogPoison"],
+		"aspect": ["HarmfulConsumption"],
 		"effect": ["F-Platform"],
 		"potency": 2,
 		"complexity": 2
@@ -92,7 +92,7 @@
 		"icon": "res://Assets/Sprites/BubblyBogWater.png",
 		"type": "misc",
 		"color": [205, 165, 34],
-		"aspect": ["BogPoison"],
+		"aspect": ["HarmfulConsumption"],
 		"effect": ["Emitting-Puddle"],
 		"potency": 10,
 		"complexity": 5

@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ykgbw"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Persistent"]]
 script = ExtResource("1_47kuh")
 
 [node name="PlayerInventory" type="Node3D" parent="."]
