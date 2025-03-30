@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=43 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
 [ext_resource type="Script" uid="uid://dlblhhsnffu5h" path="res://Scripts/Environment/day_night_cycle.gd" id="1_3hce6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://brn3t3qew4no8" path="res://Assets/Models/CompletedWorld/3_bushes.tscn" id="4_nffug"]
 [ext_resource type="PackedScene" uid="uid://o8jgp5jyk1j6" path="res://Assets/Models/CompletedWorld/first_region.tscn" id="4_nvoki"]
 [ext_resource type="PackedScene" uid="uid://bv3fgu0uinxqt" path="res://Assets/Models/CompletedWorld/thin_tree_bg.tscn" id="5_6medj"]
+[ext_resource type="AudioStream" uid="uid://7lb2pxsatx8y" path="res://Assets/Music/FungusBog.wav" id="5_65b30"]
 [ext_resource type="PackedScene" uid="uid://cgm4vyewlh6iu" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticLampshade.tscn" id="5_h8833"]
 [ext_resource type="PackedScene" uid="uid://rppdpe630m0p" path="res://Assets/Models/CompletedWorld/pine_tree.tscn" id="5_hbhad"]
 [ext_resource type="PackedScene" uid="uid://dct5qkey0up5t" path="res://Assets/Models/CompletedWorld/thin_tree.tscn" id="6_oa4nq"]
@@ -68,13 +69,15 @@ size = Vector3(50, 0.5, 50)
 script = ExtResource("1_j5ijs")
 
 [node name="Player" parent="." instance=ExtResource("1_2gwix")]
-transform = Transform3D(0.914049, 0, -0.405604, 0, 1, 0, 0.405604, 0, 0.914049, -2.73934, 2.3299, -2.44692)
+transform = Transform3D(0.914049, 0, -0.405604, 0, 1, 0, 0.405604, 0, 0.914049, -19.3969, 4.71079, 52.3257)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["Persistent"]]
 environment = ExtResource("2_xv6aq")
 script = ExtResource("1_3hce6")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="WorldEnvironment"]
+stream = ExtResource("5_65b30")
+volume_db = -5.0
 autoplay = true
 bus = &"Music"
 
@@ -396,7 +399,7 @@ shape = SubResource("BoxShape3D_7h38n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5169, 0, 86.8867)
 
 [node name="ShrinkFrog" parent="Actors/Bog" instance=ExtResource("18_blcja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.394, -8.0896, 13.2194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40594, -8.43564, 72.1495)
 
 [node name="Frontier" type="Node3D" parent="Actors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.80136)

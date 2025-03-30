@@ -335,13 +335,14 @@ func load_save(node_load_data : Dictionary):
 func time_out_timer_statusef(id, statusef):
 	#Decrement the amount of repeat times. If at 0, the effect ends
 	effect_timers[id].repeat -= 1
-	if (effect_timers[id].repeat == 0):
+	if (effect_timers[id].repeat <= 0):
 		print("timeout")
 		#Look at the associated effect to see if anything needs to be undone 
 		match(statusef):
 			"Wind":
 				jump_factor = 1
-			
+			"Shrink":
+				global_scale(Vector3(2, 2, 2))
 		#Destroys the timer
 		effect_timers[id].timer.call_deferred("queue_free")
 		effect_timers.erase(id)

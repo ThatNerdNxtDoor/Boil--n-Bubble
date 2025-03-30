@@ -14,12 +14,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var jump_factor = 1
 @onready var speed_factor = 1
+var vel_clamp = false
 
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	nav_agent.path_desired_distance = 0.5
-	nav_agent.target_desired_distance = 0.5
+	nav_agent.path_desired_distance = 1
+	nav_agent.target_desired_distance = 5
 
 	movement_target_position = Vector3(randf_range(global_position.x - 20.0, global_position.x + 20.0),
 		randf_range(global_position.y - 2, global_position.y + 2),
@@ -39,20 +40,16 @@ func set_movement_target(movement_target: Vector3):
 	nav_agent.set_target_position(movement_target)
 
 func _physics_process(delta):
-	#print("On Floor: " + str(is_on_floor()))
-	#print("Position: " + str(global_position))
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	if nav_agent.is_navigation_finished():
-		#print("navigation finished")
+	else:
+		vel_clamp = true
+	if nav_agent.is_navigation_finished() && vel_clamp:
 		velocity.x = 0
 		velocity.z = 0
 	else:
 		general_movement_calculation()
 	move_and_slide()
-	#print("Distance to Target:" + str(nav_agent.distance_to_target()))
-	#print("----------------------------------------------------------")
-	pass
 
 func _process(delta):
 	pass
@@ -87,9 +84,10 @@ func _on_aggro_sphere_body_entered(body):
 
 func _on_navigation_timer_timeout():
 	if idle:
-		set_movement_target(Vector3(randf_range(global_position.x - 20.0, global_position.x + 20.0),
+		movement_target_position = Vector3(randf_range(global_position.x - 20.0, global_position.x + 20.0),
 		randf_range(global_position.y - 20.0, global_position.y + 20.0),
-		randf_range(global_position.z - 20.0, global_position.z + 20.0)))
+		randf_range(global_position.z - 20.0, global_position.z + 20.0))
+		set_movement_target(movement_target_position)
 		print("New Idle")
 		nav_timer.start(15)
 	elif global_position.distance_to(target_entity.global_position) >= 40:
@@ -98,6 +96,47 @@ func _on_navigation_timer_timeout():
 		print("Deaggro")
 		nav_timer.start(15)
 	else:
-		set_movement_target(target_entity.global_position)
+		movement_target_position = target_entity.global_position
+		set_movement_target(movement_target_position)
 		nav_timer.start(1)
 		print("Aggro")
+
+func attack(action : String):
+	pass
+
+# Applies Effect
+var counter = 0
+var effect_timers = {}
+func apply_effect(effect, repeats, duration, damage):
+	# Define Timer
+	var timer = Timer.new()
+	timer.wait_time = duration
+	timer.autostart = true
+	# Bind timeout and DOT (if any) functions to it
+	if (damage != 0):
+		timer.timeout.connect(damage_over_time.bind(damage))
+	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect))
+	#Add timer to timer list, 
+	effect_timers[counter] = {repeat = repeats, timer = timer}
+	add_child(timer)
+	counter += 1
+
+# Time Out function
+func time_out_timer_statusef(id, statusef):
+	#Decrement the amount of repeat times. If at 0, the effect ends
+	effect_timers[id].repeat -= 1
+	if (effect_timers[id].repeat == 0):
+		print("timeout")
+		#Look at the associated effect to see if anything needs to be undone 
+		match(statusef):
+			"Wind":
+				jump_factor = 1
+			"Shrink":
+				global_scale(Vector3(2, 2, 2))
+		#Destroys the timer
+		effect_timers[id].timer.call_deferred("queue_free")
+		effect_timers.erase(id)
+
+# Damage Over Time Function
+func damage_over_time(damage):
+	pass

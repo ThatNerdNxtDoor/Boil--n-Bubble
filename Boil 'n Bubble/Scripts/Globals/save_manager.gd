@@ -40,6 +40,8 @@ func save_game():
 	}
 	save_file.store_line("\"metadata\": " + json.stringify(metadata))
 	save_file.store_line("}")
+	
+	save_file.close()
 	#Return to signal that the function is complete to the save/quit button
 	return
 
