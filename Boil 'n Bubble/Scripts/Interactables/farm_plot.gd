@@ -79,4 +79,4 @@ func load_save(load_data):
 		if plant_ready:
 			growth_timer.start(0)
 		else:
-			growth_timer = load_data["time_remaining"]
+			growth_timer.start(load_data["time_remaining"])

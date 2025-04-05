@@ -69,7 +69,8 @@ func load_game():
 				continue
 			
 			#print(node)
-			node.load_save(load_data[node.name])
+			var node_data = load_data.get(node.name)
+			node.load_save(node_data)
 
 func delete_save():
 	DirAccess.remove_absolute(current_slot)

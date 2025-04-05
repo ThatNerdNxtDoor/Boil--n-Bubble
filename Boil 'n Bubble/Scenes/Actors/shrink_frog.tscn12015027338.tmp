@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxuuli6maroi2"]
+
+[ext_resource type="Script" uid="uid://kp26lv7p1fhw" path="res://Scripts/Actors/Characters/shrink_frog.gd" id="1_sccrs"]
+[ext_resource type="PackedScene" uid="uid://dru8csomc0i7y" path="res://Assets/Models/Actors/Shrink_Frog_Model.tscn" id="2_72bse"]
+[ext_resource type="PackedScene" uid="uid://lmcna6x8n5ad" path="res://Scenes/Interactable_Scenes/Material_Scenes/Active/ShrinkShroom.tscn" id="2_bix1n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sccrs"]
+radius = 0.591004
+height = 1.22776
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sccrs"]
+radius = 6.45563
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_72bse"]
+radius = 1.37425
+height = 4.46681
+
+[node name="ShrinkFrog" type="CharacterBody3D" groups=["Persistent"]]
+script = ExtResource("1_sccrs")
+drop = ExtResource("2_bix1n")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203298, 0)
+shape = SubResource("CapsuleShape3D_sccrs")
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("2_72bse")]
+transform = Transform3D(0.557, 0, 0, 0, 0.557, 0, 0, 0, 0.557, 0, 0.0831797, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MeshInstance3D"]
+path_height_offset = 0.5
+
+[node name="NavigationTimer" type="Timer" parent="."]
+
+[node name="AggroSphere" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroSphere"]
+shape = SubResource("SphereShape3D_sccrs")
+
+[node name="SporeArea" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SporeArea"]
+transform = Transform3D(-1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 0, 1, -4.37114e-08, 1, 1.91069e-15, 0.0249102, 0, -2)
+shape = SubResource("CapsuleShape3D_72bse")
+
+[node name="BarfCooldown" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="JumpCooldown" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]

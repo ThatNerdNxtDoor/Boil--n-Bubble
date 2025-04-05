@@ -12,10 +12,15 @@ func _process(delta):
 	pass
 
 func interaction(caller):
+	#Turn on activatee
 	activatee.visible = true
 	activatee.find_child("CollisionShape3D").disabled = false
 	activatee.find_child("AudioStreamPlayer3D").play()
+	
+	#turn off activator
 	self.visible = false
+	self.find_child("CollisionShape3D").disabled = true
+	self.find_child("Barrier").find_child("CollisionShape3D").disabled = true
 
 func save():
 	var save_dictionary = {

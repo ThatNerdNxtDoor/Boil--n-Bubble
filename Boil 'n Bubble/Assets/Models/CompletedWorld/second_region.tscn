@@ -254,6 +254,7 @@ navigation_mesh = SubResource("NavigationMesh_edsvy")
 [node name="BogRamp" parent="." index="3" groups=["BogNavigation"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BogRamp" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BogRamp/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_edsvy")

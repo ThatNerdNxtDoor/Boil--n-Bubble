@@ -44,34 +44,34 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	else:
 		vel_clamp = true
-	if nav_agent.is_navigation_finished() && vel_clamp:
-		velocity.x = 0
-		velocity.z = 0
-	else:
-		general_movement_calculation()
+	general_movement_calculation()
 	move_and_slide()
 
 func _process(delta):
 	pass
 
 func general_movement_calculation():
-		var current_agent_position : Vector3 = global_position
-		var next_path_position : Vector3 = nav_agent.get_next_path_position()
-		var next_path_pos_flattened : Vector3 = Vector3(next_path_position.x, global_position.y, next_path_position.z)
-		#print(next_path_pos_flattened)
-		#velocity = current_agent_position.direction_to(next_path_position) * (movement_speed * speed_factor)
-		velocity.x = current_agent_position.direction_to(next_path_pos_flattened).x * (movement_speed * speed_factor)
-		velocity.z = current_agent_position.direction_to(next_path_pos_flattened).z * (movement_speed * speed_factor)
-		
-		#print("Next Path Pos: " + str(next_path_position))
-		#rint("Next Path Pos Flat: " + str(next_path_position))
-		#print("Direction to Next Path: " + str(current_agent_position.direction_to(next_path_position)))
-		
-		if ((current_agent_position.direction_to(next_path_position).y >= 0.9) &&
-			(abs(current_agent_position.direction_to(next_path_position).x) < 0.01 &&
-			abs(current_agent_position.direction_to(next_path_position).z) < 0.01) && is_on_floor()):
-			velocity.y = jump_velocity * jump_factor
-		#print("Velocity" + str(velocity))
+		if nav_agent.is_navigation_finished() && vel_clamp:
+			velocity.x = 0
+			velocity.z = 0
+		else:
+			var current_agent_position : Vector3 = global_position
+			var next_path_position : Vector3 = nav_agent.get_next_path_position()
+			var next_path_pos_flattened : Vector3 = Vector3(next_path_position.x, global_position.y, next_path_position.z)
+			#print(next_path_pos_flattened)
+			#velocity = current_agent_position.direction_to(next_path_position) * (movement_speed * speed_factor)
+			velocity.x = current_agent_position.direction_to(next_path_pos_flattened).x * (movement_speed * speed_factor)
+			velocity.z = current_agent_position.direction_to(next_path_pos_flattened).z * (movement_speed * speed_factor)
+			
+			#print("Next Path Pos: " + str(next_path_position))
+			#rint("Next Path Pos Flat: " + str(next_path_position))
+			#print("Direction to Next Path: " + str(current_agent_position.direction_to(next_path_position)))
+			
+			if ((current_agent_position.direction_to(next_path_position).y >= 0.9) &&
+				(abs(current_agent_position.direction_to(next_path_position).x) < 0.01 &&
+				abs(current_agent_position.direction_to(next_path_position).z) < 0.01) && is_on_floor()):
+				velocity.y = jump_velocity * jump_factor
+			#print("Velocity" + str(velocity))
 
 func _on_aggro_sphere_body_entered(body):
 	if body is Player && idle:

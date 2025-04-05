@@ -283,6 +283,9 @@ func consume_held():
 			"Wind":
 				jump_factor = 1 + (item_datalist["potency"] * .05)
 				apply_effect(effect, 1, 10, 0)
+			"Shrink":
+				global_scale(Vector3(.5, .5, .5))
+				apply_effect("Shrink", 1, 6 + item_datalist["potency"] / 2, 0)
 			"Light":
 				pass
 	#Remove item from inventory

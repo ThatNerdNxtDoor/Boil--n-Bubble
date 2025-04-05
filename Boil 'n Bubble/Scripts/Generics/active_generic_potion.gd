@@ -39,7 +39,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func interaction():
+func interaction(caller):
 	print("Interaction Potion")
 
 # When Potions Collides
@@ -53,7 +53,7 @@ func _on_body_entered(body):
 		#Get bodies in Area3D
 		var bodies = blast_radius.get_overlapping_bodies()
 		for target_body in bodies:
-			print(target_body)
+			print("Target: " + str(target_body))
 			print(target_body.has_method("check_weakness"))
 			if (target_body is RigidBody3D) or (target_body is CharacterBody3D):
 				for aspect in pot_datalist["aspect"]:
@@ -80,6 +80,9 @@ func _on_body_entered(body):
 								target_body.velocity += (pot_datalist["potency"] * .75) * direction
 							else: #Otherwise, apply force
 								target_body.apply_central_impulse((pot_datalist["potency"] * .75) * direction)
+						"Shrink":
+							target_body.global_scale(Vector3(.5, .5, .5))
+							target_body.apply_effect("Shrink", 1, 10, 0)
 						"Light":
 							pass
 			elif target_body.has_method("check_weakness"):

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://lmcna6x8n5ad"]
+
+[ext_resource type="Script" uid="uid://b4fdm04m6bn7o" path="res://Scripts/Generics/active_generic_material.gd" id="1_sx61o"]
+[ext_resource type="PackedScene" uid="uid://d1rk7sbq8c2x5" path="res://Assets/Models/GLBItems/Ingredients/ShrinkShroom.glb" id="2_y1r0c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sx61o"]
+radius = 0.143438
+height = 0.332234
+
+[node name="ShrinkShroom" type="RigidBody3D"]
+script = ExtResource("1_sx61o")
+mat_name = "shrshroom"
+metadata/_custom_type_script = "uid://b4fdm04m6bn7o"
+
+[node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sx61o")
+
+[node name="ShrinkShroom" parent="." instance=ExtResource("2_y1r0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0504996, 0)

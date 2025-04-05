@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://dru8csomc0i7y"]
+
+[ext_resource type="PackedScene" uid="uid://clsa2to8icqsn" path="res://Assets/Models/Actors/ToadStool.fbx" id="1_3kygb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3kygb"]
+animation = &"Armature|Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn4ug"]
+animation = &"Armature|Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d3ta6"]
+animation = &"Armature|Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t2dmo"]
+animation = &"Armature|Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3kygb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pn4ug"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d3ta6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2dmo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xxixv"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xcm7r"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5yjal"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_myfaj"]
+states/Armature|Attack/node = SubResource("AnimationNodeAnimation_3kygb")
+states/Armature|Attack/position = Vector2(519, 10)
+states/Armature|Idle/node = SubResource("AnimationNodeAnimation_pn4ug")
+states/Armature|Idle/position = Vector2(338, 100)
+states/Armature|Jump/node = SubResource("AnimationNodeAnimation_d3ta6")
+states/Armature|Jump/position = Vector2(519, 192)
+states/Armature|Walk/node = SubResource("AnimationNodeAnimation_t2dmo")
+states/Armature|Walk/position = Vector2(528, 100)
+states/End/position = Vector2(899, 100)
+transitions = ["Start", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_3kygb"), "Armature|Idle", "Armature|Walk", SubResource("AnimationNodeStateMachineTransition_pn4ug"), "Armature|Walk", "Armature|Attack", SubResource("AnimationNodeStateMachineTransition_d3ta6"), "Armature|Walk", "Armature|Jump", SubResource("AnimationNodeStateMachineTransition_t2dmo"), "Armature|Jump", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_xxixv"), "Armature|Attack", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_xcm7r"), "Armature|Walk", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_5yjal")]
+graph_offset = Vector2(-1, -26)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3kygb"]
+graph_offset = Vector2(-266.992, 67.0794)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_myfaj")
+nodes/StateMachine/position = Vector2(180, 140)
+nodes/output/position = Vector2(440, 160)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[node name="ToadStool" instance=ExtResource("1_3kygb")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="0"]
+tree_root = SubResource("AnimationNodeBlendTree_3kygb")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.00550516, -0.000125192)
+bones/0/rotation = Quaternion(-0.113195, 0, 0, 0.993573)
+bones/1/position = Vector3(0, 0.00521295, -1.87689e-10)
+bones/1/rotation = Quaternion(0.411988, 0.581428, -0.309293, 0.629719)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(-2.61937e-10, 0.00977845, -8.37728e-10)
+bones/2/rotation = Quaternion(-0.39707, -0.0819791, -0.0588056, 0.912226)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(3.96786e-10, 0.0063757, 3.98491e-10)
+bones/3/rotation = Quaternion(-0.100958, -0.0778799, -0.809466, 0.573155)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(4.66746e-10, 0.00932414, -1.0003e-09)
+bones/4/rotation = Quaternion(0.055071, 0.0745978, 0.888822, 0.448773)
+bones/4/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(0, 0.00521295, -1.87689e-10)
+bones/6/rotation = Quaternion(0.411988, -0.581428, 0.309293, 0.629719)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(2.61937e-10, 0.00977845, -8.37728e-10)
+bones/7/rotation = Quaternion(-0.39707, 0.0819791, 0.0588055, 0.912226)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(-3.96786e-10, 0.0063757, 3.98491e-10)
+bones/8/rotation = Quaternion(-0.100958, 0.0778799, 0.809466, 0.573155)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(-4.66746e-10, 0.00932414, -1.0003e-09)
+bones/9/rotation = Quaternion(0.055071, -0.0745978, -0.888822, 0.448773)
+bones/9/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(0, 0.00521295, -1.87689e-10)
+bones/11/rotation = Quaternion(0.182392, 0, 0, 0.983226)
+bones/11/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(0, 0.00521295, -1.87689e-10)
+bones/13/rotation = Quaternion(-0.324147, -0.00646681, 0.00525631, 0.94597)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(6.99457e-12, 0.00531227, 2.35864e-10)
+bones/14/rotation = Quaternion(0.498717, 4.64458e-05, -0.0106085, 0.8667)
+bones/14/scale = Vector3(1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.58801, 0)
+visible = false

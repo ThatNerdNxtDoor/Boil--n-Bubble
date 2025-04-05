@@ -12,5 +12,5 @@ func _process(delta):
 	pass
 
 #Interaction function for raycasting
-func interaction():
+func interaction(caller):
 	print("Interaction")

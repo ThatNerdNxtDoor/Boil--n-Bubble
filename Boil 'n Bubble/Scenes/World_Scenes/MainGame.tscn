@@ -68,8 +68,11 @@ size = Vector3(50, 0.5, 50)
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_j5ijs")
 
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -2.82611, 1.68749, -2.98603)
+
 [node name="Player" parent="." instance=ExtResource("1_2gwix")]
-transform = Transform3D(0.914049, 0, -0.405604, 0, 1, 0, 0.405604, 0, 0.914049, -19.3969, 4.71079, 52.3257)
+transform = Transform3D(0.914049, 0, -0.405604, 0, 1, 0, 0.405604, 0, 0.914049, -2.82611, 1.68749, -2.98603)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["Persistent"]]
 environment = ExtResource("2_xv6aq")
@@ -362,10 +365,10 @@ mesh = SubResource("BoxMesh_bn44d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShortcutActivator"]
 shape = SubResource("ConcavePolygonShape3D_dqw51")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ShortcutActivator"]
+[node name="Barrier" type="StaticBody3D" parent="ShortcutActivator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.44296)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ShortcutActivator/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShortcutActivator/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66835, 5.9655, 0)
 shape = SubResource("BoxShape3D_lbeul")
 
@@ -400,6 +403,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5169, 0, 86.8867)
 
 [node name="ShrinkFrog" parent="Actors/Bog" instance=ExtResource("18_blcja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40594, -8.43564, 72.1495)
+
+[node name="ShrinkFrog2" parent="Actors/Bog" instance=ExtResource("18_blcja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2182, -9.15616, 46.0531)
+
+[node name="ShrinkFrog3" parent="Actors/Bog" instance=ExtResource("18_blcja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.515, -9.2322, 73.2897)
 
 [node name="Frontier" type="Node3D" parent="Actors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.80136)

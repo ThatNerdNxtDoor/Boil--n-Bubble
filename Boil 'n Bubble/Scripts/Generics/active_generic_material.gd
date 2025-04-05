@@ -32,12 +32,12 @@ func get_dataset():
 		print("dataset " + str(mat_name) + " failed to load")
 
 # Function for when the player interacts with it.
-func interaction():
+func interaction(caller):
 	print("Interaction Material")
 	var index = PlayerInventory.inventory.find(null)
 	if (index != -1):
 		PlayerInventory.inventory[index] = mat_datalist
 		print("Pick-Up Successful")
+		self.queue_free()
 	else:
 		print('inventory full')
-	self.queue_free()
