@@ -10,13 +10,28 @@ signal show_paper(id)
 ##Signal for opening a storage window. Gives the object and the type of storage
 signal open_storage_window(object, type)
 
+##Signal for opening the dialogue window
+signal open_dialogue_box(ncp_name, dialogue_track)
+
+##Signal telling the specific npc that the dialogue window was closed
+signal dialogue_box_closed(ncp_name)
+
+##Signal for changing the sky and music
 signal change_environment(key)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+##Signals for enabling upgrades
+signal enable_farm
+signal enable_storage
+signal unlock_collectible(collectible)
 
+##Signal for trader entering scene
+signal trader_entered
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enable(type):
+	match(type):
+		"Farm":
+			enable_farm.emit()
+		"Chest":
+			enable_storage.emit()
+		"Everbell":
+			unlock_collectible.emit("Everbell")

@@ -13,6 +13,7 @@ object_name = "Chest"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170975, -0.0022583)
 shape = SubResource("BoxShape3D_6fmt1")
+disabled = true
 
 [node name="ChestModel" parent="." instance=ExtResource("2_g0qmx")]
 transform = Transform3D(0.342544, 0, 0, 0, 0.342544, 0, 0, 0, 0.342544, 0, 0, 0)

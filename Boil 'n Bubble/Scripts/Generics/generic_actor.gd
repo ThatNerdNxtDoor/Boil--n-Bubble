@@ -5,8 +5,8 @@ class_name Actor
 @onready var nav_timer : Timer = $NavigationTimer
 
 var idle = true
-var movement_speed : float = 2.0
-var jump_velocity : float = 8.0
+@export var movement_speed : float = 2.0
+@export var jump_velocity : float = 8.0
 var movement_target_position: Vector3
 var target_entity
 
@@ -60,6 +60,9 @@ func general_movement_calculation():
 			var next_path_pos_flattened : Vector3 = Vector3(next_path_position.x, global_position.y, next_path_position.z)
 			#print(next_path_pos_flattened)
 			#velocity = current_agent_position.direction_to(next_path_position) * (movement_speed * speed_factor)
+			
+			self.look_at(next_path_pos_flattened)
+			
 			velocity.x = current_agent_position.direction_to(next_path_pos_flattened).x * (movement_speed * speed_factor)
 			velocity.z = current_agent_position.direction_to(next_path_pos_flattened).z * (movement_speed * speed_factor)
 			

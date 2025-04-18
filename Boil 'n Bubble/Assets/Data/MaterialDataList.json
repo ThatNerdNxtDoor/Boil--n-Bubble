@@ -108,4 +108,15 @@
 		"potency": -2,
 		"complexity": -2
 	}
+	,
+	"wine": {
+		"name" : "wine",
+		"icon": "res://Assets/Sprites/Wine.png",
+		"type": "misc",
+		"color": [151, 47, 102],
+		"aspect": ["None"],
+		"effect": ["Dizzy"],
+		"potency": -2,
+		"complexity": -2
+	}
 }

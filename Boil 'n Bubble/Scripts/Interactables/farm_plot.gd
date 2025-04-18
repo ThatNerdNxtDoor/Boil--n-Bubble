@@ -8,11 +8,13 @@ var plant_ready
 var plant_model
 var plant_vector : Vector3
 
+@onready var hitbox = $PlanterHitbox
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	plant_ready = false
 	growing = false
-	pass # Replace with function body.
+	SignalBus.enable_farm.connect(enable)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -63,15 +65,22 @@ func _on_growing_timer_timeout():
 	plant_ready = true
 	pass # Replace with function body.
 
+func enable():
+	self.visible = true
+	hitbox.disabled = false
+
 func save():
 	var save_dictionary = {
 		"storage": storage,
 		"plant_ready": plant_ready,
 		"time_remaining": growth_timer.time_left,
+		"enabled": self.visible
 	}
 	return save_dictionary
 
 func load_save(load_data):
+	if load_data["enabled"]:
+		enable()
 	storage = load_data["storage"]
 	if storage[0] != null:
 		start_growing()

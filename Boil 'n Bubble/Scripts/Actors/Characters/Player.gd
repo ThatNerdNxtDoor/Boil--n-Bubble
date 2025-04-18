@@ -77,7 +77,8 @@ func _ready():
 	
 	SignalBus.show_paper.connect(_on_show_paper)
 	SignalBus.open_storage_window.connect(_on_open_storage)
-	
+	SignalBus.open_dialogue_box.connect(_on_open_dialogue)
+
 #------------------------------- Player Processes ------------------------------
 func _process(delta):
 	#Check for pausing
@@ -89,7 +90,7 @@ func _process(delta):
 			ui_notebook.play_randomized_page_audio()
 		elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and open_window != null:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			ui_master_node.close_storage_window()
+			ui_master_node.close_window()
 			open_window = null
 		elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE and !dead:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -318,7 +319,8 @@ func save():
 		"position": [global_position.x, global_position.y, global_position.z],
 		"rotation": [rotation_pivot.rotation_degrees.x, rotation_pivot.rotation_degrees.y, rotation_pivot.rotation_degrees.z],
 		"velocity": [velocity.x, velocity.y,velocity.z],
-		"vel_clamp": vel_clamp
+		"vel_clamp": vel_clamp,
+		"collectibles": ui_master_node.collectibles
 	}
 	return save_dictionary
 
@@ -331,6 +333,9 @@ func load_save(node_load_data : Dictionary):
 	rotation_pivot.rotation_degrees = Vector3(node_load_data["rotation"][0], node_load_data["rotation"][1], node_load_data["rotation"][2])
 	velocity = Vector3(node_load_data["velocity"][0], node_load_data["velocity"][1], node_load_data["velocity"][2])
 	vel_clamp = node_load_data["vel_clamp"]
+	for item in node_load_data["collectibles"]:
+		if node_load_data["collectibles"][item]:
+			ui_master_node.unlock_collectible(item)
 
 #========================= Signal Recieving Functions =========================#
 
@@ -358,7 +363,9 @@ func damage_over_time(damage):
 
 func _on_kill_box_body_entered(body):
 	curr_health = 0
-	
+
+#--------------------------------------------UI Windows---------------------------------------------
+
 func _on_show_paper(page_id):
 	print(page_id)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -369,4 +376,9 @@ func _on_show_paper(page_id):
 func _on_open_storage(window_source, type):
 	ui_master_node.display_storage_window(window_source, type)
 	open_window = window_source
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _on_open_dialogue(npc_name, dialogue_track):
+	ui_master_node.display_dialogue_window(npc_name, dialogue_track)
+	open_window = ui_master_node.dialogue_window
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

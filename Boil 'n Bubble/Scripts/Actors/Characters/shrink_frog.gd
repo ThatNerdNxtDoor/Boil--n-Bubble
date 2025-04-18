@@ -124,7 +124,7 @@ func save():
 	return save_dictionary
 
 func load_save(load_data):
-	if load_data[health] <= 0: #Enemy is dead
+	if load_data["health"] <= 0: #Enemy is dead
 		self.visible = false
 		for col in self.find_children("CollisionShape"):
 			col.disabled = true
@@ -186,4 +186,4 @@ func die():
 	respawn_timer.start()
 
 func _on_respawn_timer_timeout():
-	_ready() #reinitialize the 
+	_ready() #reinitialize the enemy

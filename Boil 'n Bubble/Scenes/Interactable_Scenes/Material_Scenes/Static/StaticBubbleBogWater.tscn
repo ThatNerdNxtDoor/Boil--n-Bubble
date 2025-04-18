@@ -18,7 +18,7 @@ point_count = 2
 [node name="StaticBubbleBogWater" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_ios6d")
 mat_name = "bogwater"
-duration = 240
+duration = 120
 object_name = "bogwater"
 metadata/_custom_type_script = "uid://11x84bwuil7o"
 

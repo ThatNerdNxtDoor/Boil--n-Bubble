@@ -17,6 +17,7 @@ object_name = "farm"
 [node name="PlanterHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638545, 0)
 shape = SubResource("BoxShape3D_mysnh")
+disabled = true
 
 [node name="Plant" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427169, 0)

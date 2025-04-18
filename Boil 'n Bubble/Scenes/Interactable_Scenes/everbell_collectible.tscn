@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7ctmqb4ow3c2"]
+
+[ext_resource type="Script" uid="uid://845rcjyql3il" path="res://Scripts/Interactables/Misc/everbell_collect.gd" id="1_sfaqk"]
+[ext_resource type="PackedScene" uid="uid://cbx16y0m16tjx" path="res://Assets/Models/GLBItems/Everbell_Pickup.glb" id="2_k73a0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sfaqk"]
+radius = 0.707134
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k73a0"]
+albedo_color = Color(1, 0.423529, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_btv6u"]
+material = SubResource("StandardMaterial3D_k73a0")
+radius = 0.08
+height = 0.16
+
+[sub_resource type="Curve" id="Curve_mphtb"]
+_data = [Vector2(0, 1), 0.0, 0.881013, 0, 0, Vector2(0.125, 0), -18.7292, 0.0, 0, 0]
+point_count = 2
+
+[node name="EverbellCollectible" type="StaticBody3D" groups=["Persistent"]]
+script = ExtResource("1_sfaqk")
+object_name = "Everbell"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sfaqk")
+
+[node name="Everbell_Pickup" parent="." instance=ExtResource("2_k73a0")]
+transform = Transform3D(0.703236, 0, 0, 0, 0.703236, 0, 0, 0, 0.703236, 0, 0, 0)
+
+[node name="UnstableParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379236, 0)
+amount = 20
+lifetime = 10.0
+speed_scale = 0.5
+randomness = 0.33
+lifetime_randomness = 0.5
+mesh = SubResource("SphereMesh_btv6u")
+emission_shape = 2
+emission_sphere_radius = 0.6
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 4.9, 0)
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_mphtb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427173, 0)
+light_color = Color(1, 0.52549, 1, 1)
+light_energy = 9.793
+omni_range = 10.0

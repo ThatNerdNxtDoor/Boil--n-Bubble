@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bc47ryrryeil"]
+[gd_scene load_steps=45 format=3 uid="uid://bc47ryrryeil"]
 
 [ext_resource type="PackedScene" uid="uid://cjd4xkikihqr" path="res://Scenes/Player_Scene/Player.tscn" id="1_2gwix"]
 [ext_resource type="Script" uid="uid://dlblhhsnffu5h" path="res://Scripts/Environment/day_night_cycle.gd" id="1_3hce6"]
@@ -26,11 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://bxuuli6maroi2" path="res://Scenes/Actors/shrink_frog.tscn" id="18_blcja"]
 [ext_resource type="PackedScene" uid="uid://blvlwy71g47ug" path="res://Scenes/Actors/trader.tscn" id="18_j5ijs"]
 [ext_resource type="PackedScene" uid="uid://ffadxrwy5fs6" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticSoothVenom.tscn" id="20_52jet"]
+[ext_resource type="Script" uid="uid://dcf8fauihk7b8" path="res://Scripts/Actors/actor_manager.gd" id="20_tmoib"]
 [ext_resource type="PackedScene" uid="uid://bjp0b632j2kou" path="res://Scenes/Interactable_Scenes/paper_post.tscn" id="21_tdfal"]
 [ext_resource type="PackedScene" uid="uid://pvvgshj2muvf" path="res://Scenes/Interactable_Scenes/storage_chest.tscn" id="23_o71qd"]
 [ext_resource type="PackedScene" uid="uid://u6j4b0131xd0" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticBubbleBogWater.tscn" id="23_v22pq"]
 [ext_resource type="PackedScene" uid="uid://cn77337y8xl86" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticFloattail.tscn" id="24_06hkt"]
 [ext_resource type="PackedScene" uid="uid://gyrxyb4gv8iu" path="res://Scenes/Interactable_Scenes/farm_plot.tscn" id="24_h40uc"]
+[ext_resource type="PackedScene" uid="uid://b7ctmqb4ow3c2" path="res://Scenes/Interactable_Scenes/everbell_collectible.tscn" id="33_yk8a2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtmcy"]
 size = Vector3(36.7881, 39.9557, 1.19617)
@@ -42,7 +44,7 @@ size = Vector3(36.7881, 39.9557, 1)
 size = Vector3(74.3053, 64.7686, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wcvv6"]
-size = Vector3(139.793, 50, 2.73347)
+size = Vector3(104.992, 56.8071, 2.73347)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnfh5"]
 albedo_color = Color(0.588235, 0.521569, 0.403922, 1)
@@ -219,7 +221,7 @@ shape = SubResource("BoxShape3D_wsorb")
 transform = Transform3D(0.793651, 0, 0.608374, 0, 1, 0, -0.608374, 0, 0.793651, -58.3006, -16.1732, -9.23885)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/FirstRegion/BackGround/InvisibleBorder4"]
-transform = Transform3D(0.986189, 0, 0.165511, 0, 0.999986, 0, -0.165511, 0, 0.986189, -0.230457, 31.1908, 2.11608)
+transform = Transform3D(0.986189, 0, 0.165511, 0, 0.999986, 0, -0.165511, 0, 0.986189, -17.3908, 27.7873, 4.99608)
 shape = SubResource("BoxShape3D_wcvv6")
 
 [node name="InvisibleBorder6" type="StaticBody3D" parent="World/FirstRegion/BackGround"]
@@ -390,13 +392,20 @@ stream = ExtResource("13_ai0xa")
 pitch_scale = 0.5
 
 [node name="KillBox" type="Area3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -72.5082, 4.17968)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -41.6948, 4.17968)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillBox"]
 shape = SubResource("BoxShape3D_7h38n")
 
-[node name="Actors" type="Node" parent="."]
+[node name="Actors" type="Node" parent="." groups=["Persistent"]]
+script = ExtResource("20_tmoib")
+trader = ExtResource("18_j5ijs")
+
+[node name="TraderTimer" type="Timer" parent="Actors"]
+wait_time = 10.0
+one_shot = true
+autostart = true
 
 [node name="Bog" type="Node3D" parent="Actors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5169, 0, 86.8867)
@@ -416,11 +425,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.80136)
 [node name="TraderNavGroup" type="Node3D" parent="Actors/Frontier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -46.281)
 
-[node name="Trader" parent="Actors/Frontier/TraderNavGroup" instance=ExtResource("18_j5ijs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2479, -12.8997, -11.4219)
-
 [node name="EnterTarget" type="Node3D" parent="Actors/Frontier/TraderNavGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.6515, -7.68133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.4097, -7.68133)
 
 [node name="ExitTarget" type="Node3D" parent="Actors/Frontier/TraderNavGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2685, -12.931, -11.4171)
@@ -499,14 +505,26 @@ transform = Transform3D(0.915118, 0.302267, 0.266823, -0.232884, 0.936497, -0.26
 [node name="StaticMixtureMint" parent="StaticIngredients/Bog" instance=ExtResource("3_wirou")]
 transform = Transform3D(0.745013, 0.217829, -0.63048, 0.0228596, 0.936285, 0.350495, 0.666657, -0.275537, 0.692566, 150.409, 11.2997, -17.442)
 
+[node name="StaticGustrhine2" parent="StaticIngredients/Bog" instance=ExtResource("6_xs718")]
+transform = Transform3D(0.887084, 0.455758, 0.0732583, -0.453252, 0.829925, 0.325251, 0.0874372, -0.321729, 0.942786, -15.3571, 37.4228, 74.9106)
+
+[node name="StaticMixtureMint2" parent="StaticIngredients/Bog" instance=ExtResource("3_wirou")]
+transform = Transform3D(0.790318, 0.160618, -0.591268, 0.265714, 0.779704, 0.566972, 0.55208, -0.605197, 0.573536, -10.0651, 31.8713, 64.0587)
+
 [node name="PaperPost" parent="." instance=ExtResource("21_tdfal")]
 transform = Transform3D(0.211236, -0.00193866, -0.453183, -0.0283852, 0.498957, -0.0153648, 0.452298, 0.0322188, 0.210685, -3.64616, 3.72304, -1.35962)
 metadata/page_id = "TutorialPaper"
 
 [node name="StorageChest" parent="." instance=ExtResource("23_o71qd")]
 transform = Transform3D(-0.440221, 0, 0.897889, 0, 1, 0, -0.897889, 0, -0.440221, -5.33582, 2.44657, 4.29259)
+visible = false
 
 [node name="FarmPlot" parent="." instance=ExtResource("24_h40uc")]
 transform = Transform3D(0.903806, 0, 0.427942, 0, 1, 0, -0.427942, 0, 0.903806, -0.72497, 2.33562, 1.30131)
+visible = false
+
+[node name="EverbellCollectible" parent="." instance=ExtResource("33_yk8a2")]
+transform = Transform3D(0.990532, -0.0608765, 0.123048, 0.0588988, 0.998071, 0.0196507, -0.124007, -0.0122172, 0.992206, -41.1496, 37.5378, 221.258)
 
 [connection signal="body_entered" from="KillBox" to="Player" method="_on_kill_box_body_entered"]
+[connection signal="timeout" from="Actors/TraderTimer" to="Actors" method="spawn_trader"]

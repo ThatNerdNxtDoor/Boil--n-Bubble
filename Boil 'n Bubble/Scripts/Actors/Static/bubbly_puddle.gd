@@ -19,7 +19,7 @@ func _process(delta):
 				#For player, apply it to the velocity and temporarily deactivate the velocity limiter
 				if target_body is CharacterBody3D:
 					target_body.vel_clamp = false
-					target_body.velocity += (datalist["potency"] * .1) * direction
+					target_body.velocity += (datalist["potency"] * .3) * direction
 				elif target_body is RigidBody3D: #Otherwise, apply force
 					target_body.apply_central_impulse((datalist["potency"] * .1) * direction)
 	pass
