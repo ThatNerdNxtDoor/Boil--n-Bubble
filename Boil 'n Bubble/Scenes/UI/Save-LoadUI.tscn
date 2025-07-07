@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bstl6cg20sha6"]
+[gd_scene load_steps=9 format=3 uid="uid://bstl6cg20sha6"]
 
 [ext_resource type="Script" uid="uid://dsrlqa0q61vra" path="res://Scripts/UI/save_load_menu.gd" id="1_prjvo"]
 [ext_resource type="PackedScene" uid="uid://yw4ii62dmxxh" path="res://Scenes/UI/save_slot.tscn" id="2_cq4p5"]
@@ -43,6 +43,17 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph7fm"]
+bg_color = Color(0.469535, 0.340715, 0.249374, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="LoadPanel" type="Control"]
 layout_mode = 3
@@ -175,15 +186,14 @@ anchors_preset = -1
 anchor_left = 0.027
 anchor_top = 0.765
 anchor_right = 0.53
-anchor_bottom = 0.965
+anchor_bottom = 0.852
 offset_left = -0.241502
 offset_top = -0.0100403
-offset_right = -0.185059
-offset_bottom = 0.190002
+offset_right = -0.185028
+offset_bottom = -0.168091
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_cq4p5")
-text = "NEW
-GAME"
+text = "NEW GAME"
 
 [node name="LoadGameButton" type="Button" parent="Page2/LoadButtons"]
 layout_mode = 1
@@ -196,9 +206,9 @@ offset_left = -0.0071106
 offset_top = -0.0100403
 offset_right = -0.113647
 offset_bottom = -0.16803
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_74tky")
-text = "Load Data"
+text = "Load Game"
 
 [node name="DeleteButton" type="Button" parent="Page2/LoadButtons"]
 layout_mode = 1
@@ -211,10 +221,26 @@ offset_left = -0.507019
 offset_top = -0.286072
 offset_right = -0.0490723
 offset_bottom = 0.190002
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_ol24u")
 text = "CLEAR DATA"
+
+[node name="TutorialButton" type="Button" parent="Page2/LoadButtons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.879
+anchor_right = 0.53
+anchor_bottom = 0.965
+offset_left = 0.258437
+offset_top = -0.286072
+offset_right = 0.314911
+offset_bottom = 0.190002
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ph7fm")
+text = "Tutorial"
 
 [connection signal="pressed" from="Page2/LoadButtons/NewGameButton" to="." method="new_game"]
 [connection signal="pressed" from="Page2/LoadButtons/LoadGameButton" to="." method="load_save_slot"]
 [connection signal="pressed" from="Page2/LoadButtons/DeleteButton" to="." method="delete_save"]
+[connection signal="pressed" from="Page2/LoadButtons/TutorialButton" to="." method="load_tutorial"]

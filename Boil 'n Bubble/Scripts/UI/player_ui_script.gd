@@ -7,6 +7,8 @@ var collectibles = {
 }
 @onready var everbell_ui = $EverbellSprite
 @onready var everbell_animation : AnimationPlayer = $EverbellSprite/AnimationPlayer
+@onready var bell_audio = load("res://Assets/SoundEffects/ever-bell.wav")
+@onready var ui_sfx = $SFX
 #--------------------------------------------------------------------------------------------------#
 @export var ui_icon_packed : PackedScene
 @onready var storage_windows = $StorageWindow
@@ -97,4 +99,6 @@ func display_dialogue_window(npc_name, dialogue_track):
 
 func ring_bell():
 	if collectibles["Everbell"]:
+		ui_sfx.stream = bell_audio
+		ui_sfx.play()
 		everbell_animation.play("Ring")

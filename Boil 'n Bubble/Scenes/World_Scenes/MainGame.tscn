@@ -82,7 +82,7 @@ script = ExtResource("1_3hce6")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="WorldEnvironment"]
 stream = ExtResource("5_65b30")
-volume_db = -5.0
+volume_db = 5.0
 autoplay = true
 bus = &"Music"
 
@@ -403,7 +403,7 @@ script = ExtResource("20_tmoib")
 trader = ExtResource("18_j5ijs")
 
 [node name="TraderTimer" type="Timer" parent="Actors"]
-wait_time = 10.0
+wait_time = 300.0
 one_shot = true
 autostart = true
 
@@ -459,6 +459,9 @@ transform = Transform3D(0.953848, 0, 0.300291, 0, 1, 0, -0.300291, 0, 0.953848, 
 
 [node name="StaticLampshade4" parent="StaticIngredients/Frontier" instance=ExtResource("5_h8833")]
 transform = Transform3D(0.0410599, -0.166212, -0.985235, 0.125568, 0.979107, -0.159945, 0.991235, -0.117146, 0.0610729, -9.68438, 2.61186, 24.8319)
+
+[node name="StaticLampshade5" parent="StaticIngredients/Frontier" instance=ExtResource("5_h8833")]
+transform = Transform3D(-0.998815, -0.00559317, -0.0483422, 0.00570795, 0.973055, -0.230502, 0.0483288, -0.230505, -0.97187, -30.4109, -15.3233, -64.7088)
 
 [node name="StaticGustrhine" parent="StaticIngredients/Frontier" instance=ExtResource("6_xs718")]
 transform = Transform3D(0.991472, -0.127495, -0.0269791, 0.130319, 0.969993, 0.205259, 0, -0.207024, 0.978336, -11.6923, -0.717502, 7.13301)

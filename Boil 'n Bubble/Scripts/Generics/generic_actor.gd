@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var jump_factor = 1
 @onready var speed_factor = 1
 var vel_clamp = false
+var clampable = true
 
 func _ready():
 	# These values need to be adjusted for the actor's speed
@@ -42,7 +43,7 @@ func set_movement_target(movement_target: Vector3):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	else:
+	elif clampable:
 		vel_clamp = true
 	general_movement_calculation()
 	move_and_slide()
@@ -136,6 +137,8 @@ func time_out_timer_statusef(id, statusef):
 				jump_factor = 1
 			"Shrink":
 				global_scale(Vector3(2, 2, 2))
+			"Dizzy":
+				clampable = true
 		#Destroys the timer
 		effect_timers[id].timer.call_deferred("queue_free")
 		effect_timers.erase(id)
@@ -143,3 +146,6 @@ func time_out_timer_statusef(id, statusef):
 # Damage Over Time Function
 func damage_over_time(damage):
 	pass
+
+func declamp():
+	clampable = true

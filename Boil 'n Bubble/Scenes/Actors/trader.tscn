@@ -15,16 +15,19 @@ movement_speed = 1.25
 jump_velocity = 0.0
 metadata/_custom_type_script = "uid://dqpmlqoxfotrq"
 
-[node name="StayTimer" type="Timer" parent="."]
-wait_time = 120.0
-one_shot = true
+[node name="LaunchTimer" type="Timer" parent="."]
+wait_time = 0.25
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_ptt24")
+[node name="StayTimer" type="Timer" parent="."]
+wait_time = 150.0
+one_shot = true
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 15.0
 one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ptt24")
 
 [node name="AggroSphere" type="Area3D" parent="."]
 collision_layer = 0
@@ -44,6 +47,7 @@ avoidance_enabled = true
 keep_y_velocity = false
 debug_path_custom_color = Color(1, 0, 0, 1)
 
+[connection signal="timeout" from="LaunchTimer" to="." method="declamp"]
 [connection signal="timeout" from="StayTimer" to="." method="leave"]
 [connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]
 [connection signal="target_reached" from="MeshInstance3D/NavigationAgent3D" to="." method="_on_navigation_target_reached"]

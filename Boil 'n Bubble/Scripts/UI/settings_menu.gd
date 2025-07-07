@@ -13,9 +13,12 @@ func _ready():
 	save_quit_buton = $Page2/Settings/QuitToMenuButton2
 	
 	print(get_tree().current_scene)
-	if get_tree().current_scene.name ==  "TitlePage":
-		quit_button.visible = false
+	if get_tree().current_scene.name !=  "MainGame":
 		save_quit_buton.visible = false
+		if get_tree().current_scene.name == "TutorialGame":
+			quit_button.visible = true
+		else:
+			quit_button.visible = false
 	else:
 		quit_button.visible = true
 		save_quit_buton.visible = true

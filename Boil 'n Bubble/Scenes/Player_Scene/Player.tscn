@@ -20,14 +20,17 @@ script = ExtResource("2_sbxtm")
 [node name="StepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.270011, 0)
 stream = ExtResource("3_e6r8s")
-volume_db = -40.0
+volume_db = -30.0
 unit_size = 1.0
 max_db = 0.0
 max_polyphony = 4
 
 [node name="StepTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.3
 one_shot = true
+
+[node name="LaunchTimer" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
@@ -66,3 +69,5 @@ mesh = SubResource("CapsuleMesh_fx1y4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02222, 0)
 shape = SubResource("CapsuleShape3D_ykgbw")
+
+[connection signal="timeout" from="LaunchTimer" to="." method="_on_launch_timer_timeout"]

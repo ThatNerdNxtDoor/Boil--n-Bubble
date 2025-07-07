@@ -31,7 +31,7 @@ func enable(type):
 	match(type):
 		"Farm":
 			enable_farm.emit()
-		"Chest":
+		"Storage":
 			enable_storage.emit()
 		"Everbell":
 			unlock_collectible.emit("Everbell")

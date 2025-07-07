@@ -26,6 +26,7 @@ var throw_audio = preload("res://Assets/SoundEffects/air_move.wav")
 var damage_audio = preload("res://Assets/SoundEffects/take_damage.wav")
 var step_audio_player
 var step_timer
+var launch_timer
 
 @onready var ui_master_node = $Pivot/PlayerUI
 var ui_interact
@@ -45,6 +46,7 @@ var dead
 var speed_factor
 var jump_factor
 var vel_clamp
+var clampable
 
 #Initializing Function
 func _ready():
@@ -59,6 +61,7 @@ func _ready():
 	audio_player = $Pivot/On_PersonAudioPlayer
 	step_audio_player = $StepAudioPlayer
 	step_timer = $StepTimer
+	launch_timer = $LaunchTimer
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
@@ -71,6 +74,9 @@ func _ready():
 	dead = false
 	speed_factor = 1
 	jump_factor = 1
+	
+	vel_clamp = false
+	clampable = true
 	
 	PlayerInventory.holding_index = 0 
 	PlayerInventory.inventory = [null, null, null, null, null, null, null, null]
@@ -164,7 +170,8 @@ func _process(delta):
 				if (PlayerInventory.inventory[PlayerInventory.holding_index])["effect"].find("Light") != -1:
 					potion_light.visible = true
 					potion_light.light_color = Color8(int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][0]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][1]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][2]))
-					potion_light.omni_range = 1.5 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .1)
+					potion_light.omni_range = 1.5 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .33)
+					potion_light.omni_range = .75 + ((PlayerInventory.inventory[PlayerInventory.holding_index])["potency"] * .33)
 				else:
 					potion_light.visible = false
 			else:
@@ -197,7 +204,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	else:
+	elif clampable:
 		vel_clamp = true
 	
 	# Handle jump.
@@ -287,6 +294,11 @@ func consume_held():
 			"Shrink":
 				global_scale(Vector3(.5, .5, .5))
 				apply_effect("Shrink", 1, 6 + item_datalist["potency"] / 2, 0)
+			"Dizzy":
+				vel_clamp = false
+				clampable = false
+				speed_factor = speed_factor - .8
+				apply_effect("Dizzy", 1, 10, 0)
 			"Light":
 				pass
 	#Remove item from inventory
@@ -351,6 +363,9 @@ func time_out_timer_statusef(id, statusef):
 				jump_factor = 1
 			"Shrink":
 				global_scale(Vector3(2, 2, 2))
+			"Dizzy":
+				clampable = true
+				speed_factor = speed_factor + .8
 		#Destroys the timer
 		effect_timers[id].timer.call_deferred("queue_free")
 		effect_timers.erase(id)
@@ -363,6 +378,10 @@ func damage_over_time(damage):
 
 func _on_kill_box_body_entered(body):
 	curr_health = 0
+
+func _on_launch_timer_timeout():
+	clampable = true
+
 
 #--------------------------------------------UI Windows---------------------------------------------
 

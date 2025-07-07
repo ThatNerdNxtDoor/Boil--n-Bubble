@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ny7tyorxol8"]
+[gd_scene load_steps=6 format=3 uid="uid://ny7tyorxol8"]
 
 [ext_resource type="Script" uid="uid://11x84bwuil7o" path="res://Scripts/Generics/static_material_generic.gd" id="1_cfe74"]
 [ext_resource type="PackedScene" uid="uid://ri8gv4crjxie" path="res://BlenderMeshes/Items/Gusthrine.glb" id="2_h76p8"]
 [ext_resource type="AudioStream" uid="uid://ck0fhvy5qas07" path="res://Assets/SoundEffects/pick_up.wav" id="3_2pd1s"]
+[ext_resource type="AudioStream" uid="uid://b4e4l5ba8yor6" path="res://Assets/SoundEffects/gust_rhine_ambient.wav" id="4_d78d1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8a0k3"]
 size = Vector3(1.2, 1.75, 1.2)
@@ -24,3 +25,16 @@ stream = ExtResource("3_2pd1s")
 volume_db = -15.0
 max_db = -5.0
 pitch_scale = 2.0
+
+[node name="GustrhinePlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_d78d1")
+volume_db = 1.5
+max_db = 6.0
+max_distance = 4.0
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="GustrhinePlayer" method="play"]

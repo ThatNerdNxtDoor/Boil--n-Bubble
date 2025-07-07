@@ -77,12 +77,18 @@ func _on_body_entered(body):
 							#For player, apply it to the velocity and temporarily deactivate the velocity limiter
 							if target_body is CharacterBody3D:
 								target_body.vel_clamp = false
-								target_body.velocity += (pot_datalist["potency"] * .75) * direction
+								target_body.clampable = false
+								target_body.launch_timer.start()
+								target_body.velocity = (pot_datalist["potency"] * .8) * direction
 							else: #Otherwise, apply force
 								target_body.apply_central_impulse((pot_datalist["potency"] * .75) * direction)
 						"Shrink":
 							target_body.global_scale(Vector3(.5, .5, .5))
 							target_body.apply_effect("Shrink", 1, 10, 0)
+						"Dizzy":
+							target_body.vel_clamp = false
+							target_body.clamplable = false
+							target_body.apply_effect("Dizzy", 1, 10, 0)
 						"Light":
 							pass
 			elif target_body.has_method("check_weakness"):

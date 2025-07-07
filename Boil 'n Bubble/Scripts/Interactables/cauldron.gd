@@ -181,7 +181,9 @@ func _on_cauldron_explosion_timeout():
 						#For player, apply it to the velocity and temporarily deactivate the velocity limiter
 						if target_body is CharacterBody3D:
 							target_body.vel_clamp = false
+							target_body.clampable = false
 							target_body.velocity += (datalist["potency"] * .25) * direction
+							target_body.launch_timer.start()
 						else: #Otherwise, apply force
 							target_body.apply_central_impulse(datalist["potency"] * direction)
 					"Light":

@@ -29,15 +29,6 @@ transform = Transform3D(0.557, 0, 0, 0, 0.557, 0, 0, 0, 0.557, 0, 0.0831797, 0)
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="MeshInstance3D"]
 path_height_offset = 0.5
 
-[node name="NavigationTimer" type="Timer" parent="."]
-
-[node name="AggroSphere" type="Area3D" parent="."]
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape" type="CollisionShape3D" parent="AggroSphere"]
-shape = SubResource("SphereShape3D_sccrs")
-
 [node name="BarfCooldown" type="Timer" parent="."]
 wait_time = 30.0
 one_shot = true
@@ -50,6 +41,22 @@ one_shot = true
 wait_time = 8.0
 one_shot = true
 
+[node name="NavigationTimer" type="Timer" parent="."]
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 40.0
+one_shot = true
+
+[node name="LaunchTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="AggroSphere" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="AggroSphere"]
+shape = SubResource("SphereShape3D_sccrs")
+
 [node name="SporeArea" type="Area3D" parent="."]
 monitorable = false
 
@@ -57,10 +64,7 @@ monitorable = false
 transform = Transform3D(-1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 0, 1, -4.37114e-08, 1, 1.91069e-15, 0.0249102, 0, -2)
 shape = SubResource("CapsuleShape3D_72bse")
 
-[node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 40.0
-one_shot = true
-
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
-[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="LaunchTimer" to="." method="declamp"]
+[connection signal="body_entered" from="AggroSphere" to="." method="_on_aggro_sphere_body_entered"]

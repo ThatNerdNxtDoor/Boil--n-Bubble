@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=17 format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" uid="uid://dfxv0jydlhbag" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
 [ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_t4vr5"]
+[ext_resource type="AudioStream" uid="uid://prpm66yksbui" path="res://Assets/SoundEffects/ever-bell.wav" id="3_bxyuu"]
 [ext_resource type="Texture2D" uid="uid://cgcllnr7tjlp1" path="res://Assets/Sprites/PostPaperNail.png" id="4_5khqi"]
 [ext_resource type="Texture2D" uid="uid://csc7tr47db5m0" path="res://Assets/Sprites/BellIconImage.png" id="5_ae4du"]
 
@@ -114,6 +115,8 @@ script = ExtResource("1_njjc1")
 ui_icon_packed = ExtResource("2_t4vr5")
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bxyuu")
+volume_db = -0.5
 bus = &"SFX"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -421,11 +424,11 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.107
-anchor_top = 0.622
+anchor_top = 0.708
 anchor_right = 0.891
 anchor_bottom = 0.924
-offset_left = -0.264008
-offset_top = -0.0560303
+offset_left = -0.264
+offset_top = 0.216003
 offset_right = -0.432007
 offset_bottom = 0.247986
 theme_override_styles/panel = SubResource("StyleBoxFlat_gj5qh")
@@ -435,13 +438,13 @@ show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.006
-anchor_top = -0.168
+anchor_top = -0.193
 anchor_right = 0.165
 anchor_bottom = 0.071
 offset_left = -0.418
-offset_top = -0.0719986
+offset_top = 0.0200005
 offset_right = 0.00498962
-offset_bottom = 0.0839996
+offset_bottom = 0.0599995
 theme_override_styles/panel = SubResource("StyleBoxFlat_ae4du")
 
 [node name="NameText" type="RichTextLabel" parent="DialogueWindow/DialogueBox/NamePanel"]

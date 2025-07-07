@@ -30,4 +30,9 @@ func save():
 
 func load_save(load_data):
 	activatee.visible = load_data["activated"]
+	activatee.find_child("CollisionShape3D").disabled = !load_data["activated"]
+	
+	self.find_child("Barrier").find_child("CollisionShape3D").disabled = load_data["activated"]
+	
 	self.visible = !load_data["activated"]
+	self.find_child("CollisionShape3D").disabled = load_data["activated"]

@@ -13,6 +13,8 @@ var movement_state
 @onready var spore_timer = $BarfCooldown
 @onready var jump_timer = $JumpCooldown
 @onready var respawn_timer = $RespawnTimer
+@onready var launch_timer = $LaunchTimer
+
 @onready var animation_tree : AnimationTree = $MeshInstance3D/AnimationTree
 @onready var animation_state = animation_tree["parameters/StateMachine/playback"]
 
@@ -187,3 +189,6 @@ func die():
 
 func _on_respawn_timer_timeout():
 	_ready() #reinitialize the enemy
+
+func declamp():
+	clampable = true

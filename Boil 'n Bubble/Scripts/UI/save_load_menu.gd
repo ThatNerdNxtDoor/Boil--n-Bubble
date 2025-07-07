@@ -11,6 +11,9 @@ var selected_file : String
 @onready var save_title = $Page2/LoadButtons/SaveData/FileName
 @onready var save_data = $Page2/LoadButtons/SaveData/FileData
 
+@onready var load_button = $Page2/LoadButtons/LoadGameButton
+@onready var delete_button = $Page2/LoadButtons/DeleteButton
+
 func load_slots():
 	for child in save_container.get_children():
 		save_container.remove_child(child)
@@ -29,6 +32,8 @@ func select_slot(file : String):
 	save_title.text = "[center]" + file
 	var metadata : Dictionary = SaveManager.get_file_metadata(selected_file)
 	save_data.text = "Save Date: " + metadata["date saved"] + "\nVersion: " + metadata["version"]
+	load_button.visible = true
+	delete_button.visible = true
 
 func new_game():
 	SaveManager.current_slot = "newgame"
@@ -44,3 +49,6 @@ func load_save_slot():
 	if selected_file != null:
 		SaveManager.current_slot = selected_file
 		load_save.emit()
+
+func load_tutorial():
+	get_tree().change_scene_to_file("res://Scenes/World_Scenes/TutorialGame.tscn")

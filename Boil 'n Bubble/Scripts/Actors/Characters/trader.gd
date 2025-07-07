@@ -8,6 +8,7 @@ extends Actor
 @onready var exit_target = $"../ExitTarget"
 
 @onready var stay_timer = $StayTimer
+@onready var launch_timer = $LaunchTimer
 
 signal left(success, reward)
 
