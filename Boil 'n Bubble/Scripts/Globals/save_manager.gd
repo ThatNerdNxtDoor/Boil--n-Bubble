@@ -3,18 +3,21 @@ extends Node
 #This save system uses a JSON system, so a helper class must be instantiated
 var json = JSON.new()
 #The const filepath used for making new files
-const FILE_PATH = "res://Assets/Data/SaveData/"
+const FILE_PATH = "user://SaveData/"
 #Stores what slot the save manager is currently managing
 var current_slot : String
 
 func save_game():
 	var date_time = Time.get_datetime_dict_from_system()
+	var dir_access = DirAccess.open(FILE_PATH)
+	print("dir_access: " + str(dir_access))
 	#If this is a new save, then it is given a name based on when it was made
 	if current_slot == "newgame":
 		var date = "%02d-%02d-%04d" % [date_time.day, date_time.month, date_time.year]
 		var time = "%02d-%02d" % [date_time.hour, date_time.minute]
 		current_slot = FILE_PATH + "BnB_" + date + "_" + time + ".json"
 	var save_file = FileAccess.open(current_slot, FileAccess.WRITE)
+	print("file_access: " + str(save_file))
 	var save_nodes = get_tree().get_nodes_in_group("Persistent")
 	
 	save_file.store_line("{")

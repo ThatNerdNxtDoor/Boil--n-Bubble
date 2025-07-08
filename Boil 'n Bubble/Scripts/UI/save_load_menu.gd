@@ -18,7 +18,7 @@ func load_slots():
 	for child in save_container.get_children():
 		save_container.remove_child(child)
 		child.queue_free()
-	var save_directory = DirAccess.open("res://Assets/Data/SaveData")
+	var save_directory = DirAccess.open("user://SaveData")
 	var save_files = save_directory.get_files()
 	print(save_files)
 	for file in save_files:
@@ -28,7 +28,7 @@ func load_slots():
 		save_container.add_child(new_slot)
 
 func select_slot(file : String):
-	selected_file = "res://Assets/Data/SaveData/" + file
+	selected_file = "user://SaveData/" + file
 	save_title.text = "[center]" + file
 	var metadata : Dictionary = SaveManager.get_file_metadata(selected_file)
 	save_data.text = "Save Date: " + metadata["date saved"] + "\nVersion: " + metadata["version"]
