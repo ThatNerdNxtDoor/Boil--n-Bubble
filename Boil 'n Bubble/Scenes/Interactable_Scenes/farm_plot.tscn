@@ -13,6 +13,7 @@ size = Vector3(2, 2, 2)
 [node name="FarmPlot" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_ktnkk")
 object_name = "farm"
+interact_text = "Farm Plot"
 
 [node name="PlanterHitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638545, 0)

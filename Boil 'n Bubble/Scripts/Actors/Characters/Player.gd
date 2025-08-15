@@ -28,6 +28,7 @@ var step_audio_player
 var step_timer
 var launch_timer
 
+#
 @onready var ui_master_node = $Pivot/PlayerUI
 var ui_interact
 var ui_notebook
@@ -38,6 +39,8 @@ var open_paper
 var open_window
 
 var potion_child : PackedScene = load("res://Scenes/Generics/ActiveGenericPotion.tscn")
+
+@onready var status_manager : StatusManager = $PlayerStatusFXHandler
 
 #Player Variables
 var max_health
@@ -113,26 +116,12 @@ func _process(delta):
 		var body = raycast.get_collider()
 		if body == null:
 			ui_interact.hide()
-			null
 			#Do nothing
 		#If object can be interacted with
 		elif body.has_method("interaction"):
 			ui_interact.show()
 			# Change Tooltip depending on what it is
-			if "mat_datalist" in body:
-				ui_interact.text = "[center](E) Pick Up[/center]"
-			elif "object_name" in body:
-				match(body.object_name):
-					"cauldron":
-						ui_interact.text = "[center](E) Add to Cauldron[/center]"
-					"nozzle":
-						ui_interact.text = "[center](E) Pour Mixture[/center]"
-					"paper_post":
-						ui_interact.text = "[center](E) Read[/center]"
-					"NPC":
-						ui_interact.text = "[center](E) Talk[/center]"
-					_: #Default
-						ui_interact.text = "[center](E) Interact[/center]"
+			ui_interact.text = "[center](E) " + body.get_interact_text() + "[/center]"
 			# If player interacts with object
 			if Input.is_action_just_pressed("interact") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 				body.interaction(self)
@@ -276,29 +265,26 @@ func consume_held():
 		print(aspect)
 		match(aspect):
 			"Fire":
-				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .1))
+				status_manager.add_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .1), 0)
 			"Healing":
 				curr_health = clamp(curr_health + (item_datalist["potency"] * 1.2), 1, max_health)
 			"Poison":
-				apply_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .25))
+				status_manager.add_effect(aspect, 5, 2, 3 + (item_datalist["potency"] * .25), 0)
 			"Harmful_Consumption": #General tag for ingredients not safe to eat.
 				#Any healing ingredient will nullify this effect.
 				if item_datalist["aspect"].find("Healing") != -1:
-					curr_health = curr_health - (item_datalist["potency"] * .25)
+					damage((item_datalist["potency"] * .25))
 	for effect in item_datalist["effect"]:
 		print(effect)
 		match(effect):
 			"Wind":
-				jump_factor = 1 + (item_datalist["potency"] * .05)
-				apply_effect(effect, 1, 10, 0)
+				var j_modifier = (item_datalist["potency"] * .05)
+				jump_factor = 1 + j_modifier
+				status_manager.add_effect("Wind", 1, 10, 0, j_modifier)
 			"Shrink":
-				global_scale(Vector3(.5, .5, .5))
-				apply_effect("Shrink", 1, 6 + item_datalist["potency"] / 2, 0)
+				status_manager.add_effect("Shrink", 1, 6 + item_datalist["potency"] / 2, 0, 0)
 			"Dizzy":
-				vel_clamp = false
-				clampable = false
-				speed_factor = speed_factor - .8
-				apply_effect("Dizzy", 1, 10, 0)
+				status_manager.add_effect("Dizzy", 1, 10, 0, 0)
 			"Light":
 				pass
 	#Remove item from inventory
@@ -306,21 +292,9 @@ func consume_held():
 	print("Done")
 
 # Applies Effect
-var counter = 0
-var effect_timers = {}
-func apply_effect(effect, repeats, duration, damage):
-	# Define Timer
-	var timer = Timer.new()
-	timer.wait_time = duration
-	timer.autostart = true
-	# Bind timeout and DOT (if any) functions to it
-	if (damage != 0):
-		timer.timeout.connect(damage_over_time.bind(damage))
-	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect))
-	#Add timer to timer list, 
-	effect_timers[counter] = {repeat = repeats, timer = timer}
-	add_child(timer)
-	counter += 1
+#TODO: move stat mods to here or to status manager
+func apply_effect(effect, repeats, duration, damage, potency):
+	status_manager.add_status(effect, repeats, duration, damage, potency)
 
 #Puts persistent data within a dictionary that is sent to the save manager
 func save():
@@ -332,6 +306,7 @@ func save():
 		"rotation": [rotation_pivot.rotation_degrees.x, rotation_pivot.rotation_degrees.y, rotation_pivot.rotation_degrees.z],
 		"velocity": [velocity.x, velocity.y,velocity.z],
 		"vel_clamp": vel_clamp,
+		"active_effects": status_manager.status_save_data(),
 		"collectibles": ui_master_node.collectibles
 	}
 	return save_dictionary
@@ -345,33 +320,42 @@ func load_save(node_load_data : Dictionary):
 	rotation_pivot.rotation_degrees = Vector3(node_load_data["rotation"][0], node_load_data["rotation"][1], node_load_data["rotation"][2])
 	velocity = Vector3(node_load_data["velocity"][0], node_load_data["velocity"][1], node_load_data["velocity"][2])
 	vel_clamp = node_load_data["vel_clamp"]
+	var status_data = node_load_data["active_effects"]
+	for i in range(len(status_data)):
+		var fx = status_data[i][0]
+		status_manager.add_effect(fx.status, fx.repeat, fx.duration, fx.dot, fx.potency, status_data[i][1])
 	for item in node_load_data["collectibles"]:
 		if node_load_data["collectibles"][item]:
 			ui_master_node.unlock_collectible(item)
 
 #========================= Signal Recieving Functions =========================#
 
-# Time Out function
-func time_out_timer_statusef(id, statusef):
-	#Decrement the amount of repeat times. If at 0, the effect ends
-	effect_timers[id].repeat -= 1
-	if (effect_timers[id].repeat <= 0):
-		print("timeout")
-		#Look at the associated effect to see if anything needs to be undone 
-		match(statusef):
-			"Wind":
-				jump_factor = 1
-			"Shrink":
-				global_scale(Vector3(2, 2, 2))
-			"Dizzy":
-				clampable = true
-				speed_factor = speed_factor + .8
-		#Destroys the timer
-		effect_timers[id].timer.call_deferred("queue_free")
-		effect_timers.erase(id)
+## Time Out function for status effects
+#func time_out_timer_statusef(id, statusef):
+	#var status
+	#for fx in effect_timers:
+		#if fx.timer == id:
+			#status = fx
+			#break
+	##Decrement the amount of repeat times. If at 0, the effect ends
+	#status.repeat -= 1
+	#if (status.repeat <= 0):
+		#print("timeout")
+		##Look at the associated effect to see if anything needs to be undone 
+		#match(statusef):
+			#"Wind":
+				#jump_factor = 1
+			#"Shrink":
+				#global_scale(Vector3(2, 2, 2))
+			#"Dizzy":
+				#clampable = true
+				#speed_factor = speed_factor + .8
+		##Destroys the timer
+		#ui_master_node.remove_status(statusef)
+		#status.timer.call_deferred("queue_free")
+		#effect_timers.erase(status)
 
-# Damage Over Time Function
-func damage_over_time(damage):
+func damage(damage):
 	curr_health = clamp(curr_health - damage, 0, max_health)
 	audio_player.stream = damage_audio
 	audio_player.play()
@@ -381,7 +365,6 @@ func _on_kill_box_body_entered(body):
 
 func _on_launch_timer_timeout():
 	clampable = true
-
 
 #--------------------------------------------UI Windows---------------------------------------------
 

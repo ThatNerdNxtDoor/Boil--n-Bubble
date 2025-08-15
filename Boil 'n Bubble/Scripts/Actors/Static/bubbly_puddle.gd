@@ -38,13 +38,13 @@ func _on_aspect_timer_timeout():
 				match(aspect):
 					"Fire":
 						if target_body.has_method("apply_effect"):
-							target_body.apply_effect(aspect, 5, 2, (datalist["potency"] * .01))
+							target_body.apply_effect(aspect, 5, 2, (datalist["potency"] * .01), 0)
 					"Healing":
 						if (target_body is CharacterBody3D) and ("curr_health" in target_body):
 							target_body.curr_health = clamp(target_body.curr_health + (datalist["potency"] * .25), 1, target_body.max_health)
 					"Poison":
 						if target_body.has_method("apply_effect"):
-							target_body.apply_effect(aspect, 5, 2, (datalist["potency"] * .01))
+							target_body.apply_effect(aspect, 5, 2, (datalist["potency"] * .01), 0)
 		if target_body.has_method("check_weakness"):
 				target_body.check_weakness(datalist)
 	pass # Replace with function body.

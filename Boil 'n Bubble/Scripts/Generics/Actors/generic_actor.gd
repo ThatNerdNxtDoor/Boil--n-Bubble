@@ -111,7 +111,7 @@ func attack(action : String):
 # Applies Effect
 var counter = 0
 var effect_timers = {}
-func apply_effect(effect, repeats, duration, damage):
+func apply_effect(effect, repeats, duration, damage, potency):
 	# Define Timer
 	var timer = Timer.new()
 	timer.wait_time = duration
@@ -119,14 +119,14 @@ func apply_effect(effect, repeats, duration, damage):
 	# Bind timeout and DOT (if any) functions to it
 	if (damage != 0):
 		timer.timeout.connect(damage_over_time.bind(damage))
-	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect))
+	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect, potency))
 	#Add timer to timer list, 
-	effect_timers[counter] = {repeat = repeats, timer = timer}
+	effect_timers[counter] = {repeat = repeats, timer = timer, power = potency}
 	add_child(timer)
 	counter += 1
 
 # Time Out function
-func time_out_timer_statusef(id, statusef):
+func time_out_timer_statusef(id, statusef, potency):
 	#Decrement the amount of repeat times. If at 0, the effect ends
 	effect_timers[id].repeat -= 1
 	if (effect_timers[id].repeat == 0):

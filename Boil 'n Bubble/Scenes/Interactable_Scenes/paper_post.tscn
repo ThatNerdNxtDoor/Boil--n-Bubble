@@ -12,6 +12,7 @@ metadata/page_id = ""
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 script = ExtResource("2_wsjok")
 object_name = "paper_post"
+interact_text = "Read"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_dgeyq")

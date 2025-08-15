@@ -37,7 +37,7 @@ func interaction(caller):
 		print("Pick-Up Successful")
 		#Deal any pick up damage to the caller
 		if (caller is Player and pick_up_damage > 0):
-			caller.damage_over_time(pick_up_damage)
+			caller.damage(pick_up_damage)
 		#Prepare "respawn" timer
 		var timer = Timer.new()
 		timer.wait_time = duration

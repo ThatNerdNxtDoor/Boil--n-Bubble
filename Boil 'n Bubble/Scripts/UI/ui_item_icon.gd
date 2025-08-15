@@ -1,4 +1,5 @@
 extends ColorRect
+class_name UIItemIcon
 
 var border
 var picture

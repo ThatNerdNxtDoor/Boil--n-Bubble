@@ -16,6 +16,7 @@ signal left(success, reward)
 
 var object_name = "NPC"
 var npc_name = "Trader"
+var interact_text = "Talk"
 
 var dialogue_track = {
 	"Intro": {
@@ -78,6 +79,9 @@ func _process(delta):
 		for body in bodies:
 			if body is Player:
 				look_at(Vector3(body.global_position.x, self.global_position.y, body.global_position.z))
+
+func get_interact_text():
+	return interact_text
 
 func interaction(caller):
 	var item = PlayerInventory.inventory[PlayerInventory.holding_index]

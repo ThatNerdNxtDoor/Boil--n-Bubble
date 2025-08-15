@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmhkddncxcvk3"]
+
+[ext_resource type="Script" uid="uid://hbl8qapso1q6" path="res://Scripts/UI/ui_status_icon.gd" id="1_d5qxn"]
+[ext_resource type="Texture2D" uid="uid://d4ivejsn2ocmq" path="res://Assets/Sprites/StatusIcons/StatusIcon_Empty.png" id="2_d5qxn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnf0i"]
+bg_color = Color(0.19, 0.1463, 0.147028, 0.788235)
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="Animation" id="Animation_u2hmb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StatusPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d5qxn"]
+resource_name = "StatusPanelVanish"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StatusPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2hmb"]
+_data = {
+&"RESET": SubResource("Animation_u2hmb"),
+&"StatusPanelVanish": SubResource("Animation_d5qxn")
+}
+
+[node name="StatusIcon" type="ColorRect"]
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = -1
+anchor_left = -0.033
+anchor_top = -0.057
+anchor_right = 0.172
+anchor_bottom = 0.058
+offset_left = 1.016
+offset_top = -0.0639992
+offset_right = -0.144012
+offset_bottom = 0.416
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_d5qxn")
+
+[node name="StatusPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.157
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.105
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xnf0i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StatusPanel"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+anchor_left = 0.197
+anchor_top = 0.08
+anchor_right = 0.97
+anchor_bottom = 0.933
+offset_left = -0.00600052
+offset_right = -0.0600128
+offset_bottom = 0.0250015
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]Whatever you've consumed is wrecking the inside of your body"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PictureIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+anchor_right = 0.319
+anchor_bottom = 1.0
+offset_right = 0.034996
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_d5qxn")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u2hmb")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

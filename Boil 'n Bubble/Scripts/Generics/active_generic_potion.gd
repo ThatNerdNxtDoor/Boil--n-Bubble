@@ -61,13 +61,13 @@ func _on_body_entered(body):
 					match(aspect):
 						"Fire":
 							if target_body.has_method("apply_effect"):
-								target_body.apply_effect(aspect, 5, 2, 3 + (pot_datalist["potency"] * .1))
+								target_body.apply_effect(aspect, 5, 2, 3 + (pot_datalist["potency"] * .1), 0)
 						"Healing":
 							if (target_body is CharacterBody3D) and ("curr_health" in target_body):
 								target_body.curr_health = clamp(target_body.curr_health + (pot_datalist["potency"] * .25), 1, target_body.max_health)
 						"Poison":
 							if target_body.has_method("apply_effect"):
-								target_body.apply_effect(aspect, 5, 2, 3 + (pot_datalist["potency"] * .15))
+								target_body.apply_effect(aspect, 5, 2, 3 + (pot_datalist["potency"] * .15), 0)
 				for effect in pot_datalist["effect"]:
 					print(effect)
 					match(effect):
@@ -83,12 +83,11 @@ func _on_body_entered(body):
 							else: #Otherwise, apply force
 								target_body.apply_central_impulse((pot_datalist["potency"] * .75) * direction)
 						"Shrink":
-							target_body.global_scale(Vector3(.5, .5, .5))
-							target_body.apply_effect("Shrink", 1, 10, 0)
-						"Dizzy":
-							target_body.vel_clamp = false
-							target_body.clamplable = false
-							target_body.apply_effect("Dizzy", 1, 10, 0)
+							if target_body is not Player:
+								target_body.global_scale(Vector3(.5, .5, .5))
+							target_body.apply_effect("Shrink", 1, 10, 0, 0)
+						"Dizzy": #TODO: Maybe make fire do more damage?
+							pass
 						"Light":
 							pass
 			elif target_body.has_method("check_weakness"):

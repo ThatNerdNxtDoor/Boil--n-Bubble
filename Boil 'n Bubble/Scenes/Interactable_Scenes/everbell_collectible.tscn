@@ -21,6 +21,7 @@ point_count = 2
 [node name="EverbellCollectible" type="StaticBody3D" groups=["Persistent"]]
 script = ExtResource("1_sfaqk")
 object_name = "Everbell"
+interact_text = "Collect"
 metadata/_custom_type_script = "uid://d06j5x72x3yb7"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

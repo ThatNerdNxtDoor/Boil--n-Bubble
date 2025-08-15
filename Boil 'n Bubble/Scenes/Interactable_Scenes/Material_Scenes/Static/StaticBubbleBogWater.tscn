@@ -20,6 +20,7 @@ script = ExtResource("1_ios6d")
 mat_name = "bogwater"
 duration = 120
 object_name = "bogwater"
+interact_text = "Collect"
 metadata/_custom_type_script = "uid://11x84bwuil7o"
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]

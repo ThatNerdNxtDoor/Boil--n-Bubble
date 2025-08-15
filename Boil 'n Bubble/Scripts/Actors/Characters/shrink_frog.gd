@@ -145,7 +145,7 @@ func damage_over_time(damage):
 	if health == 0:
 		die()
 
-func apply_effect(effect, repeats, duration, damage):
+func apply_effect(effect, repeats, duration, damage, potency):
 	# Define Timer
 	var timer = Timer.new()
 	timer.wait_time = duration
@@ -159,7 +159,7 @@ func apply_effect(effect, repeats, duration, damage):
 	add_child(timer)
 	counter += 1
 
-func time_out_timer_statusef(id, statusef):
+func time_out_timer_statusef(id, statusef, potency):
 	#Decrement the amount of repeat times. If at 0, the effect ends
 	effect_timers[id].repeat -= 1
 	if (effect_timers[id].repeat <= 0):

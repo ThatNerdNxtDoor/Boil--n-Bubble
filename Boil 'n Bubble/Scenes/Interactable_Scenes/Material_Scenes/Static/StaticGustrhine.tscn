@@ -12,6 +12,7 @@ size = Vector3(1.2, 1.75, 1.2)
 script = ExtResource("1_cfe74")
 mat_name = "gustrhine"
 duration = 30
+interact_text = "Collect"
 
 [node name="Gusthrine" parent="." instance=ExtResource("2_h76p8")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

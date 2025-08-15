@@ -21,6 +21,8 @@ var icon_container
 var text_speed = 2
 var talking_npc
 #--------------------------------------------------------------------------------------------------#
+@export var ui_status_icon_packed : PackedScene
+@onready var status_tab : VBoxContainer = $Status
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,6 +64,18 @@ func unlock_collectible(collectible):
 	match(collectible):
 		"Everbell":
 			everbell_ui.visible = true
+
+func add_status(effect):
+	var new_icon = ui_status_icon_packed.instantiate()
+	status_tab.add_child(new_icon)
+	new_icon.set_status(effect)
+
+func remove_status(effect):
+	var children = status_tab.get_children()
+	for icon in children:
+		if icon.status == effect:
+			icon.queue_free()
+			return
 
 #==========================================Storage Window===========================================
 

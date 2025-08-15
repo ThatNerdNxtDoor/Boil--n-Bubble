@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=18 format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" uid="uid://dfxv0jydlhbag" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
 [ext_resource type="PackedScene" uid="uid://cjmtiu7shxvc7" path="res://Scenes/UI/UIItemIcon.tscn" id="2_t4vr5"]
 [ext_resource type="AudioStream" uid="uid://prpm66yksbui" path="res://Assets/SoundEffects/ever-bell.wav" id="3_bxyuu"]
+[ext_resource type="PackedScene" uid="uid://bmhkddncxcvk3" path="res://Scenes/UI/UIStatusIcon.tscn" id="3_st48x"]
 [ext_resource type="Texture2D" uid="uid://cgcllnr7tjlp1" path="res://Assets/Sprites/PostPaperNail.png" id="4_5khqi"]
 [ext_resource type="Texture2D" uid="uid://csc7tr47db5m0" path="res://Assets/Sprites/BellIconImage.png" id="5_ae4du"]
 
@@ -113,6 +114,7 @@ _data = {
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_njjc1")
 ui_icon_packed = ExtResource("2_t4vr5")
+ui_status_icon_packed = ExtResource("3_st48x")
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bxyuu")
@@ -155,6 +157,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ghg8g")
 value = 100.0
 fill_mode = 3
 show_percentage = false
+
+[node name="Status" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.032
+anchor_right = 0.225
+anchor_bottom = 0.656
+offset_left = 0.440002
+offset_top = 0.264
+offset_right = -0.200012
+offset_bottom = -0.0880127
+alignment = 2
 
 [node name="Hotbar" type="GridContainer" parent="."]
 anchors_preset = -1

@@ -11,6 +11,7 @@ script = ExtResource("1_ahxj0")
 mat_name = "floattail"
 duration = 60
 object_name = "floattail"
+interact_text = "Harvest"
 metadata/_custom_type_script = "uid://11x84bwuil7o"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

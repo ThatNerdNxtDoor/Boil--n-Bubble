@@ -10,6 +10,7 @@ height = 0.332234
 [node name="ShrinkShroom" type="RigidBody3D"]
 script = ExtResource("1_sx61o")
 mat_name = "shrshroom"
+interact_text = "Pick Up"
 metadata/_custom_type_script = "uid://b4fdm04m6bn7o"
 
 [node name="PhysicsCollisionShape" type="CollisionShape3D" parent="."]

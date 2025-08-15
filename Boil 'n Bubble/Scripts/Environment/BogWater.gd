@@ -14,17 +14,15 @@ func _on_body_entered(body):
 		if body is Actor:
 			body.speed_factor = body.speed_factor * .5
 			body.jump_factor = body.jump_factor * .5
-		else:
-			body.speed_factor = body.speed_factor * .1
-			body.jump_factor = body.jump_factor * .1
+		else: #Player
+			body.status_manager.add_static_effect("Bog")
 	pass # Replace with function body.
 
 func _on_body_exited(body):
 	if body.get_class() == "CharacterBody3D":
-		body.speed_factor = body.speed_factor / .1
-		body.jump_factor = body.jump_factor / .1
-		if body.jump_factor > 1:
-			body.jump_factor = 1
-		if body.speed_factor > 1:
-			body.speed_factor = 1
+		if body is Actor:
+			body.speed_factor = body.speed_factor / .5
+			body.jump_factor = body.jump_factor / .5
+		else: #Player
+			body.status_manager.remove_effect("Bog")
 	pass # Replace with function body.

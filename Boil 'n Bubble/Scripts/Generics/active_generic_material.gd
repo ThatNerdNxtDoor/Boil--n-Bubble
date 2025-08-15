@@ -3,6 +3,7 @@ class_name ActiveMaterial
 
 @export var mat_name : String
 var mat_datalist
+
 # DataList { 
 #   name (or some other way to identify it),
 #   color (rgb value that effects the color of the mixture)m

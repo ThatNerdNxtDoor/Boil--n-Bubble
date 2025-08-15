@@ -2,6 +2,7 @@ extends StaticBody3D
 class_name StaticInteractable
 
 @export var object_name : String
+@export var interact_text : String = "Interact"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,3 +15,6 @@ func _process(delta):
 #Interaction function for raycasting
 func interaction(caller):
 	print("Interaction")
+
+func get_interact_text():
+	return interact_text

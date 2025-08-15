@@ -23,6 +23,7 @@ point_count = 2
 script = ExtResource("1_g6f71")
 mat_name = "mix_mint"
 duration = 90
+interact_text = "Harvest"
 
 [node name="MixtureMint" parent="." instance=ExtResource("2_7hj8a")]
 transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, -0.0316806, 0, 0)
