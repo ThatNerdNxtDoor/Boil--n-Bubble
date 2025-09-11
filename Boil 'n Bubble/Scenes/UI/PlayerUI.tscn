@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene load_steps=19 format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" uid="uid://dfxv0jydlhbag" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
@@ -22,6 +22,18 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghg8g"]
 bg_color = Color(0.929412, 0.207843, 0.2, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st48x"]
+bg_color = Color(0.2046, 0.93, 0.22878, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -143,17 +155,35 @@ visible = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = -1
 anchors_preset = -1
-anchor_left = 0.03
+anchor_left = 0.015
 anchor_top = 0.665
-anchor_right = 0.115
+anchor_right = 0.069
 anchor_bottom = 0.965
-offset_left = -0.560001
-offset_top = 0.0799866
-offset_right = 0.520004
-offset_bottom = -0.320007
+offset_left = -1.28
+offset_top = 1.07999
+offset_right = -0.488007
+offset_bottom = 0.679993
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_8v31v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ghg8g")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.665
+anchor_right = 0.13
+anchor_bottom = 0.966
+offset_left = -0.552002
+offset_top = 1.07999
+offset_right = 0.23999
+offset_bottom = 0.0319824
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8v31v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_st48x")
 value = 100.0
 fill_mode = 3
 show_percentage = false

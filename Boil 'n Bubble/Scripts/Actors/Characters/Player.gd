@@ -27,12 +27,14 @@ var damage_audio = preload("res://Assets/SoundEffects/take_damage.wav")
 var step_audio_player
 var step_timer
 var launch_timer
+var stamina_stasis_timer
 
 #
 @onready var ui_master_node = $Pivot/PlayerUI
 var ui_interact
 var ui_notebook
 var ui_health_bar
+var ui_stamina_bar
 var ui_death_screen
 var ui_papers
 var open_paper
@@ -45,6 +47,10 @@ var potion_child : PackedScene = load("res://Scenes/Generics/ActiveGenericPotion
 #Player Variables
 var max_health
 var curr_health
+var max_stamina
+var curr_stamina
+var stamina_regen_factor
+var sprinting
 var dead
 var speed_factor
 var jump_factor
@@ -65,15 +71,21 @@ func _ready():
 	step_audio_player = $StepAudioPlayer
 	step_timer = $StepTimer
 	launch_timer = $LaunchTimer
+	stamina_stasis_timer = $StaminaTimer
 	
 	ui_interact = $Pivot/PlayerUI/RichTextLabel
 	ui_notebook = $Pivot/PlayerUI/NotebookMenu
 	ui_health_bar = $Pivot/PlayerUI/HealthBar
+	ui_stamina_bar = $Pivot/PlayerUI/StaminaBar
 	ui_death_screen = $Pivot/PlayerUI/DeadPanel
 	ui_papers = $Pivot/PlayerUI/CloseUpPapers
 	
 	max_health = 100
 	curr_health = max_health
+	max_stamina = 100
+	curr_stamina = max_stamina
+	stamina_regen_factor = 1
+	sprinting = true
 	dead = false
 	speed_factor = 1
 	jump_factor = 1
@@ -128,12 +140,13 @@ func _process(delta):
 	else:
 		ui_interact.hide()
 	
-	#Update health bar, and check if the player is dead
-	ui_health_bar.value = curr_health
+	#Update health bar and stamina bar, and check if the player is dead
+	ui_health_bar.value = curr_health / max_health * 100
 	if (curr_health <= 0 and !dead):
 		dead = true
 		ui_death_screen.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	ui_stamina_bar.value = curr_stamina / max_stamina * 100
 	
 	#Get Inputs, determine based on if mouse is captured
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -168,6 +181,19 @@ func _process(delta):
 		else:
 			held_item.visible = false
 		
+		#Sprinting
+		sprinting = Input.is_action_pressed("sprint") and curr_stamina > 0 and stamina_stasis_timer.time_left <= 0
+		if sprinting:
+			curr_stamina = clamp(curr_stamina - (.2), 0, max_stamina)
+			if curr_stamina <= 0:
+				stamina_stasis_timer.start()
+				ui_stamina_bar.modulate = Color(.5, 0, 0)
+		else:
+			if stamina_stasis_timer.time_left <= 0:
+				curr_stamina = clamp(curr_stamina + (0.1 * stamina_regen_factor), 0, max_stamina)
+				if ui_stamina_bar.modulate == Color(.5, 0, 0):
+					ui_stamina_bar.modulate = Color(1, 1, 1)
+		
 		# Player Throw/Consume Actions (maybe change inputs?)
 		if Input.is_action_just_pressed("drop-throw"):
 			if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
@@ -201,7 +227,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY * jump_factor
 
 	# Get the input direction and handle the movement/deceleration.
-	var speed = (BASE_SPEED * speed_factor)
+	var speed = ((BASE_SPEED + (1.25 if sprinting else 0)) * speed_factor) 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -222,8 +248,6 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, speed)
 		else:
 			pass
-			#velocity.x += move_toward(velocity.x, 0, speed)
-			#velocity.z += move_toward(velocity.z, 0, speed)
 	move_and_slide()
 
 #------------------------------ Other Function(s) ------------------------------

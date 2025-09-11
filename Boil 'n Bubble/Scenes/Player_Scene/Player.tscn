@@ -36,6 +36,10 @@ one_shot = true
 [node name="LaunchTimer" type="Timer" parent="."]
 wait_time = 0.25
 
+[node name="StaminaTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
 
