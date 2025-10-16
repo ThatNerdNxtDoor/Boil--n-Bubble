@@ -80,15 +80,15 @@ func _ready():
 	ui_death_screen = $Pivot/PlayerUI/DeadPanel
 	ui_papers = $Pivot/PlayerUI/CloseUpPapers
 	
-	max_health = 100
+	max_health = 100.0
 	curr_health = max_health
-	max_stamina = 100
+	max_stamina = 100.0
 	curr_stamina = max_stamina
-	stamina_regen_factor = 1
+	stamina_regen_factor = 1.0
 	sprinting = true
 	dead = false
-	speed_factor = 1
-	jump_factor = 1
+	speed_factor = 1.0
+	jump_factor = 1.0
 	
 	vel_clamp = false
 	clampable = true
@@ -141,7 +141,7 @@ func _process(delta):
 		ui_interact.hide()
 	
 	#Update health bar and stamina bar, and check if the player is dead
-	ui_health_bar.value = curr_health / max_health * 100
+	ui_health_bar.value = (curr_health / max_health) * 100
 	if (curr_health <= 0 and !dead):
 		dead = true
 		ui_death_screen.visible = true
@@ -227,7 +227,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY * jump_factor
 
 	# Get the input direction and handle the movement/deceleration.
-	var speed = ((BASE_SPEED + (1.25 if sprinting else 0)) * speed_factor) 
+	var speed = ((BASE_SPEED + (1.25 if sprinting else 0.0)) * speed_factor) 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -317,8 +317,8 @@ func consume_held():
 
 # Applies Effect
 #TODO: move stat mods to here or to status manager
-func apply_effect(effect, repeats, duration, damage, potency):
-	status_manager.add_status(effect, repeats, duration, damage, potency)
+func apply_effect(effect, repeats, duration, damage_amnt, potency):
+	status_manager.add_effect(effect, repeats, duration, damage_amnt, potency)
 
 #Puts persistent data within a dictionary that is sent to the save manager
 func save():
@@ -379,8 +379,8 @@ func load_save(node_load_data : Dictionary):
 		#status.timer.call_deferred("queue_free")
 		#effect_timers.erase(status)
 
-func damage(damage):
-	curr_health = clamp(curr_health - damage, 0, max_health)
+func damage(damage_amnt):
+	curr_health = clamp(curr_health - damage_amnt, 0, max_health)
 	audio_player.stream = damage_audio
 	audio_player.play()
 

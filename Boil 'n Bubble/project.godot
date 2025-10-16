@@ -13,7 +13,7 @@ config_version=5
 config/name="Boil 'n Bubble"
 config/version="0.1.541"
 run/main_scene="res://Scenes/World_Scenes/title_page.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

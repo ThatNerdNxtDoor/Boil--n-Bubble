@@ -119,4 +119,27 @@
 		"potency": -2,
 		"complexity": -2
 	}
+	,
+	
+	"gintonic": {
+		"name" : "Ginnetonic",
+		"icon": "res://Assets/Sprites/Wine.png",
+		"type": "Plant",
+		"color": [151, 47, 102],
+		"aspect": ["Stamina"],
+		"effect": ["None"],
+		"potency": 5,
+		"complexity": 1
+	}
+	,
+	"cordysseus": {
+		"name" : "Cordysseus",
+		"icon": "res://Assets/Sprites/Wine.png",
+		"type": "Plant",
+		"color": [151, 47, 102],
+		"aspect": ["StaminaRegen"],
+		"effect": ["None"],
+		"potency": 5,
+		"complexity": 2
+	}
 }

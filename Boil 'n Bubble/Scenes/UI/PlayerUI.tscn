@@ -348,8 +348,8 @@ offset_top = 0.0230026
 offset_right = 0.15213
 offset_bottom = -0.0659943
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/normal_font_size = 1
+theme_override_font_sizes/bold_italics_font_size = 24
 bbcode_enabled = true
 text = "[center][i][b]Alchemist's First Field Guide"
 scroll_active = false
@@ -366,9 +366,9 @@ offset_top = -0.0269928
 offset_right = 0.128479
 offset_bottom = 0.275009
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 1
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 12
-theme_override_font_sizes/normal_font_size = 1
 bbcode_enabled = true
 text = "[center][i]An introductory pamphlet by Josef L. Steinberg,
 for budding brewers and adventure-seeking alchemists."
@@ -386,9 +386,9 @@ offset_top = 0.208008
 offset_right = 0.112488
 offset_bottom = -0.245972
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 1
 theme_override_font_sizes/bold_italics_font_size = 10
 theme_override_font_sizes/italics_font_size = 10
-theme_override_font_sizes/normal_font_size = 1
 bbcode_enabled = true
 text = "[left][i][u]Ingredients[/u]
 	Ingredients comprise of 4 properites - [color=\"maroon\"]Aspects[/color], [color=\"dark green\"]Effects[/color], [color=\"red\"]Potency[/color], and [color=\"purple\"]Complexity[/color]. [color=\"maroon\"]Aspects[/color] are the general 'elements' of an ingredient, and determine the main purpose of the ingredient, such as fire or healing. While uncommon, an ingredient can have more than one aspect, or even none at all. [color=\"dark green\"]Effects[/color] affect the stats or capabilities of potions and consumers. Like Aspects, an ingredient can have one or more or no Effects. [color=\"red\"]Potency[/color] is the 'power' of the ingredient. The more potent an ingredient or mixture is, the more power every part of it will have. You can consume the ingredient raw to get an idea of its properties... if you're brave enough to bear the possible consequences.
@@ -424,7 +424,7 @@ offset_bottom = 60.84
 
 [node name="ChestContainer" type="HBoxContainer" parent="StorageWindow/ChestWindow"]
 custom_minimum_size = Vector2(800, 0)
-layout_mode = 2
+layout_mode = 0
 anchor_top = 0.266
 anchor_right = 0.998
 anchor_bottom = 0.696

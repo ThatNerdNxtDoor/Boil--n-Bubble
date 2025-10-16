@@ -108,7 +108,7 @@ func _on_body_entered(body):
 		$PhysicsCollisionShape.queue_free()
 		potion_bottle.hide()
 		potion_light.hide()
-		break_particles.mesh.material.set_albedo(Color(pot_datalist["color"][0], pot_datalist["color"][1], pot_datalist["color"][2], 1))
+		break_particles.mesh.material.set_albedo(Color(pot_datalist["color"][0]/255.0, pot_datalist["color"][1]/255.0, pot_datalist["color"][2]/255.0, 1))
 		print(break_particles.mesh.material.get_albedo())
 		break_particles.emitting = true
 		audio_player.play()

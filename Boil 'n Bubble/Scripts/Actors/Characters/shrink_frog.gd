@@ -91,8 +91,8 @@ func general_movement_calculation():
 				velocity.y = jump_velocity * jump_factor #normal jump
 			else: #walk (or fly)
 				if !vel_clamp: #Flying from jump
-					velocity.x += current_agent_position.direction_to(nav_agent.target_position).x * (movement_speed * (speed_factor / 3))
-					velocity.z += current_agent_position.direction_to(nav_agent.target_position).z * (movement_speed * (speed_factor / 3))
+					velocity.x += current_agent_position.direction_to(nav_agent.target_position).x * (movement_speed * (speed_factor / 3.0))
+					velocity.z += current_agent_position.direction_to(nav_agent.target_position).z * (movement_speed * (speed_factor / 3.0))
 				else: #Normal Walking
 					if animation_state.get_current_node() != "Armature|Walk":
 						animation_state.travel("Armature|Walk")
@@ -113,7 +113,7 @@ func attack(action : String):
 				print(body)
 				if body.has_method("apply_effect") && body != self:
 					body.global_scale(Vector3(.5, .5, .5))
-					body.apply_effect("Shrink", 1, 10, 0)
+					body.apply_effect("Shrink", 1, 10, 0, 0)
 
 func save():
 	var save_dictionary = {
