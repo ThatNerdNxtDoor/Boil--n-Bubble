@@ -1,7 +1,13 @@
-# Boil 'n Bubble
- Made for the EKU Game Design Capstone. Made by Isaiah Thompson, Jacob Dinwiddie, and Amanda Nokes.
-Adventure/Puzzle Game where you experiment with ingredients to discover their powers and brew potions to explore the untouched frontier that you have ventured to.
+<h1>Boil 'n Bubble</h1>
 
-Isaiah Thompson - Programming
-Amanda Nokes - 3D Modelling
-Jacob Dinwiddie - 2D Art, Level Design
+<p>An Alchemy-based Adventure/Puzzle Game where you explore an untocuhed frontier and experiment with its various ingredients. Brew potions and discover ways to delve deeper into a mystical wilderness.</p>
+
+<p>Original build made for the EKU Game Design Capstone (Spring 2024) by Isaiah Thompson, Jacob Dinwiddie, and Amanda Nokes.</p>
+
+<h3>Credits for Spring 2024 Build</h3>
+<p>Isaiah Thompson - Programming</p>
+<p>Amanda Nokes - 3D Modelling, Level Design</p>
+<p>Jacob Dinwiddie - 2D Art, Level Design</p>
+
+<h3>All development after Spring 2024 is done independently by Isaiah Thompson.</h3>
+
