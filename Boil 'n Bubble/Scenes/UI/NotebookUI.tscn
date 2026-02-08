@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsqkxsn83fp10"]
+[gd_scene format=3 uid="uid://dsqkxsn83fp10"]
 
 [ext_resource type="Script" uid="uid://rhpigwh170y7" path="res://Scripts/UI/notebook_menu.gd" id="1_4scrc"]
 [ext_resource type="Texture2D" uid="uid://dp2ffmmqxnfrj" path="res://Assets/Sprites/Gear.png" id="2_0rxit"]
@@ -46,13 +46,13 @@ bg_color = Color(1, 0.831373, 0.592157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_misjq"]
 bg_color = Color(1, 0.831373, 0.592157, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp0yq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="NotebookMenu" type="Panel"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilpr3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="NotebookMenu" type="Panel" unique_id=1667551209]
 anchors_preset = -1
 anchor_left = 0.14
 anchor_top = 0.049
@@ -67,7 +67,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8yt5u")
 script = ExtResource("1_4scrc")
 
-[node name="NotesButton" type="Button" parent="."]
+[node name="NotesButton" type="Button" parent="." unique_id=1840861598]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.066
@@ -78,10 +78,10 @@ offset_left = -34.89
 offset_top = 0.138
 offset_right = -34.8
 offset_bottom = 0.0559998
-theme_override_styles/hover = SubResource("StyleBoxFlat_5lqrq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lqrq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5lqrq")
 
-[node name="NotesTexture" type="TextureRect" parent="NotesButton"]
+[node name="NotesTexture" type="TextureRect" parent="NotesButton" unique_id=871177588]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.033
@@ -96,7 +96,7 @@ mouse_filter = 2
 texture = ExtResource("2_wl5ub")
 expand_mode = 1
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="SettingsButton" type="Button" parent="." unique_id=2103876968]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.066
@@ -107,10 +107,10 @@ offset_left = -4.89001
 offset_top = 0.0660095
 offset_right = -4.8
 offset_bottom = -0.0159912
-theme_override_styles/hover = SubResource("StyleBoxFlat_6tbry")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6tbry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6tbry")
 
-[node name="SettingsTexture" type="TextureRect" parent="SettingsButton"]
+[node name="SettingsTexture" type="TextureRect" parent="SettingsButton" unique_id=458480477]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.033
@@ -125,12 +125,12 @@ mouse_filter = 2
 texture = ExtResource("2_0rxit")
 expand_mode = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1661835295]
 stream = ExtResource("2_dbftj")
 volume_db = -27.0
 bus = &"SFX"
 
-[node name="Notes" type="Control" parent="."]
+[node name="Notes" type="Control" parent="." unique_id=427386213]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,7 +140,7 @@ offset_bottom = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Page1" type="Control" parent="Notes"]
+[node name="Page1" type="Control" parent="Notes" unique_id=318219838]
 layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -149,14 +149,14 @@ offset_top = 6.0
 offset_right = -5.49994
 offset_bottom = -6.99997
 
-[node name="Notes" type="Panel" parent="Notes/Page1"]
+[node name="Notes" type="Panel" parent="Notes/Page1" unique_id=841526154]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
 
-[node name="PageText" type="TextEdit" parent="Notes/Page1/Notes"]
+[node name="PageText" type="TextEdit" parent="Notes/Page1/Notes" unique_id=1591865813]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -168,14 +168,16 @@ offset_top = 0.174988
 offset_right = 0.119995
 offset_bottom = 0.0599976
 grow_vertical = 0
-theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
+wrap_mode = 1
+indent_wrapped_lines = true
 
-[node name="PreviousButton" type="Button" parent="Notes/Page1/Notes"]
+[node name="PreviousButton" type="Button" parent="Notes/Page1/Notes" unique_id=470411113]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -186,15 +188,15 @@ offset_left = -0.120001
 offset_top = 0.154938
 offset_right = 0.0039978
 offset_bottom = -0.105042
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
 icon = ExtResource("4_c1260")
 expand_icon = true
 
-[node name="ItemIcon" parent="Notes/Page1/Notes" instance=ExtResource("2_h73cw")]
+[node name="ItemIcon" parent="Notes/Page1/Notes" unique_id=325228115 instance=ExtResource("2_h73cw")]
 layout_mode = 1
 anchor_left = 0.377
 anchor_top = 0.013
@@ -208,7 +210,7 @@ grow_horizontal = 1
 grow_vertical = 1
 purpose = "notebook"
 
-[node name="PageNumber" type="RichTextLabel" parent="Notes/Page1/Notes"]
+[node name="PageNumber" type="RichTextLabel" parent="Notes/Page1/Notes" unique_id=1513044827]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.052
@@ -224,7 +226,7 @@ theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "[left][b]1[/b][/left]"
 
-[node name="Page2" type="Control" parent="Notes"]
+[node name="Page2" type="Control" parent="Notes" unique_id=1448975540]
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 1.0
@@ -234,14 +236,14 @@ offset_top = 7.0
 offset_right = -8.99988
 offset_bottom = -6.99997
 
-[node name="Notes" type="Panel" parent="Notes/Page2"]
+[node name="Notes" type="Panel" parent="Notes/Page2" unique_id=712626801]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4t708")
 
-[node name="PageText" type="TextEdit" parent="Notes/Page2/Notes"]
+[node name="PageText" type="TextEdit" parent="Notes/Page2/Notes" unique_id=197493016]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -252,14 +254,16 @@ offset_left = 0.0979996
 offset_top = 0.174988
 offset_right = 0.119995
 offset_bottom = 0.170013
-theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.392157, 0.392157, 0.392157, 1)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_misjq")
 placeholder_text = "Take some notes..."
+wrap_mode = 1
+indent_wrapped_lines = true
 
-[node name="NextButton" type="Button" parent="Notes/Page2/Notes"]
+[node name="NextButton" type="Button" parent="Notes/Page2/Notes" unique_id=260895067]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.739
@@ -270,15 +274,15 @@ offset_left = -0.0339966
 offset_top = 0.154968
 offset_right = 0.0899658
 offset_bottom = -0.105011
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.411765, 0.301961, 0.160784, 1)
 theme_override_colors/font_focus_color = Color(0.411765, 0.301961, 0.160784, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_pp0yq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilpr3")
 icon = ExtResource("2_va2tu")
 expand_icon = true
 
-[node name="ItemIcon" parent="Notes/Page2/Notes" instance=ExtResource("2_h73cw")]
+[node name="ItemIcon" parent="Notes/Page2/Notes" unique_id=716215931 instance=ExtResource("2_h73cw")]
 layout_mode = 1
 anchor_left = 0.377
 anchor_top = 0.013
@@ -292,7 +296,7 @@ grow_horizontal = 1
 grow_vertical = 1
 purpose = "notebook"
 
-[node name="PageNumber" type="RichTextLabel" parent="Notes/Page2/Notes"]
+[node name="PageNumber" type="RichTextLabel" parent="Notes/Page2/Notes" unique_id=578473568]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.818
@@ -308,7 +312,7 @@ theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 text = "[right][b]2[/b][/right]"
 
-[node name="Settings" parent="." instance=ExtResource("6_8cru4")]
+[node name="Settings" parent="." unique_id=555494705 instance=ExtResource("6_8cru4")]
 visible = false
 layout_mode = 1
 

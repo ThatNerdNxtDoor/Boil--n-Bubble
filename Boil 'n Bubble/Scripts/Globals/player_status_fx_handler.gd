@@ -4,6 +4,8 @@ class_name StatusManager
 @onready var ui_master_node = $"../Pivot/PlayerUI"
 @onready var player : Player = $".."
 
+@onready var particle_emitter : PackedScene = load("res://Scenes/Generics/StatusParticles.tscn")
+
 var status_fx = []
 #status effect structure:
 #{
@@ -50,7 +52,7 @@ func add_effect(effect, repeats, duration, dot, power, timer_def = -1):
 	timer.wait_time = duration
 	timer.autostart = true
 	if timer_def > 0:
-		timer.time_left
+		timer.time_left = timer_def
 	# Bind timeout and DOT (if any) functions to it
 	if (dot != 0):
 		timer.timeout.connect(damage_over_time.bind(dot))
@@ -59,6 +61,11 @@ func add_effect(effect, repeats, duration, dot, power, timer_def = -1):
 	remove_effect(effect)
 	#Add effect to status list,
 	status_fx.append({repeat = repeats, timer = timer, duration = duration, status = effect, dot = dot, power = power})
+	#Add particle effect
+	#var particle = particle_emitter.Instantiate()
+	#particle.define_status(effect)
+	#timer.add_child(particle)
+	#Add and activate timer
 	add_child(timer)
 	#counter += 1
 	#TODO: Maybe use effect timers to give list of effects? what about environmental ones like mud?
