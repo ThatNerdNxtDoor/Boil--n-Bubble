@@ -3,12 +3,15 @@ extends Control
 var menu_panel
 var settings_page
 var load_page
+var version_label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_panel = $SettingsPanel
 	settings_page = $SettingsPanel/MenuSpine/Settings
 	load_page = $SettingsPanel/MenuSpine/LoadPanel
+	version_label = $VersionLabel
+	version_label.text = "v" + ProjectSettings.get_setting("application/config/version")
 	pass # Replace with function body.
 
 

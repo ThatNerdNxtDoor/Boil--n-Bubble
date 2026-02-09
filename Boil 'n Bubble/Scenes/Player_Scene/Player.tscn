@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjd4xkikihqr"]
+[gd_scene format=3 uid="uid://cjd4xkikihqr"]
 
 [ext_resource type="Script" uid="uid://dfqmewtfdyxco" path="res://Scripts/Actors/Characters/Player.gd" id="1_47kuh"]
 [ext_resource type="PackedScene" uid="uid://bfbwkcnkeo72l" path="res://Scenes/UI/PlayerUI.tscn" id="2_5rmy3"]
@@ -12,16 +12,17 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ykgbw"]
 
-[node name="Player" type="CharacterBody3D" groups=["Persistent"]]
+[node name="Player" type="CharacterBody3D" unique_id=105272398 groups=["Persistent"]]
 script = ExtResource("1_47kuh")
 
-[node name="PlayerInventory" type="Node3D" parent="."]
+[node name="PlayerInventory" type="Node3D" parent="." unique_id=2042908435]
 script = ExtResource("2_sbxtm")
 
-[node name="PlayerStatusFXHandler" type="Node3D" parent="."]
+[node name="PlayerStatusFXHandler" type="Node3D" parent="." unique_id=1726968062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("3_wjrlp")
 
-[node name="StepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="StepAudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1635690017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.270011, 0)
 stream = ExtResource("3_e6r8s")
 volume_db = -30.0
@@ -29,52 +30,52 @@ unit_size = 1.0
 max_db = 0.0
 max_polyphony = 4
 
-[node name="StepTimer" type="Timer" parent="."]
+[node name="StepTimer" type="Timer" parent="." unique_id=478174354]
 wait_time = 0.3
 one_shot = true
 
-[node name="LaunchTimer" type="Timer" parent="."]
+[node name="LaunchTimer" type="Timer" parent="." unique_id=882170469]
 wait_time = 0.25
 
-[node name="StaminaTimer" type="Timer" parent="."]
+[node name="StaminaTimer" type="Timer" parent="." unique_id=1093330504]
 wait_time = 3.0
 one_shot = true
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="Pivot" type="Node3D" parent="." unique_id=779876668]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6162, 0)
 
-[node name="HeldPotionBottle" parent="Pivot" instance=ExtResource("4_qc7co")]
+[node name="HeldPotionBottle" parent="Pivot" unique_id=1942944630 instance=ExtResource("4_qc7co")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.351592, -0.3315, -0.611446)
 visible = false
 
-[node name="HeldPotionLight" type="OmniLight3D" parent="Pivot/HeldPotionBottle"]
+[node name="HeldPotionLight" type="OmniLight3D" parent="Pivot/HeldPotionBottle" unique_id=510340380]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.139256, 0)
 visible = false
 omni_range = 2.0
 
-[node name="PlayerCamera" type="Camera3D" parent="Pivot"]
+[node name="PlayerCamera" type="Camera3D" parent="Pivot" unique_id=444219513]
 far = 800.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Pivot"]
+[node name="RayCast3D" type="RayCast3D" parent="Pivot" unique_id=1991914146]
 target_position = Vector3(0, 0, -1.65)
 debug_shape_thickness = 5
 
-[node name="PlayerUI" parent="Pivot" instance=ExtResource("2_5rmy3")]
+[node name="PlayerUI" parent="Pivot" unique_id=2031095291 instance=ExtResource("2_5rmy3")]
 
-[node name="AudioListener3D" type="AudioListener3D" parent="Pivot"]
+[node name="AudioListener3D" type="AudioListener3D" parent="Pivot" unique_id=1767585276]
 current = true
 
-[node name="On_PersonAudioPlayer" type="AudioStreamPlayer" parent="Pivot"]
+[node name="On_PersonAudioPlayer" type="AudioStreamPlayer" parent="Pivot" unique_id=323473784]
 stream = ExtResource("5_hffi4")
 volume_db = -20.0
 pitch_scale = 2.0
 max_polyphony = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=296537125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02068, 0)
 mesh = SubResource("CapsuleMesh_fx1y4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1767360098]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02222, 0)
 shape = SubResource("CapsuleShape3D_ykgbw")
 

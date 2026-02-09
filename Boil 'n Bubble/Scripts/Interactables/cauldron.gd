@@ -101,6 +101,7 @@ func interaction(caller):
 		datalist["potency"] = datalist["potency"] + mat_dictionary["potency"]
 		# Add complexity, then check for overload
 		complexity = complexity + mat_dictionary["complexity"]
+		unstable_particles.amount = 10 + (float(complexity) / float(complexity_limit)) * 40
 		print(complexity)
 		material_num = material_num + 1
 		#If complexity goes over limit, start countdown and make unstable
@@ -111,7 +112,7 @@ func interaction(caller):
 			explosion_timer.start(explosion_time_left)
 			ambient_audio_player.stream = unstable_audio
 			ambient_audio_player.play()
-			unstable_particles.emitting = true
+			unstable_particles.amount = 100
 		print("Datalist " + str(mat_dictionary) + " added")
 
 # Signal Function to start brewing
@@ -139,7 +140,7 @@ func _on_nozzle_start_brewing():
 				"potency": 0
 			}
 			complexity = 0
-			
+			unstable_particles.amount = 1
 			material_num = 0
 			print("Pick-Up Successful")
 		else:
@@ -152,6 +153,7 @@ func _on_cauldron_explosion_timeout():
 	active_audio_player.stream = explosion_audio
 	active_audio_player.play()
 	explosion_particles.emitting = true
+	unstable_particles.amount = 1
 	#Simulate the explosion
 	var bodies = explosion_hitbox.get_overlapping_bodies()
 	for target_body in bodies:
@@ -165,13 +167,13 @@ func _on_cauldron_explosion_timeout():
 				match(aspect):
 					"Fire":
 						if target_body.has_method("apply_effect"):
-							target_body.apply_effect(aspect, 5, 2, 3 + (datalist["potency"] * .1))
+							target_body.apply_effect(aspect, 5, 2, 3 + (datalist["potency"] * .1), 0)
 					"Healing":
 						if (target_body is CharacterBody3D) and ("curr_health" in target_body):
 							target_body.curr_health = clamp(target_body.curr_health + (datalist["potency"] * .25), 1, target_body.max_health)
 					"Poison":
 						if target_body.has_method("apply_effect"):
-							target_body.apply_effect(aspect, 5, 2, 3 + (datalist["potency"] * .15))
+							target_body.apply_effect(aspect, 5, 2, 0, 3 + (datalist["potency"] * .15))
 			for effect in datalist["effect"]:
 				print(effect)
 				match(effect):
@@ -232,4 +234,4 @@ func load_save(load_data):
 		explosion_timer.start(load_data["explosion_time"])
 		ambient_audio_player.stream = unstable_audio
 		ambient_audio_player.play()
-		unstable_particles.emitting = true
+		unstable_particles.amount = 100

@@ -17,6 +17,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var vel_clamp = false
 var clampable = true
 
+var particle_emitter : PackedScene = load("res://Scenes/Generics/StatusParticles.tscn")
+
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
@@ -116,12 +118,16 @@ func apply_effect(effect, repeats, duration, damage, potency):
 	var timer = Timer.new()
 	timer.wait_time = duration
 	timer.autostart = true
+	#Create and define particles for the effect
+	var status_particles = particle_emitter.instantiate()
+	status_particles.define_status(effect)
+	add_child(status_particles)
 	# Bind timeout and DOT (if any) functions to it
 	if (damage != 0):
 		timer.timeout.connect(damage_over_time.bind(damage))
 	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect, potency))
 	#Add timer to timer list, 
-	effect_timers[counter] = {repeat = repeats, timer = timer, power = potency}
+	effect_timers[counter] = {repeat = repeats, timer = timer, power = potency, particles = status_particles}
 	add_child(timer)
 	counter += 1
 
@@ -139,7 +145,8 @@ func time_out_timer_statusef(id, statusef, potency):
 				global_scale(Vector3(2, 2, 2))
 			"Dizzy":
 				clampable = true
-		#Destroys the timer
+		#Destroys the timer and the particle emitter
+		effect_timers[id].particles.call_deferred("queue_free")
 		effect_timers[id].timer.call_deferred("queue_free")
 		effect_timers.erase(id)
 

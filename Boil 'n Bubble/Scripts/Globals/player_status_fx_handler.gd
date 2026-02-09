@@ -32,7 +32,7 @@ func add_static_effect(effect):
 	match(effect):
 		"Bog":
 			player.speed_factor -= .9
-			status_fx.append({repeat = 0, timer = null, duration = 0, status = effect, dot = 0, power = 0})
+			status_fx.append({repeat = 0, timer = null, duration = 0, status = effect, dot = 0, power = 0, particle = null})
 	ui_master_node.add_status(effect)
 
 func add_effect(effect, repeats, duration, dot, power, timer_def = -1):
@@ -57,10 +57,14 @@ func add_effect(effect, repeats, duration, dot, power, timer_def = -1):
 	if (dot != 0):
 		timer.timeout.connect(damage_over_time.bind(dot))
 	timer.timeout.connect(time_out_timer_statusef.bind(timer, effect))
+	#Create and define particles for the effect
+	var status_particles = particle_emitter.instantiate()
+	status_particles.define_status(effect)
+	add_child(status_particles)
 	#If the effect already exists, remove it before adding the new one.
 	remove_effect(effect)
 	#Add effect to status list,
-	status_fx.append({repeat = repeats, timer = timer, duration = duration, status = effect, dot = dot, power = power})
+	status_fx.append({repeat = repeats, timer = timer, duration = duration, status = effect, dot = dot, power = power, particle = status_particles})
 	#Add particle effect
 	#var particle = particle_emitter.Instantiate()
 	#particle.define_status(effect)
@@ -89,6 +93,8 @@ func remove_effect(effect):
 		ui_master_node.remove_status(effect)
 		if status.timer:
 			status.timer.call_deferred("queue_free")
+		if (status.particle != null):
+			status.particle.queue_free()
 		status_fx.erase(status)
 
 func search_status_by_timer(timer : Timer):

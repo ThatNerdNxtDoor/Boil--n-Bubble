@@ -150,12 +150,16 @@ func apply_effect(effect, repeats, duration, damage, potency):
 	var timer = Timer.new()
 	timer.wait_time = duration
 	timer.autostart = true
+	#Create and define particles for the effect
+	var status_particles = particle_emitter.instantiate()
+	status_particles.define_status(effect)
+	add_child(status_particles)
 	# Bind timeout and DOT (if any) functions to it
 	if (damage != 0):
 		timer.timeout.connect(damage_over_time.bind(damage))
 	timer.timeout.connect(time_out_timer_statusef.bind(counter, effect))
 	#Add timer to timer list, 
-	effect_timers[counter] = {repeat = repeats, timer = timer}
+	effect_timers[counter] = {repeat = repeats, timer = timer, particles = status_particles}
 	add_child(timer)
 	counter += 1
 
@@ -171,6 +175,7 @@ func time_out_timer_statusef(id, statusef, potency):
 			"Shrink":
 				global_scale(Vector3(2, 2, 2))
 		#Destroys the timer
+		effect_timers[id].particles.call_deferred("queue_free")
 		effect_timers[id].timer.call_deferred("queue_free")
 		effect_timers.erase(id)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl0m87n0gki35"]
+[gd_scene format=3 uid="uid://cl0m87n0gki35"]
 
 [ext_resource type="Script" uid="uid://yv0jl3qjf6dl" path="res://Scripts/UI/title_page.gd" id="1_0p4it"]
 [ext_resource type="Texture2D" uid="uid://bu2m1i7bjxe24" path="res://Assets/Sprites/TitleLogo.png" id="2_dlum4"]
@@ -38,7 +38,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="TitlePage" type="Control"]
+[node name="TitlePage" type="Control" unique_id=2027112282]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0p4it")
 
-[node name="BG" type="Panel" parent="."]
+[node name="BG" type="Panel" parent="." unique_id=1745278534]
 z_index = -5
 layout_mode = 1
 anchors_preset = 15
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_15qmg")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=798949924]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -70,10 +70,10 @@ offset_bottom = -296.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.647059, 0.192157, 0.847059, 1)
-theme_override_font_sizes/bold_italics_font_size = 60
-theme_override_font_sizes/italics_font_size = 13
 theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/italics_font_size = 13
 bbcode_enabled = true
 text = " [b][i][center]Boil 
 --------- n' ---------
@@ -81,7 +81,7 @@ Bubble[/center][/i][/b]"
 fit_content = true
 scroll_active = false
 
-[node name="StartButtonPanel" type="Panel" parent="."]
+[node name="StartButtonPanel" type="Panel" parent="." unique_id=1938423310]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.258
@@ -94,7 +94,7 @@ offset_right = 0.247894
 offset_bottom = 0.0958862
 theme_override_styles/panel = SubResource("StyleBoxFlat_5w06x")
 
-[node name="StartButton" type="Button" parent="StartButtonPanel"]
+[node name="StartButton" type="Button" parent="StartButtonPanel" unique_id=854541447]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
@@ -110,7 +110,7 @@ theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
 text = "Start"
 
-[node name="SettingsButtonPanel" type="Panel" parent="."]
+[node name="SettingsButtonPanel" type="Panel" parent="." unique_id=609397516]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.57
@@ -123,7 +123,7 @@ offset_right = 0.199951
 offset_bottom = 0.0959473
 theme_override_styles/panel = SubResource("StyleBoxFlat_5w06x")
 
-[node name="SettingsButton" type="Button" parent="SettingsButtonPanel"]
+[node name="SettingsButton" type="Button" parent="SettingsButtonPanel" unique_id=475067541]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
@@ -139,7 +139,7 @@ theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
 text = "Settings"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1654761234]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.273
@@ -153,7 +153,7 @@ offset_bottom = -0.0640259
 texture = ExtResource("2_dlum4")
 expand_mode = 2
 
-[node name="SettingsPanel" type="Panel" parent="."]
+[node name="SettingsPanel" type="Panel" parent="." unique_id=746605552]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -162,7 +162,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CloseButton" type="Button" parent="SettingsPanel"]
+[node name="CloseButton" type="Button" parent="SettingsPanel" unique_id=1849716057]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.077
@@ -173,10 +173,10 @@ offset_left = 0.29599
 offset_top = 0.0319824
 offset_right = 0.104004
 offset_bottom = 0.119965
-theme_override_styles/hover = SubResource("StyleBoxFlat_52e5h")
 theme_override_styles/normal = SubResource("StyleBoxFlat_52e5h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_52e5h")
 
-[node name="CloseLabel" type="RichTextLabel" parent="SettingsPanel/CloseButton"]
+[node name="CloseLabel" type="RichTextLabel" parent="SettingsPanel/CloseButton" unique_id=1377493427]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -194,7 +194,7 @@ bbcode_enabled = true
 text = "[center][b]X"
 scroll_active = false
 
-[node name="MenuSpine" type="Panel" parent="SettingsPanel"]
+[node name="MenuSpine" type="Panel" parent="SettingsPanel" unique_id=1386242932]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14
@@ -203,11 +203,25 @@ anchor_right = 0.865
 anchor_bottom = 0.756
 theme_override_styles/panel = SubResource("StyleBoxFlat_o4abw")
 
-[node name="Settings" parent="SettingsPanel/MenuSpine" instance=ExtResource("3_2ck8b")]
+[node name="Settings" parent="SettingsPanel/MenuSpine" unique_id=1943517081 instance=ExtResource("3_2ck8b")]
 layout_mode = 1
 
-[node name="LoadPanel" parent="SettingsPanel/MenuSpine" instance=ExtResource("4_15qmg")]
+[node name="LoadPanel" parent="SettingsPanel/MenuSpine" unique_id=295294692 instance=ExtResource("4_15qmg")]
 layout_mode = 1
+
+[node name="VersionLabel" type="Label" parent="." unique_id=1025895691]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82100004
+anchor_top = 0.90400004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.20794678
+offset_top = 0.20794678
+theme_override_colors/font_color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+theme_override_font_sizes/font_size = 21
+text = "v"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="StartButtonPanel/StartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SettingsButtonPanel/SettingsButton" to="." method="_on_settings_button_pressed"]

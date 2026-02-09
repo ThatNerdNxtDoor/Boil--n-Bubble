@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://5m6j1t57e8px"]
 
+[ext_resource type="Texture2D" uid="uid://bhaq1xnfrkqxy" path="res://Assets/Sprites/StatusParticles/StatusParticleSprite_Fire.png" id="1_gtlpx"]
 [ext_resource type="Script" uid="uid://cvg18qh288tgf" path="res://Scripts/Generics/status_particles.gd" id="1_l7pcy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7pcy"]
+transparency = 1
+albedo_texture = ExtResource("1_gtlpx")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_7d6ys"]
@@ -10,12 +13,20 @@ material = SubResource("StandardMaterial3D_l7pcy")
 size = Vector2(0.1, 0.1)
 
 [node name="StatusParticles" type="CPUParticles3D" unique_id=926663104]
-lifetime = 0.6
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+amount = 12
+lifetime = 0.7
 randomness = 0.5
 mesh = SubResource("QuadMesh_7d6ys")
-emission_shape = 1
-emission_sphere_radius = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 spread = 180.0
 flatness = 1.0
 gravity = Vector3(0, 8, 0)
+scale_amount_min = 75.08
+scale_amount_max = 241.74
 script = ExtResource("1_l7pcy")

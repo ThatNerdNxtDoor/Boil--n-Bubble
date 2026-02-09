@@ -202,6 +202,7 @@ offset_left = 0.440002
 offset_top = 0.264
 offset_right = -0.200012
 offset_bottom = -0.0880127
+mouse_filter = 2
 alignment = 2
 
 [node name="Hotbar" type="GridContainer" parent="." unique_id=1594324917]
