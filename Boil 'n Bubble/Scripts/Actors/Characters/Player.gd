@@ -169,6 +169,7 @@ func _process(delta):
 		if PlayerInventory.inventory[PlayerInventory.holding_index] != null:
 			if (PlayerInventory.inventory[PlayerInventory.holding_index])["name"] == "potion":
 				held_item.visible = true
+				ui_master_node.mouse_tool_tip(true, "Throw Potion", true, "Consume")
 				if (PlayerInventory.inventory[PlayerInventory.holding_index])["effect"].find("Light") != -1:
 					potion_light.visible = true
 					potion_light.light_color = Color8(int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][0]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][1]), int((PlayerInventory.inventory[PlayerInventory.holding_index])["color"][2]))
@@ -177,8 +178,10 @@ func _process(delta):
 				else:
 					potion_light.visible = false
 			else:
+				ui_master_node.mouse_tool_tip(false, "", true, "Consume")
 				held_item.visible = false
 		else:
+			ui_master_node.mouse_tool_tip(false, "", false, "")
 			held_item.visible = false
 		
 		#Sprinting

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfbwkcnkeo72l"]
+[gd_scene format=3 uid="uid://bfbwkcnkeo72l"]
 
 [ext_resource type="Script" uid="uid://dfxv0jydlhbag" path="res://Scripts/UI/player_ui_script.gd" id="1_njjc1"]
 [ext_resource type="PackedScene" uid="uid://dsqkxsn83fp10" path="res://Scenes/UI/NotebookUI.tscn" id="2_807mx"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bmhkddncxcvk3" path="res://Scenes/UI/UIStatusIcon.tscn" id="3_st48x"]
 [ext_resource type="Texture2D" uid="uid://cgcllnr7tjlp1" path="res://Assets/Sprites/PostPaperNail.png" id="4_5khqi"]
 [ext_resource type="Texture2D" uid="uid://csc7tr47db5m0" path="res://Assets/Sprites/BellIconImage.png" id="5_ae4du"]
+[ext_resource type="Texture2D" uid="uid://bifvssmari2bs" path="res://Assets/Sprites/LeftClickIcon.png" id="8_ps2wx"]
+[ext_resource type="Texture2D" uid="uid://b6gtd6cxnt8g1" path="res://Assets/Sprites/RightClickIcon.png" id="9_ojf7o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v31v"]
 bg_color = Color(0.972549, 0.972549, 0.972549, 0.396078)
@@ -123,17 +125,19 @@ _data = {
 &"Ring": SubResource("Animation_gj5qh")
 }
 
-[node name="PlayerUI" type="CanvasLayer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ojf7o"]
+
+[node name="PlayerUI" type="CanvasLayer" unique_id=527006969]
 script = ExtResource("1_njjc1")
 ui_icon_packed = ExtResource("2_t4vr5")
 ui_status_icon_packed = ExtResource("3_st48x")
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=783435126]
 stream = ExtResource("3_bxyuu")
 volume_db = -0.5
 bus = &"SFX"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=616822217]
 anchors_preset = -1
 anchor_left = 0.447
 anchor_top = 0.59
@@ -149,10 +153,10 @@ theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "[center](E) Pick Up[/center]"
 
-[node name="NotebookMenu" parent="." groups=["Persistent"] instance=ExtResource("2_807mx")]
+[node name="NotebookMenu" parent="." unique_id=7951115 groups=["Persistent"] instance=ExtResource("2_807mx")]
 visible = false
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1474089851]
 z_index = -1
 anchors_preset = -1
 anchor_left = 0.015
@@ -170,7 +174,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="StaminaBar" type="ProgressBar" parent="."]
+[node name="StaminaBar" type="ProgressBar" parent="." unique_id=569681902]
 z_index = -1
 anchors_preset = -1
 anchor_left = 0.076
@@ -188,7 +192,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Status" type="VBoxContainer" parent="."]
+[node name="Status" type="VBoxContainer" parent="." unique_id=941038296]
 anchors_preset = -1
 anchor_left = 0.03
 anchor_top = 0.032
@@ -200,7 +204,7 @@ offset_right = -0.200012
 offset_bottom = -0.0880127
 alignment = 2
 
-[node name="Hotbar" type="GridContainer" parent="."]
+[node name="Hotbar" type="GridContainer" parent="." unique_id=1594324917]
 anchors_preset = -1
 anchor_left = 0.138
 anchor_top = 0.81
@@ -214,46 +218,46 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 8
 
-[node name="ItemIcon" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon" parent="Hotbar" unique_id=955057930 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 
-[node name="ItemIcon2" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon2" parent="Hotbar" unique_id=1739399438 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 1
 
-[node name="ItemIcon3" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon3" parent="Hotbar" unique_id=617218989 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 2
 
-[node name="ItemIcon4" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon4" parent="Hotbar" unique_id=361615029 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 3
 
-[node name="ItemIcon5" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon5" parent="Hotbar" unique_id=40945197 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 4
 
-[node name="ItemIcon6" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon6" parent="Hotbar" unique_id=1233612115 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 5
 
-[node name="ItemIcon7" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon7" parent="Hotbar" unique_id=1323805138 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 6
 
-[node name="ItemIcon8" parent="Hotbar" instance=ExtResource("2_t4vr5")]
+[node name="ItemIcon8" parent="Hotbar" unique_id=196829357 instance=ExtResource("2_t4vr5")]
 layout_mode = 2
 purpose = "hotbar"
 id = 7
 
-[node name="DeadPanel" type="Panel" parent="."]
+[node name="DeadPanel" type="Panel" parent="." unique_id=176719977]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,7 +266,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4rj3u")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="DeadPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="DeadPanel" unique_id=1804417781]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.186
@@ -278,7 +282,7 @@ theme_override_font_sizes/bold_font_size = 100
 bbcode_enabled = true
 text = " [b][u][center]Knocked Out![/center]"
 
-[node name="Button" type="Button" parent="DeadPanel"]
+[node name="Button" type="Button" parent="DeadPanel" unique_id=1943040000]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.417
@@ -294,7 +298,7 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_q5uco")
 text = "Restart"
 
-[node name="CloseUpPapers" type="Control" parent="."]
+[node name="CloseUpPapers" type="Control" parent="." unique_id=153031269]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -303,7 +307,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TutorialPaper" type="Panel" parent="CloseUpPapers"]
+[node name="TutorialPaper" type="Panel" parent="CloseUpPapers" unique_id=422679729]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -320,7 +324,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5h13r")
 metadata/_edit_use_anchors_ = true
 
-[node name="PostPaperNail" type="TextureRect" parent="CloseUpPapers/TutorialPaper"]
+[node name="PostPaperNail" type="TextureRect" parent="CloseUpPapers/TutorialPaper" unique_id=645213750]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.44
@@ -336,7 +340,7 @@ scale = Vector2(0.125, 0.125)
 texture = ExtResource("4_5khqi")
 stretch_mode = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper" unique_id=366077963]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.079
@@ -354,7 +358,7 @@ bbcode_enabled = true
 text = "[center][i][b]Alchemist's First Field Guide"
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper" unique_id=471600390]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.078
@@ -374,7 +378,7 @@ text = "[center][i]An introductory pamphlet by Josef L. Steinberg,
 for budding brewers and adventure-seeking alchemists."
 scroll_active = false
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="CloseUpPapers/TutorialPaper" unique_id=707466185]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04
@@ -400,7 +404,7 @@ text = "[left][i][u]Ingredients[/u]
 When going out to seek new ingredients, it is important to keep track of everything you find with a notebook. This is especially important if you are exploring an untouched part of the wilderness with little to no documentation. If you do have a notebook (or anything else that you are reading, [b]such as this pamphlet[/b]), you can open/close it using [b][ESC][/b]. Each page in your notebook should have a spot to write things down and a note slot. Dragging an ingredient into the note slot will dedicate the page to the ingredient, helping you keep track of what notes are being used. The slot can be replaced with another ingredient or emptied by dragging an empty inventory slot into the note slot."
 scroll_active = false
 
-[node name="StorageWindow" type="Control" parent="."]
+[node name="StorageWindow" type="Control" parent="." unique_id=2145901807]
 layout_mode = 3
 anchor_right = 1.0
 anchor_bottom = 0.764
@@ -409,7 +413,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ChestWindow" type="Panel" parent="StorageWindow"]
+[node name="ChestWindow" type="Panel" parent="StorageWindow" unique_id=2102041478]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -422,7 +426,7 @@ offset_top = 61.05
 offset_right = -0.112061
 offset_bottom = 60.84
 
-[node name="ChestContainer" type="HBoxContainer" parent="StorageWindow/ChestWindow"]
+[node name="ChestContainer" type="HBoxContainer" parent="StorageWindow/ChestWindow" unique_id=794173193]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 0
 anchor_top = 0.266
@@ -434,7 +438,7 @@ offset_right = -0.364014
 offset_bottom = 0.175995
 alignment = 1
 
-[node name="FarmWindow" type="Panel" parent="StorageWindow"]
+[node name="FarmWindow" type="Panel" parent="StorageWindow" unique_id=917222494]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -447,7 +451,7 @@ offset_top = -0.0700073
 offset_right = 0.487915
 offset_bottom = -0.0350342
 
-[node name="CenterContainer" type="CenterContainer" parent="StorageWindow/FarmWindow"]
+[node name="CenterContainer" type="CenterContainer" parent="StorageWindow/FarmWindow" unique_id=797260753]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -455,7 +459,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogueWindow" type="Control" parent="."]
+[node name="DialogueWindow" type="Control" parent="." unique_id=2106867488]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -464,7 +468,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogueBox" type="Panel" parent="DialogueWindow"]
+[node name="DialogueBox" type="Panel" parent="DialogueWindow" unique_id=1018575137]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.107
@@ -477,7 +481,7 @@ offset_right = -0.432007
 offset_bottom = 0.247986
 theme_override_styles/panel = SubResource("StyleBoxFlat_gj5qh")
 
-[node name="NamePanel" type="Panel" parent="DialogueWindow/DialogueBox"]
+[node name="NamePanel" type="Panel" parent="DialogueWindow/DialogueBox" unique_id=785943106]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
@@ -491,7 +495,7 @@ offset_right = 0.00498962
 offset_bottom = 0.0599995
 theme_override_styles/panel = SubResource("StyleBoxFlat_ae4du")
 
-[node name="NameText" type="RichTextLabel" parent="DialogueWindow/DialogueBox/NamePanel"]
+[node name="NameText" type="RichTextLabel" parent="DialogueWindow/DialogueBox/NamePanel" unique_id=972949487]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.021
@@ -505,7 +509,7 @@ offset_bottom = 0.00299835
 bbcode_enabled = true
 text = "[center]Trader"
 
-[node name="DialogueText" type="RichTextLabel" parent="DialogueWindow/DialogueBox"]
+[node name="DialogueText" type="RichTextLabel" parent="DialogueWindow/DialogueBox" unique_id=160421621]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.037
@@ -520,7 +524,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 21
 text = "Example Text"
 
-[node name="EverbellSprite" type="TextureRect" parent="."]
+[node name="EverbellSprite" type="TextureRect" parent="." unique_id=957556148]
 visible = false
 anchors_preset = -1
 anchor_left = 0.035
@@ -537,9 +541,49 @@ texture = ExtResource("5_ae4du")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EverbellSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_ae4du")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EverbellSprite" unique_id=1901386347]
+libraries/ = SubResource("AnimationLibrary_ae4du")
+
+[node name="MouseTooltip" type="Panel" parent="." unique_id=1945851339]
+anchors_preset = -1
+anchor_left = 0.13800001
+anchor_top = 0.73800004
+anchor_right = 0.40500003
+anchor_bottom = 0.799
+offset_left = 0.023986816
+offset_top = -0.22402954
+offset_right = 0.43997192
+offset_bottom = 0.24798584
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ojf7o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MouseTooltip" unique_id=543490816]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LeftClickTooltip" type="HBoxContainer" parent="MouseTooltip/HBoxContainer" unique_id=1118296108]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MouseTooltip/HBoxContainer/LeftClickTooltip" unique_id=376213934]
+layout_mode = 2
+texture = ExtResource("8_ps2wx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MouseTooltip/HBoxContainer/LeftClickTooltip" unique_id=1789979346]
+layout_mode = 2
+text = "Throw Potion"
+
+[node name="RightClickTooltip" type="HBoxContainer" parent="MouseTooltip/HBoxContainer" unique_id=1682473527]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MouseTooltip/HBoxContainer/RightClickTooltip" unique_id=1273759635]
+layout_mode = 2
+texture = ExtResource("9_ojf7o")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MouseTooltip/HBoxContainer/RightClickTooltip" unique_id=1276707272]
+layout_mode = 2
+text = "Consume "
 
 [connection signal="pressed" from="DeadPanel/Button" to="." method="_on_button_pressed"]

@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjmtiu7shxvc7"]
+[gd_scene format=3 uid="uid://cjmtiu7shxvc7"]
 
 [ext_resource type="Script" uid="uid://coq6p5yf0kvlf" path="res://Scripts/UI/ui_item_icon.gd" id="1_oyhab"]
 [ext_resource type="Texture2D" uid="uid://cknffbv43bg28" path="res://Assets/Sprites/EmptyUISlot.png" id="2_qbt70"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86f4h"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color(0.243137, 0.243137, 0.243137, 1)
 
-[node name="ItemIcon" type="ColorRect"]
+[node name="ItemIcon" type="ColorRect" unique_id=1453698515]
 custom_minimum_size = Vector2(100, 100)
 anchors_preset = -1
 anchor_left = -0.043
@@ -29,7 +29,7 @@ size_flags_vertical = 4
 color = Color(1, 1, 1, 0.682353)
 script = ExtResource("1_oyhab")
 
-[node name="PictureIcon" type="TextureRect" parent="."]
+[node name="PictureIcon" type="TextureRect" parent="." unique_id=10213915]
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 1
 anchors_preset = -1
@@ -41,7 +41,7 @@ mouse_filter = 2
 texture = ExtResource("2_qbt70")
 expand_mode = 1
 
-[node name="SelectBorder" type="Panel" parent="."]
+[node name="SelectBorder" type="Panel" parent="." unique_id=1965425860]
 visible = false
 layout_mode = 1
 anchors_preset = 15

@@ -23,6 +23,11 @@ func _ready():
 func _process(delta):
 	if purpose == "hotbar":
 		border.visible = held
+		if (held):
+			# Create dummy stylebox to replace border color
+			var border_change : StyleBox = border.get_theme_stylebox("panel").duplicate()
+			border_change.set("border_color", color.inverted())
+			border.add_theme_stylebox_override("panel", border_change)
 	elif purpose == "notebook":
 		pass
 	if (datalist == null):

@@ -23,6 +23,9 @@ var talking_npc
 #--------------------------------------------------------------------------------------------------#
 @export var ui_status_icon_packed : PackedScene
 @onready var status_tab : VBoxContainer = $Status
+#--------------------------------------------------------------------------------------------------#
+@onready var left_mouse_tip = $MouseTooltip/HBoxContainer/LeftClickTooltip
+@onready var right_mouse_tip = $MouseTooltip/HBoxContainer/RightClickTooltip
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -116,3 +119,9 @@ func ring_bell():
 		ui_sfx.stream = bell_audio
 		ui_sfx.play()
 		everbell_animation.play("Ring")
+
+func mouse_tool_tip(left_visible : bool, left_text : String, right_visible : bool, right_text : String):
+	left_mouse_tip.visible = left_visible
+	left_mouse_tip.find_child("Label").text = left_text
+	right_mouse_tip.visible = right_visible
+	right_mouse_tip.find_child("Label").text = right_text
