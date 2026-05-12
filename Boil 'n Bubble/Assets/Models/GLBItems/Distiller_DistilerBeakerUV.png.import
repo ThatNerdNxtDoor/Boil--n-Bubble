@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo3ll3k8wtmlx"
-path.s3tc="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex"
-path.etc2="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"
+uid="uid://dwxgetxjyd2e6"
+path.s3tc="res://.godot/imported/Distiller_DistilerBeakerUV.png-505867e718b79a6a2ff9ad6509325a3f.s3tc.ctex"
+path.etc2="res://.godot/imported/Distiller_DistilerBeakerUV.png-505867e718b79a6a2ff9ad6509325a3f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "c52d891be8bac9c1b3984d67c4e92c80"
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Wine.png"
-dest_files=["res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex", "res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"]
+source_file="res://Assets/Models/GLBItems/Distiller_DistilerBeakerUV.png"
+dest_files=["res://.godot/imported/Distiller_DistilerBeakerUV.png-505867e718b79a6a2ff9ad6509325a3f.s3tc.ctex", "res://.godot/imported/Distiller_DistilerBeakerUV.png-505867e718b79a6a2ff9ad6509325a3f.etc2.ctex"]
 
 [params]
 

@@ -96,6 +96,8 @@ func _ready():
 	PlayerInventory.holding_index = 0 
 	PlayerInventory.inventory = [null, null, null, null, null, null, null, null]
 	
+	#Functions connected to the Signal Bus
+	SignalBus.sleeping.connect(_sleeping)
 	SignalBus.show_paper.connect(_on_show_paper)
 	SignalBus.open_storage_window.connect(_on_open_storage)
 	SignalBus.open_dialogue_box.connect(_on_open_dialogue)
@@ -357,6 +359,7 @@ func load_save(node_load_data : Dictionary):
 
 #========================= Signal Recieving Functions =========================#
 
+## Greyed out functions moved to status manager
 ## Time Out function for status effects
 #func time_out_timer_statusef(id, statusef):
 	#var status
@@ -392,6 +395,9 @@ func _on_kill_box_body_entered(body):
 
 func _on_launch_timer_timeout():
 	clampable = true
+
+func _sleeping():
+	curr_health = max_health
 
 #--------------------------------------------UI Windows---------------------------------------------
 

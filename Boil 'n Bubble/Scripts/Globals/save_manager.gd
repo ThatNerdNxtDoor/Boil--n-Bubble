@@ -7,6 +7,15 @@ const FILE_PATH = "user://SaveData/"
 #Stores what slot the save manager is currently managing
 var current_slot : String
 
+func _ready():
+	#Connect to SignalBus
+	SignalBus.sleeping.connect(prepare_autosave)
+
+#Defers the save call so that the frame can finish before saving.
+#Allows for sleeping to pass time and heal the player before saving.
+func prepare_autosave():
+	call_deferred("save_game")
+
 func save_game():
 	var date_time = Time.get_datetime_dict_from_system()
 	var dir_access = DirAccess.open(FILE_PATH)

@@ -27,6 +27,13 @@ signal unlock_collectible(collectible)
 ##Signal for trader entering scene
 signal trader_entered
 
+##Signal for the player going to bed
+signal sleeping
+
+##General signal for the Distiller
+signal activate_distiller(function)
+
+##General function for enabling call upgrades
 func enable(type):
 	match(type):
 		"Farm":

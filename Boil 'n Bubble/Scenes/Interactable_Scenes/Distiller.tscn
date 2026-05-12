@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://b4mh1wxst3e4"]
+
+[ext_resource type="PackedScene" uid="uid://tivnn0wshj7p" path="res://Assets/Models/GLBItems/Distiller.glb" id="2_p74yv"]
+[ext_resource type="Script" uid="uid://b1s6vlr727l6p" path="res://Scripts/Interactables/Distiller/DistillerMain.gd" id="2_wmecj"]
+[ext_resource type="PackedScene" uid="uid://5m6j1t57e8px" path="res://Scenes/Generics/StatusParticles.tscn" id="4_6ih4v"]
+[ext_resource type="Script" uid="uid://88dka0rhmg3a" path="res://Scripts/Interactables/Distiller/DistillerComponent.gd" id="5_c282i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p74yv"]
+height = 2.7827148
+radius = 1.1948242
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tysxb"]
+height = 3.9251404
+radius = 1.0288086
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wmecj"]
+height = 5.635254
+radius = 2.3198242
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tysxb"]
+radius = 0.88
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmecj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wmecj"]
+size = Vector3(1.9906006, 4.873657, 4.489868)
+
+[node name="Distiller" unique_id=839287789 instance=ExtResource("2_p74yv")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+script = ExtResource("2_wmecj")
+
+[node name="BeakerInteractable" type="StaticBody3D" parent="Beaker" parent_id_path=PackedInt32Array(949703862) index="0" unique_id=1567363342]
+script = ExtResource("5_c282i")
+function = "collect"
+object_name = "Beaker"
+interact_text = "Collect"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beaker/BeakerInteractable" index="0" unique_id=145805333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39135736, 0)
+shape = SubResource("CylinderShape3D_p74yv")
+
+[node name="Hatch" parent="." index="3" unique_id=1862287721]
+transform = Transform3D(-8.162327e-08, 0.028025601, 0, -0.50100005, -4.5659503e-09, 0, 0, 0, 0.50100005, 0.065046936, 1.1740599, -1.7246374)
+
+[node name="HatchInteractable" type="StaticBody3D" parent="Hatch" index="0" unique_id=1528289379]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999997, 0, 0, 1.0305443)
+script = ExtResource("5_c282i")
+function = "hatch"
+object_name = "DistillerHatch"
+interact_text = "Open/Close"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hatch/HatchInteractable" index="0" unique_id=821077209]
+transform = Transform3D(0.99993396, 0, 0, -8.731149e-11, 1, 0, 0, 0, 0.99993396, 0, 1.1318512, 0)
+shape = SubResource("CylinderShape3D_tysxb")
+
+[node name="StaticInteractable" type="StaticBody3D" parent="Burner" parent_id_path=PackedInt32Array(1105823311) index="0" unique_id=1809855898]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("5_c282i")
+function = "distill"
+object_name = "DistillerBurner"
+interact_text = "Begin Distillation"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Burner/StaticInteractable" index="0" unique_id=1263896931]
+transform = Transform3D(1, 0, 0, 0, 1.0000045, 0, 0, 0, 1, 0, 1.817625, 0)
+shape = SubResource("CylinderShape3D_wmecj")
+
+[node name="StatusParticles" parent="Burner" parent_id_path=PackedInt32Array(1105823311) index="1" unique_id=926663104 instance=ExtResource("4_6ih4v")]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 1, -4.371139e-08, 0, -0.42542672, 0)
+emitting = false
+amount = 5
+lifetime = 0.26
+speed_scale = 0.5
+randomness = 0.25
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Burner" parent_id_path=PackedInt32Array(1105823311) index="2" unique_id=1062388985]
+transform = Transform3D(4.7474427, 0, 0, 0, 13.835619, 0, 0, 0, 4.7474427, 0, 1.1968964, 0)
+light_color = Color(1, 0.38431373, 0.15686275, 1)
+omni_range = 0.428
+
+[node name="DistillerInteractable" type="StaticBody3D" parent="RetopodDistiller" parent_id_path=PackedInt32Array(949708644) index="0" unique_id=927893004]
+script = ExtResource("5_c282i")
+function = "place"
+object_name = "Distiller"
+interact_text = "Put In"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RetopodDistiller/DistillerInteractable" index="0" unique_id=1214545696]
+shape = SubResource("SphereShape3D_tysxb")
+
+[node name="Container Sprite" type="Node" parent="RetopodDistiller/DistillerInteractable" index="1" unique_id=1951100942]
+
+[node name="Sprite3D" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="0" unique_id=1163399049]
+transform = Transform3D(-0.0027178936, 0.0072726756, -0.53287476, 0.5202272, 0.11566418, -0.001074769, 0.115637235, -0.5201774, -0.007689148, -0.53628314, 0.45635623, -0.5752153)
+pixel_size = 0.0008
+
+[node name="Sprite3D2" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="1" unique_id=1347662696]
+transform = Transform3D(-0.18240796, -0.09824413, -0.49101037, 0.07918781, 0.5103382, -0.13152924, 0.49444145, -0.11797771, -0.1600769, -0.690551, 0.5015368, -0.76012933)
+pixel_size = 0.0008
+
+[node name="Sprite3D3" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="2" unique_id=1306752199]
+transform = Transform3D(0.03585085, -0.075792104, -0.5262946, -0.08952787, 0.51909834, -0.08085435, 0.52413285, 0.09385211, 0.02218792, -0.6125088, 0.5015367, -0.8819753)
+pixel_size = 0.0008
+
+[node name="Sprite3D4" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="3" unique_id=504813875]
+transform = Transform3D(0.035850853, -0.07579213, -0.5262947, -0.10182415, 0.51674867, -0.08135359, 0.5218834, 0.106028825, 0.020281123, -0.69767314, 0.5015367, -0.48666593)
+pixel_size = 0.0008
+
+[node name="Sprite3D5" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="4" unique_id=1184262470]
+transform = Transform3D(0.035850856, -0.07579212, -0.5262947, 0.09583829, 0.51977164, -0.06832428, 0.5230158, -0.090048574, 0.04859552, -0.7270329, 0.5015367, -0.6159296)
+pixel_size = 0.0008
+
+[node name="Mixture" parent="." index="6" unique_id=1854143636]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_wmecj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="7" unique_id=967835072]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=107932831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9939575, 1.4351196, -0.051452637)
+shape = SubResource("BoxShape3D_wmecj")
+
+[node name="DistillerTimer" type="Timer" parent="." index="9" unique_id=1059897870]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="DistillerTimer" to="." method="burner_timeout"]

@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo3ll3k8wtmlx"
-path.s3tc="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex"
-path.etc2="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"
+uid="uid://dysnklixvoe51"
+path.s3tc="res://.godot/imported/Distiller_DistillerStandUV.png-9969715959a208b54918e49cdfeb49a6.s3tc.ctex"
+path.etc2="res://.godot/imported/Distiller_DistillerStandUV.png-9969715959a208b54918e49cdfeb49a6.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "30d471a0b85528d2735f57afb3c58d69"
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Wine.png"
-dest_files=["res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex", "res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"]
+source_file="res://Assets/Models/GLBItems/Distiller_DistillerStandUV.png"
+dest_files=["res://.godot/imported/Distiller_DistillerStandUV.png-9969715959a208b54918e49cdfeb49a6.s3tc.ctex", "res://.godot/imported/Distiller_DistillerStandUV.png-9969715959a208b54918e49cdfeb49a6.etc2.ctex"]
 
 [params]
 

@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bcxnyrsnvho4d" path="res://Assets/Models/CompletedWorld/bnb_cabin1.tscn" id="13_55jqw"]
 [ext_resource type="AudioStream" uid="uid://bxclh0sr084l" path="res://Assets/SoundEffects/WoodSnap5.wav" id="13_ai0xa"]
 [ext_resource type="PackedScene" uid="uid://ynteny0kdp5v" path="res://Assets/Models/CompletedWorld/second_region.tscn" id="13_u38gd"]
+[ext_resource type="Script" uid="uid://dhommygex3djo" path="res://Scripts/Interactables/bed.gd" id="15_mo2eu"]
 [ext_resource type="PackedScene" uid="uid://bxuuli6maroi2" path="res://Scenes/Actors/shrink_frog.tscn" id="18_blcja"]
 [ext_resource type="PackedScene" uid="uid://blvlwy71g47ug" path="res://Scenes/Actors/trader.tscn" id="18_j5ijs"]
 [ext_resource type="PackedScene" uid="uid://ffadxrwy5fs6" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticSoothVenom.tscn" id="20_52jet"]
@@ -33,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://cn77337y8xl86" path="res://Scenes/Interactable_Scenes/Material_Scenes/Static/StaticFloattail.tscn" id="24_06hkt"]
 [ext_resource type="PackedScene" uid="uid://gyrxyb4gv8iu" path="res://Scenes/Interactable_Scenes/farm_plot.tscn" id="24_h40uc"]
 [ext_resource type="PackedScene" uid="uid://b7ctmqb4ow3c2" path="res://Scenes/Interactable_Scenes/everbell_collectible.tscn" id="33_yk8a2"]
+[ext_resource type="PackedScene" uid="uid://b4mh1wxst3e4" path="res://Scenes/Interactable_Scenes/Distiller.tscn" id="34_shsbs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtmcy"]
 size = Vector3(36.7881, 39.9557, 1.19617)
@@ -45,6 +47,10 @@ size = Vector3(74.3053, 64.7686, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wcvv6"]
 size = Vector3(104.992, 56.8071, 2.73347)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ks06"]
+radius = 1.0053711
+height = 6.8497314
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnfh5"]
 albedo_color = Color(0.588235, 0.521569, 0.403922, 1)
@@ -349,6 +355,17 @@ transform = Transform3D(-1.13561, 0.0738363, -0.628442, 0.0646036, 1.2979, 0.035
 [node name="BnBCabin" parent="World" unique_id=776584090 instance=ExtResource("13_55jqw")]
 transform = Transform3D(0.209678, 0, -0.40778, 0, 0.458529, 0, 0.40778, 0, 0.209678, -4.69703, 0.885938, 0.724436)
 
+[node name="BedInteractable" type="StaticBody3D" parent="World/BnBCabin" unique_id=519295415]
+transform = Transform3D(0.92547446, 0, -0.37881014, 0, 1, 0, 0.37881014, 0, 0.92547446, -5.16982, 4.2837977, 8.874209)
+script = ExtResource("15_mo2eu")
+object_name = "Bed"
+interact_text = "Sleep"
+metadata/_custom_type_script = "uid://d06j5x72x3yb7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/BnBCabin/BedInteractable" unique_id=33474523]
+transform = Transform3D(-0.18832077, 0.91402644, -0.35929227, -0.8639874, 0.019761337, 0.50312597, 0.4669705, 0.4051729, 0.7859859, 0.17020714, 0.55236816, 0.26983833)
+shape = SubResource("CapsuleShape3D_4ks06")
+
 [node name="SecondRegion" parent="World" unique_id=914923590 instance=ExtResource("13_u38gd")]
 transform = Transform3D(0.908962, 0, 0, 0, 0.908962, 0, 0, 0, 0.908962, -20.8071, -0.836826, 168.284)
 
@@ -528,6 +545,9 @@ visible = false
 
 [node name="EverbellCollectible" parent="." unique_id=2059025742 instance=ExtResource("33_yk8a2")]
 transform = Transform3D(0.990532, -0.0608765, 0.123048, 0.0588988, 0.998071, 0.0196507, -0.124007, -0.0122172, 0.992206, -41.1496, 37.5378, 221.258)
+
+[node name="Distiller" parent="." unique_id=1274251237 instance=ExtResource("34_shsbs")]
+transform = Transform3D(-0.29521498, 0, 0.57909244, 0, 0.65, 0, -0.57909244, 0, -0.29521498, -4.041656, 2.7639716, 2.560051)
 
 [connection signal="body_entered" from="KillBox" to="Player" method="_on_kill_box_body_entered"]
 [connection signal="timeout" from="Actors/TraderTimer" to="Actors" method="spawn_trader"]

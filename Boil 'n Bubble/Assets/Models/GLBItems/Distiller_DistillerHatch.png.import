@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo3ll3k8wtmlx"
-path.s3tc="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex"
-path.etc2="res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"
+uid="uid://dtmne1qpd4dkj"
+path.s3tc="res://.godot/imported/Distiller_DistillerHatch.png-24ab66d61d6617dc544c1996057beba7.s3tc.ctex"
+path.etc2="res://.godot/imported/Distiller_DistillerHatch.png-24ab66d61d6617dc544c1996057beba7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "faea4a4520712362df2f3aec6290be5a"
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Wine.png"
-dest_files=["res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.s3tc.ctex", "res://.godot/imported/Wine.png-df94ad3368b6050695bac6ed390ffab5.etc2.ctex"]
+source_file="res://Assets/Models/GLBItems/Distiller_DistillerHatch.png"
+dest_files=["res://.godot/imported/Distiller_DistillerHatch.png-24ab66d61d6617dc544c1996057beba7.s3tc.ctex", "res://.godot/imported/Distiller_DistillerHatch.png-24ab66d61d6617dc544c1996057beba7.etc2.ctex"]
 
 [params]
 

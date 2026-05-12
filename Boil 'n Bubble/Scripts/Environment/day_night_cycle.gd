@@ -13,6 +13,7 @@ func _ready():
 	time = -116.5
 	
 	SignalBus.change_environment.connect(_change_environment)
+	SignalBus.sleeping.connect(_sleep_time)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +30,10 @@ func _change_environment(key : String):
 	environment = environment_dictionary[key][0]
 	#music_player.stream = environment_dictionary[key][1]
 	current_environment = key
+
+func _sleep_time():
+	time = -180
+	pass
 
 func save():
 	var save_dictionary = {
