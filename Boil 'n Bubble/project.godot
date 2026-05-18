@@ -15,10 +15,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Boil 'n Bubble"
-config/version="0.1.546"
+config/version="0.1.547"
 run/main_scene="res://Scenes/World_Scenes/title_page.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bur7vkrh7456r"
 
 [autoload]
 

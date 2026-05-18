@@ -25,7 +25,7 @@ radius = 0.88
 [sub_resource type="BoxShape3D" id="BoxShape3D_wmecj"]
 size = Vector3(1.9906006, 4.873657, 4.489868)
 
-[node name="Distiller" unique_id=839287789 instance=ExtResource("2_p74yv")]
+[node name="Distiller" unique_id=839287789 groups=["Persistent"] instance=ExtResource("2_p74yv")]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
 script = ExtResource("2_wmecj")
 
@@ -90,26 +90,27 @@ metadata/_custom_type_script = "uid://d06j5x72x3yb7"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RetopodDistiller/DistillerInteractable" index="0" unique_id=1214545696]
 shape = SubResource("SphereShape3D_tysxb")
 
-[node name="Container Sprite" type="Node" parent="RetopodDistiller/DistillerInteractable" index="1" unique_id=1951100942]
+[node name="ContainerSprites" type="Node3D" parent="RetopodDistiller/DistillerInteractable" index="1" unique_id=1127322236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00924933, -0.010225892, 0.07914853)
 
-[node name="Sprite3D" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="0" unique_id=1163399049]
-transform = Transform3D(-0.0027178936, 0.0072726756, -0.53287476, 0.5202272, 0.11566418, -0.001074769, 0.115637235, -0.5201774, -0.007689148, -0.53628314, 0.45635623, -0.5752153)
+[node name="Sprite3D" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/ContainerSprites" index="0" unique_id=1163399049]
+transform = Transform3D(-0.0007025027, 0.0074658217, 0.5328786, 0.5202978, 0.11534726, -0.00093014026, -0.11534888, 0.52024513, -0.0074408916, -0.30170506, -0.30255026, 0.2524528)
 pixel_size = 0.0008
 
-[node name="Sprite3D2" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="1" unique_id=1347662696]
-transform = Transform3D(-0.18240796, -0.09824413, -0.49101037, 0.07918781, 0.5103382, -0.13152924, 0.49444145, -0.11797771, -0.1600769, -0.690551, 0.5015368, -0.76012933)
+[node name="Sprite3D2" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/ContainerSprites" index="1" unique_id=1347662696]
+transform = Transform3D(-0.023234839, -0.14685313, 0.5117714, 0.078213595, 0.5057596, 0.1486791, -0.52664834, 0.0815903, -0.0004979218, -0.13375461, -0.110975504, -0.34135568)
 pixel_size = 0.0008
 
-[node name="Sprite3D3" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="2" unique_id=1306752199]
-transform = Transform3D(0.03585085, -0.075792104, -0.5262946, -0.08952787, 0.51909834, -0.08085435, 0.52413285, 0.09385211, 0.02218792, -0.6125088, 0.5015367, -0.8819753)
+[node name="Sprite3D3" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/ContainerSprites" index="2" unique_id=1306752199]
+transform = Transform3D(0.03585085, -0.075792104, -0.5262946, -0.08952787, 0.51909834, -0.08085435, 0.52413285, 0.09385211, 0.02218792, -0.8144627, -0.069137216, 0)
 pixel_size = 0.0008
 
-[node name="Sprite3D4" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="3" unique_id=504813875]
-transform = Transform3D(0.035850853, -0.07579213, -0.5262947, -0.10182415, 0.51674867, -0.08135359, 0.5218834, 0.106028825, 0.020281123, -0.69767314, 0.5015367, -0.48666593)
+[node name="Sprite3D4" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/ContainerSprites" index="3" unique_id=504813875]
+transform = Transform3D(0.035850853, -0.07579213, -0.52629477, -0.10182416, 0.51674867, -0.08135359, 0.5218834, 0.10602883, 0.020281123, 0.2483154, -0.12484592, 0)
 pixel_size = 0.0008
 
-[node name="Sprite3D5" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/Container Sprite" index="4" unique_id=1184262470]
-transform = Transform3D(0.035850856, -0.07579212, -0.5262947, 0.09583829, 0.51977164, -0.06832428, 0.5230158, -0.090048574, 0.04859552, -0.7270329, 0.5015367, -0.6159296)
+[node name="Sprite3D5" type="Sprite3D" parent="RetopodDistiller/DistillerInteractable/ContainerSprites" index="4" unique_id=1184262470]
+transform = Transform3D(0.035850856, -0.07579212, -0.52629477, 0.09583829, 0.5197717, -0.06832428, 0.5230158, -0.09004858, 0.04859552, 0, 0.030691624, -0.085784316)
 pixel_size = 0.0008
 
 [node name="Mixture" parent="." index="6" unique_id=1854143636]
